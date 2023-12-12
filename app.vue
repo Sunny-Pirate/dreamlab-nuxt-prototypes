@@ -1,6 +1,10 @@
+<script setup lang="ts">
+useHead({
+  title: "DreamLab.Solutions",
+  titleTemplate: (title) => `DreamLab.Solutions | ${title}`
+})
+</script>
+
 <template>
-  <div>
-    <NuxtWelcome app-name="DreamLab.Solutions" />
-  </div>
-  <NuxtPage />
+  <LazyNuxtPage />
 </template>
