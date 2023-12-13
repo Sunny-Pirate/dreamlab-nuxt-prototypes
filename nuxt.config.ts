@@ -18,7 +18,11 @@ export default {
 
     "google-fonts": {
         families: {
-            "Open Sans": true
+            "Open Sans": true,
+            "Orbitron": {
+                wght: '400..800',
+                ital: '400..800',
+            }
         }
     },
 
@@ -46,8 +50,8 @@ export default {
     },
 
     runtimeConfig: {
+        adminId: "info@dreamlab.solutions",
         public: {
-            adminId: "info@dreamlab.solutions"
         }
     }
 

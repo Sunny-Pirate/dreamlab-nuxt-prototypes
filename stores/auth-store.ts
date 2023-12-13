@@ -1,34 +1,34 @@
 export const useAuthStore = defineStore('auth-store', () => {
-
-    const session = ref<IAuthSession | null>(null)
-    const state = ref<"idle" | "loading" | "authorized">("idle")
-    const authStateErrors = ref<Error | null>(null)
-
-    const isAuthenticated = computed(() => !!session.value?.user)
-    const authState = computed(() => state.value)
-    const hasError = computed(() => authStateErrors !== null)
-    const getError = computed(() => authStateErrors.value)
-
-    async function login(email: string) {
-        state.value = "loading"
-        const {data, error, status} = await useAsyncData<IAuthSession>(
-            'doLogin',
-            () => $fetch('/api/auth/login', {
-                method: "POST",
-                body: JSON.stringify({
-                    identifier: email
-                })
-            }))
+    const cookie = useCookie("token")
+    const token = ref<string | null | undefined>(cookie.value)
+    const isAuthenticated = computed(() => {
+        console.log('token: ', token.value, !!token.value)
+        return !!token.value
+    })
 
 
-        if (error.value !== null) authStateErrors.value = error.value
+    // TODO: Separate user concepts in another store ie: on a user or profile store?
+    const user = ref<IUser | null | undefined>(null)
+    const getUserId = computed(() => user.value?.id)
+    const getUserRole = computed(() => user.value?.role)
 
-        if (data.value !== null) {
-            session.value = data.value
-            state.value = "authorized"
+
+    // TODO: Ask @Diego if it's secure bypass this calling directly from the page and let auth state read only the cookies
+    async function login(identifier: string) {
+        const {error, data, status, pending, execute, refresh} = await useAsyncData('doLogin', () => $fetch('/api/auth/login', {
+            method: "POST",
+            body: JSON.stringify({
+                identifier
+            })
+        }));
+
+        if (status.value === "success" && data.value) {
+            token.value = data.value.token
+            user.value = data.value.user
         }
-    }
 
+        return {error, data, status, pending, execute, refresh}
+    }
 
     /*
     async function verifyToken(): Promise<void> {
@@ -50,7 +50,7 @@ export const useAuthStore = defineStore('auth-store', () => {
      */
 
     return {
-        session, isAuthenticated, login, authState, hasError, getError
+        token, user, isAuthenticated, getUserId, login
         // , verifyToken, logout
     }
 })

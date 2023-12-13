@@ -17,6 +17,9 @@ const config: Config = {
                 "2xl": "1400px",
             },
         },
+        fonts: {
+            sans: "'Orbitron', sans-serif"
+        },
         extend: {
             colors: {
                 border: "hsl(var(--border))",
