@@ -15,5 +15,7 @@ import TheRegistrationForm from "~/components/authentication/TheRegistrationForm
 <style scoped>
 main{
   @apply min-h-screen grid place-items-center px-4
+
+
 }
 </style>

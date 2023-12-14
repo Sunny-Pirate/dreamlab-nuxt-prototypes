@@ -5,15 +5,15 @@ export default {
     devtools: {enabled: true},
     pages: true,
     modules: [
-      '@nuxtjs/google-fonts',
-      "@nuxtjs/i18n",
-      "@nuxtjs/tailwindcss",
-      "@pinia/nuxt",
-      "@formkit/auto-animate",
-      "@vueuse/nuxt",
-      '@vueform/nuxt',
-      'nuxt-icon-tw',
-      'nuxt-icon'
+        '@nuxtjs/google-fonts',
+        "@nuxtjs/i18n",
+        "@nuxtjs/tailwindcss",
+        "@pinia/nuxt",
+        "@formkit/auto-animate",
+        "@vueuse/nuxt",
+        '@vueform/nuxt',
+        'nuxt-icon-tw',
+        'nuxt-icon'
     ],
 
     "google-fonts": {
@@ -51,8 +51,15 @@ export default {
 
     runtimeConfig: {
         adminId: "info@dreamlab.solutions",
-        public: {
-        }
-    }
-
+        public: {}
+    },
+    build: {
+        postcss: {
+            plugins: {
+                'postcss-import': true,
+                'tailwindcss/nesting': {},
+                'postcss-nested': {},
+            },
+        },
+    },
 }

@@ -7,16 +7,20 @@
 }
 
 body {
-    @apply font-sans
+    @apply font-sans;
 }
 
 .card {
-    @apply relative bg-white shadow-md p-8 py-10 grid grid-cols-1
+    @apply relative bg-white shadow-md p-8 py-10 grid grid-cols-1;
+
+    h1 {
+        @apply text-xl font-semibold text-center mb-4;
+    }
 }
 
 
 .login-form {
-    @apply grid grid-cols-1 gap-4
+    @apply grid grid-cols-1 gap-4;
 }
 
 
