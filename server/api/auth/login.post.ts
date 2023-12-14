@@ -27,8 +27,8 @@ const isDomainUser = (identifier: string, domain: string) => {
 }
 
 export default defineEventHandler(async (event) => {
-    const body = await readBody(event);
     const runtimeConfig = useRuntimeConfig()
+    const body = await readBody(event);
     const identifier = body.identifier
     const domain = "@sunnyday.software";
 

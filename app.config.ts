@@ -1,5 +1,5 @@
 export default defineAppConfig({
-    title: 'Hello Nuxt',
+    title: 'DreamLab.Solutions',
     theme: {
         dark: false,
         colors: {

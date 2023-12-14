@@ -3,8 +3,26 @@
 import {useAuthStore, storeToRefs} from "#imports";
 import UserAuthIndicator from "~/components/authentication/UserAuthIndicator.vue";
 
-const authStore = useAuthStore();
-const {isAuthenticated} = storeToRefs(authStore);
+useSeoMeta({
+  ogDescription: "Un prodotto dalle caratteristiche fantastiche",
+  ogImage:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2U8BFIOn33DZpuj8tzoVyFF-KEYEwOEbcAZkJRImLXg&s",
+  ogUrl: "https://www.dreamlab.solutions",
+  twitterTitle: "_DREAM.LAB_",
+  twitterDescription: "Questo è il prodotto che rivoluziona l'evoluzione dell'involuzione."
+})
+
+useHead({
+
+  title: "DreamLab.Solutions",
+  titleTemplate: "DreamLab.Solutions",
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/dreamlab/alternateLogo.svg'
+    }
+  ]
+})
 </script>
 
 <template>
@@ -13,7 +31,7 @@ const {isAuthenticated} = storeToRefs(authStore);
       <h1 class="title">DreamLab.Solutions</h1>
       <h2 class="subtitle">Your Business Developer</h2>
     </div>
-    <UserAuthIndicator />
+    <UserAuthIndicator/>
   </main>
 </template>
 

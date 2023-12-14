@@ -3,6 +3,7 @@ useHead({
   title: "DreamLab.Solutions",
   titleTemplate: (title) => `DreamLab.Solutions | ${title}`
 })
+
 </script>
 
 <template>
