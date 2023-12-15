@@ -1,4 +1,5 @@
 import type {AsyncDataRequestStatus} from "#app/composables/asyncData";
+import type {StrapiAuthenticationData, StrapiAuthenticationResponse, StrapiUser} from "@nuxtjs/strapi/dist/runtime/types";
 
 declare global {
     interface IFormStatus<T> {
@@ -12,14 +13,10 @@ declare global {
         email: string
     };
 
-    interface IUser {
-        id: string
-        fullName: string
-        role: "user" | "kitter" | "simdriver" | "manager " | "admin"
-    }
+    type IUser = StrapiUser
 
-    interface IAuthSession {
-        token?: string
-        user?: IUser
+    type ISession = StrapiAuthenticationResponse & {
+        jwt?: string
+        user?: IUser | StrapiUser
     }
 }

@@ -1,58 +1,37 @@
+import {useStrapiAuth} from "#build/imports";
+import type {StrapiAuthenticationData, StrapiAuthenticationResponse} from "@nuxtjs/strapi/dist/runtime/types";
+import {CookieStore} from "@netlify/serverless-functions-api/dist/cookie_store";
+
 export const useAuthStore = defineStore('auth-store', () => {
-    const cookie = useCookie("token")
-    const token = ref<string | null | undefined>(cookie.value)
-    const isAuthenticated = computed(() => {
-        console.log('token: ', token.value, !!token.value)
-        return !!token.value
-    })
+
+    const session = ref<StrapiAuthenticationResponse>()
+
+    const user = useStrapiUser();
+    const {login} = useStrapiAuth();
 
 
-    // TODO: Separate user concepts in another store ie: on a user or profile store?
-    const user = ref<IUser | null | undefined>(null)
-    const getUserId = computed(() => user.value?.id)
-    const getUserRole = computed(() => user.value?.role)
+
+    const isAuthenticated = computed(() => !!user.value)
 
 
-    // TODO: Ask @Diego if it's secure bypass this calling directly from the page and let auth state read only the cookies
-    async function login(identifier: string) {
-        const {error, data, status, pending, execute, refresh} = await useAsyncData('doLogin', () => $fetch('/api/auth/login', {
-            method: "POST",
-            body: JSON.stringify({
-                identifier
-            })
+    async function loginWithCredentials({identifier, password}: StrapiAuthenticationData) {
+        // console.log(`[auth-store] User is trying to loggin. It wil be redirect ${redirectCookie.value}`)
+        const loginResponse = await useLazyAsyncData('doLoginwithCredentials', () => login({
+            identifier, password
         }));
 
-        if (status.value === "success" && data.value) {
-            token.value = data.value.token
-            user.value = data.value.user
+        const {status, pending, error, data, execute} = loginResponse;
+
+        if (data.value !== null){
+            session.value = data.value
         }
 
-        return {error, data, status, pending, execute, refresh}
+        return {pending, error, status, execute}
     }
 
-    /*
-    async function verifyToken(): Promise<void> {
-        const verificationResponse = await apiVerifyToken(token.value)
-        if (verificationResponse.isValid) {
-            user.value = verificationResponse.user // adjust this line as necessary depending on the API response shape
-        } else {
-            token.value = null
-            user.value = null
-        }
-    }
 
-    async function logout(): Promise<void> {
-        await apiLogout()
-        token.value = null
-        user.value = null
-    }
+    return {session, isAuthenticated, loginWithCredentials}
 
-     */
-
-    return {
-        token, user, isAuthenticated, getUserId, login
-        // , verifyToken, logout
-    }
 })
 
 if (import.meta.hot) {

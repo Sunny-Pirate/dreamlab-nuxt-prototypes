@@ -1,35 +1,49 @@
 <script setup lang="ts">
-import {onUpdated, storeToRefs, useAuthStore} from "#imports";
-import TheLoginForm from "~/components/authentication/TheLoginForm.vue";
 
+import TheAuthNavigation from "~/components/layout/TheAuthNavigation.vue";
+import {execute} from "graphql/execution";
 
-const formErrors = ref<Error | null>(null)
-
+const formData = ref<{ email: string, password: string }>({email: '', password: ''});
+const formStatus = ref<IFormStatus<any>>({
+  pending: false
+});
 const authStore = useAuthStore();
-const router = useRouter()
 
-const {isAuthenticated} = storeToRefs(authStore)
+const {isAuthenticated} = storeToRefs(authStore);
+const handleSubmit = () => {
+  formStatus.value.pending = true
+  const {pending, error, status} = useAsyncData(() => authStore.loginWithCredentials({
+    identifier: formData.value.email,
+    password: formData.value.password
+  }));
+  if (error.value) formStatus.value.error = error.value
+  if (status.value) formStatus.value.status = status.value
 
-onUpdated(() => {
-  console.log('login.vue - isAuth: ', isAuthenticated)
-  if (isAuthenticated.value) navigateTo("/")
-})
-
+  formStatus.value.pending = pending.value
+}
 
 </script>
 
 <template>
   <main class="auth-layout">
+    <TheAuthNavigation/>
     <div class="card">
-      <div v-if="!isAuthenticated">
-        <TheLoginForm/>
+      <h3 class="title">Login</h3>
+      <div>
+        <p class="debug">Is Auth: {{ isAuthenticated }}</p>
+        <p class="debug">Pending: {{ formStatus.pending }}</p>
+        <p class="debug">Status: {{ formStatus.status }}</p>
+        <p class="debug">Error: {{ formStatus.error }}</p>
       </div>
+      <form @submit.prevent="handleSubmit">
+        <label for="email">Email</label>
+        <input v-model="formData.email" name="email" type="email"/>
+        <label for="password">Password</label>
+        <input v-model="formData.password" name="password" type="password"/>
+        <button :disabled="isAuthenticated || formStatus.pending">
+          Login
+        </button>
+      </form>
     </div>
   </main>
 </template>
-
-<style>
-.auth-layout {
-  @apply min-h-screen grid grid-cols-1 grid-rows-1 place-items-center
-}
-</style>

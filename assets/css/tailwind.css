@@ -10,17 +10,36 @@ body {
     @apply font-sans;
 }
 
-.card {
-    @apply relative bg-white shadow-md p-8 py-10 grid grid-cols-1;
+nav {
+    @apply absolute top-0 bg-transparent shadow-md w-full grid grid-cols-1;
 
-    h1 {
-        @apply text-xl font-semibold text-center mb-4;
+    .wrapper {
+        @apply w-full flex flex-row gap-4 py-2.5;
     }
 }
 
+.auth-layout {
+    @apply min-h-screen grid grid-cols-1 bg-white;
 
-.login-form {
-    @apply grid grid-cols-1 gap-4;
+    .card {
+        @apply grid grid-cols-1 gap-4 place-self-center bg-white rounded border shadow p-4;
+
+        .title {
+            @apply text-xl font-semibold text-center;
+        }
+
+
+        form {
+            @apply grid grid-cols-1;
+
+            input {
+                @apply mb-4
+            }
+
+            button {
+                @apply my-4 p-2.5 px-6 form-bg-success disabled:bg-gray-300 font-semibold shadow hover:shadow-xl transition duration-500;
+            }
+
+        }
+    }
 }
-
-

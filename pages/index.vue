@@ -1,7 +1,8 @@
 <script setup lang="ts">
 
-import {useAuthStore, storeToRefs} from "#imports";
-import UserAuthIndicator from "~/components/authentication/UserAuthIndicator.vue";
+
+
+import TheNavigation from "~/components/layout/TheNavigation.vue";
 
 useSeoMeta({
   ogDescription: "Un prodotto dalle caratteristiche fantastiche",
@@ -27,11 +28,11 @@ useHead({
 
 <template>
   <main>
+    <TheNavigation />
     <div class="hero">
       <h1 class="title">DreamLab.Solutions</h1>
       <h2 class="subtitle">Your Business Developer</h2>
     </div>
-    <UserAuthIndicator/>
   </main>
 </template>
 

@@ -13,7 +13,8 @@ export default {
         "@vueuse/nuxt",
         '@vueform/nuxt',
         'nuxt-icon-tw',
-        'nuxt-icon'
+        'nuxt-icon',
+        '@nuxtjs/strapi',
     ],
 
     "google-fonts": {
@@ -53,6 +54,18 @@ export default {
         adminId: "info@dreamlab.solutions",
         public: {}
     },
+
+    strapi:{
+        url: process.env.STRAPI_URL || 'http://localhost:1337',
+        prefix: '/api',
+        admin: '/admin',
+        version: 'v4',
+        devtools: true,
+        cookie: {
+            sameSite: 'Strict'
+        }
+    },
+
     build: {
         postcss: {
             plugins: {
