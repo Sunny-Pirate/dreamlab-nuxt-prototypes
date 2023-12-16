@@ -5,32 +5,30 @@ import {CookieStore} from "@netlify/serverless-functions-api/dist/cookie_store";
 export const useAuthStore = defineStore('auth-store', () => {
 
     const session = ref<StrapiAuthenticationResponse>()
-
+    const redirectCookie = ref(useCookie('redirect'));
     const user = useStrapiUser();
     const {login} = useStrapiAuth();
-
 
 
     const isAuthenticated = computed(() => !!user.value)
 
 
-    async function loginWithCredentials({identifier, password}: StrapiAuthenticationData) {
-        // console.log(`[auth-store] User is trying to loggin. It wil be redirect ${redirectCookie.value}`)
-        const loginResponse = await useLazyAsyncData('doLoginwithCredentials', () => login({
-            identifier, password
-        }));
+    async function authenticate(session: StrapiAuthenticationResponse) {
+        console.log(`[auth-store] User is trying to loggin. It wil be redirect ${redirectCookie.value}`)
 
-        const {status, pending, error, data, execute} = loginResponse;
 
-        if (data.value !== null){
-            session.value = data.value
+        if (session.jwt === null || session.user) {
+            return createError({
+                statusCode: 401, statusMessage: "You cannot authenticate without passing a session."
+            })
         }
 
-        return {pending, error, status, execute}
+        return
+
     }
 
 
-    return {session, isAuthenticated, loginWithCredentials}
+    return {session, isAuthenticated, authenticate}
 
 })
 

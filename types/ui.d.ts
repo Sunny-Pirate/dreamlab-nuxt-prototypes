@@ -2,7 +2,7 @@ import type {AsyncDataRequestStatus} from "#app/composables/asyncData";
 import type {StrapiAuthenticationData, StrapiAuthenticationResponse, StrapiUser} from "@nuxtjs/strapi/dist/runtime/types";
 
 declare global {
-    interface IFormStatus<T> {
+    interface IFormStatusWithData<T> {
         status?: AsyncDataRequestStatus
         error?: Error
         pending: boolean

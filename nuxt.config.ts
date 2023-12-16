@@ -61,8 +61,9 @@ export default {
         admin: '/admin',
         version: 'v4',
         devtools: true,
+        cookieName: 'strapi_token',
         cookie: {
-            sameSite: 'Strict'
+            sameSite: true
         }
     },
 

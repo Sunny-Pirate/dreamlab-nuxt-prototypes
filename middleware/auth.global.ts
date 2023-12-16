@@ -1,5 +1,6 @@
 export default defineNuxtRouteMiddleware((to, _from) => {
 
+    console.log('to: ', to, _from)
     if (to.path.startsWith('/labs' || '/simgarage')) {
         const user = useStrapiUser()
         if (!user.value) {

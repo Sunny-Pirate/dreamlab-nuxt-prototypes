@@ -1,9 +1,19 @@
-import {useStrapiUrl} from "~/.nuxt/imports";
+import {useStrapiAuth} from "~/.nuxt/imports";
 
 export default defineEventHandler(async (event) => {
 
     const {identifier, password} = await readBody<{ identifier: string, password: string }>(event);
-    return {
-        id: "1c0b5672-ef80-4253-a3a2-7fe741aa90e4"
+    const {login} = useStrapiAuth()
+
+    const authenticationResponse = await login({
+        identifier, password
+    });
+
+    if (authenticationResponse) {
+        return authenticationResponse;
+    } else {
+        // Creating an error indicating user not authorized
+        throw createError({statusCode: 401, statusMessage: "User not authorized"});
     }
-})
+
+});
