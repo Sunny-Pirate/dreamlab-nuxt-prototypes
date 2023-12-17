@@ -10,7 +10,7 @@ body {
     @apply font-sans;
 }
 
-nav {
+nav.default {
     @apply absolute top-0 bg-transparent shadow-md w-full grid grid-cols-1;
 
     .wrapper {

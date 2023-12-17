@@ -3,7 +3,7 @@ const user = useStrapiUser();
 </script>
 
 <template>
-  <nav>
+  <nav class="default">
     <div class="wrapper">
       <router-link to="/">Home</router-link>
       <router-link to="/labs">Labs</router-link>
