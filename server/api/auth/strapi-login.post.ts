@@ -1,4 +1,3 @@
-import {useStrapiAuth} from "~/.nuxt/imports";
 
 export default defineEventHandler(async (event) => {
 

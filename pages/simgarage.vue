@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+import TheNavigation from "~/components/layout/TheNavigation.vue";
+
 useSeoMeta({
   ogDescription: "The SimGarage. The ultimate simdrivers experience.",
   ogImage:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2U8BFIOn33DZpuj8tzoVyFF-KEYEwOEbcAZkJRImLXg&s",
@@ -23,6 +25,7 @@ useHead({
 
 <template>
   <main>
+    <TheNavigation />
     <div class="grid">
       <h1 id="appTitleName">SimGarage</h1>
       <h2 class="slogan">The circus of sim racing</h2>

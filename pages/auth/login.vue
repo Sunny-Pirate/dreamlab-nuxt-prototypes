@@ -2,36 +2,37 @@
 
 import TheAuthNavigation from "~/components/layout/TheAuthNavigation.vue";
 import {useStrapiAuth} from "#imports";
-import type {AsyncDataRequestStatus} from "#app/composables/asyncData";
 
 const formData = ref<{ email: string, password: string }>({email: '', password: ''});
-const isPending = useState('pending', () => false);
-const formStatus = useState<AsyncDataRequestStatus>('status', () => "idle")
-const formErrors = useState<Error | null>('errors', () => null)
-const strapiAuth = useStrapiAuth()
-const authStore = useAuthStore();
+const {login} = useStrapiAuth()
+const user = useStrapiUser();
+const errorState = useState<Error | null>('error', () => null);
+const redirectCookie = useCookie('login-redirect', {path: '/'});
+
+const handleSubmit = async () => {
 
 
-const {isAuthenticated} = storeToRefs(authStore);
-const handleSubmit = () => {
   console.log(`[login] Pressed login action`)
-  const {status, pending, data, error} = useAsyncData('doLogin', () => $fetch('/api/auth/strapi-login', {
-    method: "POST",
-    body: {
-      identifier: formData.value.email,
-      password: formData.value.password
-    }
-  }))
-  if (error.value) formErrors.value = error.value
-  if (status.value) formStatus.value = status.value
-  if (pending.value) isPending.value = pending.value
 
+  const {pending, error, data, status} = await useAsyncData('doCredentialsLoginAction', () => login({
+    identifier: formData.value.email,
+    password: formData.value.password
+  }));
+
+  console.log(status.value)
+  // If pending form disabled
+
+  // If error show errors to client
+  if (error.value) errorState.value = error.value
+
+  // if status == success and data -> redirect to cookieRedicrect
   if (status.value === "success") {
-    console.log(`[login] Hurray the user is correctly logged in ${data.value?.user.value?.username}`)
-  } else {
-
+    const redirectPath = redirectCookie.value
+    console.log(`[login] User is correctly loggedIn redirect it to: `, redirectPath)
+    redirectCookie.value = undefined
+    // navigateTo redirectCookieValue
+    navigateTo(redirectPath)
   }
-
 }
 
 </script>
@@ -41,18 +42,25 @@ const handleSubmit = () => {
     <TheAuthNavigation/>
     <div class="card">
       <h3 class="title">Login</h3>
-      <div>
-        <p v-if="isAuthenticated" class="debug">Is Auth: {{ isAuthenticated }}</p>
-        <p class="debug">Pending: {{ isPending }}</p>
-        <p v-if="status" class="debug">Status: {{ status }}</p>
-        <p v-if="error" class="debug">Error: {{ error.cause }}</p>
+      <div class="text-xs bg-red-200 rounded">
+        <p v-if="user" class="debug">Is Auth: {{ user ? "Yes" : "NO" }}</p>
+        <div v-if="errorState" class="debug grid gap-1">
+          <h5 class="font-semibold">
+            <span>{{ errorState.name }}&nbsp;</span>
+            <span>{{ errorState.cause.error.status }}&nbsp;</span>
+            <span>{{ errorState.cause.error.name }}</span>
+          </h5>
+
+          <p>{{ errorState.cause.error.message }}</p>
+          <p>{{ errorState.cause.error.details }}</p>
+        </div>
       </div>
       <form @submit.prevent="handleSubmit">
         <label for="email">Email</label>
         <input v-model="formData.email" name="email" type="email"/>
         <label for="password">Password</label>
         <input v-model="formData.password" name="password" type="password"/>
-        <button :disabled="isAuthenticated || pending">
+        <button>
           Login
         </button>
       </form>

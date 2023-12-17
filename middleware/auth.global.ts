@@ -1,11 +1,12 @@
 export default defineNuxtRouteMiddleware((to, _from) => {
 
-    console.log('to: ', to, _from)
-    if (to.path.startsWith('/labs' || '/simgarage')) {
+    const protectedPaths = ['/labs', '/simgarage'];
+
+    if (protectedPaths.some(path => new RegExp(`^${path}`).test(to.path))) {
         const user = useStrapiUser()
         if (!user.value) {
-            useCookie('redirect', {path: to.path}).value = to.fullPath
-            useCookie('redirectMsg', {path: to.path}).value = "You're not authorized to view the labs section. PLease log in."
+            useCookie('login-redirect', {path: '/', sameSite: true}).value = to.fullPath
+            // useCookie('login-redirect-msg', {path: '/', sameSite: true}).value = "You're not authorized to view the labs section. Please log in."
             return navigateTo('/auth/login')
         }
     }

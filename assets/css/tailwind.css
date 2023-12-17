@@ -18,6 +18,8 @@ nav.default {
     }
 }
 
+
+
 .auth-layout {
     @apply min-h-screen grid grid-cols-1 bg-white;
 
@@ -33,11 +35,11 @@ nav.default {
             @apply grid grid-cols-1;
 
             input {
-                @apply mb-4
+                @apply mb-4;
             }
 
             button {
-                @apply my-4 p-2.5 px-6 form-bg-success disabled:bg-gray-300 font-semibold shadow hover:shadow-xl transition duration-500;
+                @apply my-4 p-2.5 px-6 font-semibold shadow hover:shadow-xl transition duration-500 form-bg-success disabled:bg-gray-300;
             }
 
         }

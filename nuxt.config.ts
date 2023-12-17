@@ -28,7 +28,13 @@ export default {
     },
 
     imports: {
-        dirs: ['stores'],
+        dirs: ['stores', 'server'],
+        presets: [
+            {
+                from: '@nuxtjs/strapi',
+                imports: ['useStrapiAuth', 'useStrapiUser']
+            }
+        ]
     },
 
     i18n: {
@@ -63,7 +69,8 @@ export default {
         devtools: true,
         cookieName: 'strapi_token',
         cookie: {
-            sameSite: true
+            sameSite: true,
+            maxAge: 60 * 60 * 24
         }
     },
 
