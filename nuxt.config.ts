@@ -29,12 +29,6 @@ export default {
 
     imports: {
         dirs: ['stores', 'server'],
-        presets: [
-            {
-                from: '@nuxtjs/strapi',
-                imports: ['useStrapiAuth', 'useStrapiUser']
-            }
-        ]
     },
 
     i18n: {

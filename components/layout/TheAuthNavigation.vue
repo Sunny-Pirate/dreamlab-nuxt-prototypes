@@ -3,7 +3,6 @@
 </script>
 
 <template>
-
   <nav>
     <div class="wrapper">
       <router-link to="/">Home</router-link>

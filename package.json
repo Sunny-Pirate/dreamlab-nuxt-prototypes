@@ -1,5 +1,8 @@
 {
-  "name": "nuxt-app",
+  "name": "dreamlab-nuxt-prototypes",
+  "version": "0.0.1",
+  "author": "Luca Faccio<info@dreamlab.solution>",
+  "description": "DreamLab.Solutions' main website repository, serving as the development hub for project prototypes and application components, including the SimGarage, ClothingDesign, KitmeApp and other projects. This experimental Nuxt3 prototype is the foundation for future DreamLab.Solutions web applications and services.",
   "private": true,
   "type": "module",
   "scripts": {
