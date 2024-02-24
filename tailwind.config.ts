@@ -1,11 +1,13 @@
 import type {Config} from 'tailwindcss';
 
+import defaultTheme from "tailwindcss/defaultTheme";
+
 const config: Config = {
     darkMode: ["class"],
     content: [
         './index.html',
         './src/**/*.{vue,js,ts,jsx,tsx}',
-        './vueform.config.js', // or where `vueform.config.js` is located. Change `.js` to `.ts` if required.
+        './vueform.config.ts', // or where `vueform.config.js` is located. Change `.js` to `.ts` if required.
         './node_modules/@vueform/vueform/themes/tailwind/**/*.vue',
         './node_modules/@vueform/vueform/themes/tailwind/**/*.js',
     ],
@@ -17,10 +19,12 @@ const config: Config = {
                 "2xl": "1400px",
             },
         },
-        fonts: {
-            sans: "'Orbitron', sans-serif"
-        },
         extend: {
+            backgroundImage: {
+                "primary": "bg-gradient-to-r from-emerald-600 to-emerald-400",
+                "accent": "bg-gradient-to-r from-emerald-600 to-emerald-400",
+                "warning": "bg-gradient-to-r from-emerald-600 to-emerald-400",
+            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
@@ -61,8 +65,10 @@ const config: Config = {
                 md: "calc(var(--radius) - 2px)",
                 sm: "calc(var(--radius) - 4px)",
             },
-            fontFamily:{
-                dreamlab: "'Open Sans', sans-serif"
+            fontFamily: {
+                headings: ["Neuropol", ...defaultTheme.fontFamily.sans],
+                display: ["Sephora", ...defaultTheme.fontFamily.sans],
+                dreamlab: ["Open Sans", ...defaultTheme.fontFamily.sans]
             },
             keyframes: {
                 "accordion-down": {

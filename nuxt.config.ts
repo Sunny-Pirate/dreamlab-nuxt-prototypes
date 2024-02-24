@@ -15,15 +15,16 @@ export default {
         'nuxt-icon-tw',
         'nuxt-icon',
         '@nuxtjs/strapi',
+        "@nuxt/image"
     ],
 
     "google-fonts": {
         families: {
             "Open Sans": true,
-            "Orbitron": {
+            /*"Orbitron": {
                 wght: '400..800',
                 ital: '400..800',
-            }
+            }*/
         }
     },
 
@@ -71,9 +72,10 @@ export default {
     build: {
         postcss: {
             plugins: {
-                'postcss-import': true,
+                'postcss-import': {},
                 'tailwindcss/nesting': {},
-                'postcss-nested': {},
+                tailwindcss: {},
+                autoprefixer: {},
             },
         },
     },

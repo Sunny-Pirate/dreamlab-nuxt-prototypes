@@ -1,56 +1,49 @@
 <script setup lang="ts">
 
-
-
 import TheNavigation from "~/components/layout/TheNavigation.vue";
+import TheHero from "~/components/layout/TheHero.vue";
+import TheServicesList from "~/components/layout/TheServicesList.vue";
 
 useSeoMeta({
   ogDescription: "Un prodotto dalle caratteristiche fantastiche",
-  ogImage:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2U8BFIOn33DZpuj8tzoVyFF-KEYEwOEbcAZkJRImLXg&s",
+  ogImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2U8BFIOn33DZpuj8tzoVyFF-KEYEwOEbcAZkJRImLXg&s",
   ogUrl: "https://www.dreamlab.solutions",
   twitterTitle: "_DREAM.LAB_",
   twitterDescription: "Questo è il prodotto che rivoluziona l'evoluzione dell'involuzione."
 })
 
 useHead({
-
   title: "DreamLab.Solutions",
   titleTemplate: "DreamLab.Solutions",
   link: [
     {
       rel: 'icon',
       type: 'image/png',
-      href: '/dreamlab/alternateLogo.svg'
+      href: '/dreamlab/primarySolidBordered.png'
     }
   ]
 })
+
+const currentView = ref<'intro' | 'content'>('intro')
+
 </script>
 
 <template>
   <main>
-    <TheNavigation />
-    <div class="hero">
-      <h1 class="title">DreamLab.Solutions</h1>
-      <h2 class="subtitle">Your Business Developer</h2>
-    </div>
+    <TheNavigation/>
+    <TheHero scrollToId="services-list"/>
+    <TheServicesList/>
   </main>
 </template>
 
 <style scoped>
+
 main {
-  @apply font-dreamlab min-h-screen grid place-items-center bg-gradient-to-br from-emerald-600/60 to-sky-600/60
-}
+  @apply min-h-screen grid grid-cols-1 grid-rows-2 place-items-center;
 
-.hero {
-  @apply text-center p-8 py-10 bg-gradient-to-tr from-lime-400/40 to-purple-800/40 hover:from-lime-400/30 hover:to-purple-800/30
-  transition-colors duration-700 shadow rounded-ss-2xl rounded-ee-2xl text-slate-900 font-semibold
-}
+  nav.default {
+    @apply fixed top-0 w-full;
+  }
 
-.title {
-  @apply text-2xl
-}
-
-.subtitle {
-  @apply text-xl
 }
 </style>

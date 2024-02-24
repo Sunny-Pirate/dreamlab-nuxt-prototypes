@@ -2,19 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-:root, html, body {
-    min-height: 100svh;
+@font-face {
+    font-family: "Neuropol";
+    src: url("../fonts/neuropol.otf") format("truetype");
 }
 
-body {
-    @apply font-sans;
+
+@font-face {
+    font-family: "Sephora";
+    src: url("../fonts/sephora/Sephora.ttf") format("truetype"),
+    url("../fonts/sephora/Sephora-Bold.ttf") format("truetype"),
+    url("../fonts/sephora/Sephora-Italic.ttf") format("truetype");
 }
 
-nav.default {
-    @apply absolute top-0 bg-transparent shadow-md w-full grid grid-cols-1;
 
-    .wrapper {
-        @apply w-full flex flex-row gap-4 py-2.5;
+@layer base {
+
+    :root {
+        --primary: #34d399;
+        --primary-foreground: #ffffff;
+    }
+
+    html, body {
+        min-height: 100svh;
+    }
+
+
+    body {
+        @apply font-dreamlab;
+    }
+}
+
+@layer components {
+
+    .card {
+        @apply leading-[1.2rem] grid gap-1.5;
+
+        .title {
+            @apply font-headings;
+        }
+
+        &::after {
+            @apply content-[""] w-full bg-gradient-to-r h-0.5 drop-shadow;
+        }
+
+        &.warning {
+            @apply after:from-amber-600 after:to-amber-400;
+        }
+
+        &.accent {
+            @apply after:from-purple-600 after:to-purple-400;
+        }
+
+        &.success {
+            @apply after:from-emerald-600 after:to-emerald-400;
+        }
     }
 }
 

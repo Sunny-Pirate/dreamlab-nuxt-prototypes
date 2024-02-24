@@ -1,6 +1,7 @@
 import type {AsyncDataRequestStatus} from "#app/composables/asyncData";
 import type {StrapiAuthenticationData, StrapiAuthenticationResponse, StrapiUser} from "@nuxtjs/strapi/dist/runtime/types";
 
+
 declare global {
     interface IFormStatusWithData<T> {
         status?: AsyncDataRequestStatus
@@ -19,4 +20,5 @@ declare global {
         jwt?: string
         user?: IUser | StrapiUser
     }
+
 }
