@@ -50,6 +50,8 @@ const projects: ProjectItem[] = [
   },
 ]
 
+const activeIndex = ref<number>(0);
+
 </script>
 
 <template>
@@ -81,46 +83,24 @@ const projects: ProjectItem[] = [
 <style scoped>
 
 .portfolio-list {
-  @apply px-4;
+  @apply min-h-screen h-screen max-h-screen flex flex-row overflow-visible;
+}
 
-  .card {
-    @apply max-w-screen-sm rounded shadow-md bg-emerald-50 mt-8 grid grid-cols-1 gap-4 py-2;
+.card {
+  @apply max-h-[80svh] min-w-fit ;
 
-    .header {
-      @apply font-headings text-center md:text-left;
+  .header {
+    @apply pl-4;
 
-      .title {
-        @apply text-emerald-400 text-xl;
-      }
-
-      .subtitle {
-        @apply text-sm;
-      }
-
+    .title {
+      @apply text-2xl md:text-3xl;
     }
 
-    .case-study {
-/*      @apply px-2;*/
-    }
-
-    .image-wrapper {
-      img {
-        @apply object-cover max-h-32 w-full;
-      }
-    }
-
-    .technology-list {
-      /*  @apply pt-2;*/
-
-      h5 {
-        @apply font-headings text-xs;
-      }
-
-      .technology-item {
-        @apply w-8 h-8;
-      }
+    .subtitle{
+      @apply text-sm;
     }
   }
-
 }
+
+
 </style>
