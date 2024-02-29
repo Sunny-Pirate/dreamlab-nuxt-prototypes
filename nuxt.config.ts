@@ -1,51 +1,41 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default {
+
+    modules: [
+        "@nuxt/image",
+        "@nuxt/ui",
+        "@pinia/nuxt",
+        "@nuxtjs/i18n",
+        "@vueuse/nuxt",
+        '@nuxtjs/strapi',
+    ],
     dev: true,
     devtools: {enabled: true},
-    pages: true,
-    modules: [
-        '@nuxtjs/google-fonts',
-        "@nuxtjs/i18n",
-        "@nuxtjs/tailwindcss",
-        "@pinia/nuxt",
-        "@formkit/auto-animate",
-        "@vueuse/nuxt",
-        '@vueform/nuxt',
-        'nuxt-icon-tw',
-        'nuxt-icon',
-        '@nuxtjs/strapi',
-        "@nuxt/image"
-    ],
 
-    "google-fonts": {
-        families: {
-            "Open Sans": true,
-            /*"Orbitron": {
-                wght: '400..800',
-                ital: '400..800',
-            }*/
-        }
+
+    build: {
+        postcss: {
+            plugins: {
+                'postcss-import': {},
+                'tailwindcss/nesting': {},
+                tailwindcss: {},
+                autoprefixer: {},
+            },
+        },
     },
 
-    imports: {
-        dirs: ['stores', 'server'],
-    },
 
     i18n: {
         defaultLocale: 'en',
         locales: ['en', 'it']
     },
 
-    tailwindcss: {
-        cssPath: '~/assets/css/tailwind.css',
-        configPath: 'tailwind.config',
-        exposeConfig: false,
-        exposeLevel: 2,
-        config: {},
-        injectPosition: 'first',
-        viewer: true,
+    imports: {
+        dirs: ['stores', 'server'],
     },
+
+    pages: true,
 
     pinia: {
         autoImports: ['defineStore', 'acceptHMRUpdate'],
@@ -56,7 +46,7 @@ export default {
         public: {}
     },
 
-    strapi:{
+    strapi: {
         url: process.env.STRAPI_URL || 'http://localhost:1337',
         prefix: '/api',
         admin: '/admin',
@@ -69,14 +59,8 @@ export default {
         }
     },
 
-    build: {
-        postcss: {
-            plugins: {
-                'postcss-import': {},
-                'tailwindcss/nesting': {},
-                tailwindcss: {},
-                autoprefixer: {},
-            },
-        },
+    ui: {
+        global: true,
+        icons: ['fa6-regular', 'fa6-solid', 'fa6-brands', 'simple-icons']
     },
 }

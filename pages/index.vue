@@ -31,19 +31,11 @@ const currentView = ref<'intro' | 'content'>('intro')
 <template>
   <main>
     <TheNavigation/>
-    <TheHero scrollToId="services-list"/>
-    <TheServicesList/>
+    <!--    <TheHero scrollToId="services-list"/>-->
+    <!--    <TheServicesList/>-->
   </main>
 </template>
 
 <style scoped>
 
-main {
-  @apply min-h-screen grid grid-cols-1 grid-rows-2 place-items-center;
-
-  nav.default {
-    @apply fixed top-0 w-full;
-  }
-
-}
 </style>

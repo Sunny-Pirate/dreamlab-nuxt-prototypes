@@ -83,7 +83,7 @@ const activeIndex = ref<number>(0);
 <style scoped>
 
 .portfolio-list {
-  @apply min-h-screen h-screen max-h-screen flex flex-row overflow-visible;
+  @apply min-h-screen h-screen max-h-screen;
 }
 
 .card {

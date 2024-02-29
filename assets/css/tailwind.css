@@ -19,12 +19,15 @@
 @layer base {
 
     :root {
-        --primary: #34d399;
-        --primary-foreground: #ffffff;
     }
 
     html, body {
-        min-height: 100svh;
+        @apply relative
+        bg-slate-100/10 text-slate-800
+        dark:bg-slate-800 dark:text-slate-100
+        min-h-screen
+        ;
+
     }
 
 
@@ -61,7 +64,6 @@
 }
 
 
-
 .auth-layout {
     @apply min-h-screen grid grid-cols-1 bg-white;
 
@@ -81,7 +83,7 @@
             }
 
             button {
-                @apply my-4 p-2.5 px-6 font-semibold shadow hover:shadow-xl transition duration-500 form-bg-success disabled:bg-gray-300;
+                @apply my-4 p-2.5 px-6 font-semibold shadow hover:shadow-xl transition duration-500 disabled:bg-gray-300;
             }
 
         }
