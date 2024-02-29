@@ -46,7 +46,7 @@
         }
 
         &::after {
-            @apply content-[""] w-full bg-gradient-to-r h-0.5 drop-shadow;
+            @apply content-[""] w-full bg-gradient-to-r h-0.5 lg:h-1 drop-shadow;
         }
 
         &.warning {
@@ -61,6 +61,10 @@
             @apply after:from-emerald-600 after:to-emerald-400;
         }
     }
+}
+
+.page-content {
+    @apply min-h-[calc(100svh-48px)]
 }
 
 
@@ -83,7 +87,7 @@
             }
 
             button {
-                @apply my-4 p-2.5 px-6 font-semibold shadow hover:shadow-xl transition duration-500 disabled:bg-gray-300;
+                @apply my-4 p-2.5 px-6 font-semibold shadow hover:shadow-xl transition duration-500 disabled:bg-slate-300;
             }
 
         }

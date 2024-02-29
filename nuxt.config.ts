@@ -15,14 +15,14 @@ export default {
 
 
     build: {
-        postcss: {
+        /*postcss: {
             plugins: {
                 'postcss-import': {},
                 'tailwindcss/nesting': {},
                 tailwindcss: {},
                 autoprefixer: {},
             },
-        },
+        },*/
     },
 
 

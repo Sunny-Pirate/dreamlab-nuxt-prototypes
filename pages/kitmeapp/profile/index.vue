@@ -87,9 +87,9 @@ main {
       }
 
       .profile-image {
-        @apply w-28 h-28 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden;
+        @apply w-28 h-28 rounded-full bg-slate-300 flex items-center justify-center overflow-hidden;
         .user-icon {
-          @apply text-gray-500 text-3xl w-48 h-48;
+          @apply text-slate-500 text-3xl w-48 h-48;
         }
       }
     }
@@ -107,7 +107,7 @@ main {
     }
 
     .birthdate {
-      @apply text-sm text-gray-600;
+      @apply text-sm text-slate-600;
     }
 
 
@@ -139,7 +139,7 @@ main {
 
 
   .copyright {
-    @apply w-full p-2 grid justify-end items-end text-xs text-gray-500;
+    @apply w-full p-2 grid justify-end items-end text-xs text-slate-500;
   }
 }
 </style>

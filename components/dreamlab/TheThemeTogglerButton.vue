@@ -24,8 +24,3 @@ const isDark = computed({
   </ClientOnly>
 </template>
 
-<style scoped>
-.theme-switcher {
-  @apply text-2xl;
-}
-</style>

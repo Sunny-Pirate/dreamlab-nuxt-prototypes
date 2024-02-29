@@ -1,5 +1,5 @@
 import type {AsyncDataRequestStatus} from "#app/composables/asyncData";
-import type {StrapiAuthenticationData, StrapiAuthenticationResponse, StrapiUser} from "@nuxtjs/strapi/dist/runtime/types";
+import type {StrapiAuthenticationResponse, StrapiUser} from "@nuxtjs/strapi/dist/runtime/types";
 
 
 declare global {

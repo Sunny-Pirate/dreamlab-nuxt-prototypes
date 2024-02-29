@@ -42,7 +42,7 @@ const props = defineProps<HeroProps>();
 
 <style scoped>
 #hero {
-  @apply max-w-screen-sm min-h-screen h-screen grid grid-cols-1 gap-12 px-4 place-items-center;
+  @apply max-w-screen-sm mx-auto min-h-screen h-screen grid grid-cols-1 gap-12 px-4 place-items-center;
 
   .brand-wrapper {
 

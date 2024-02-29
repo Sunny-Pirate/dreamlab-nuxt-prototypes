@@ -50,7 +50,7 @@ const services = [
 
 #services-list {
 
-  @apply max-w-screen-sm grid gap-4 px-4 w-full min-h-screen h-screen place-items-center;
+  @apply max-w-screen-sm mx-auto grid gap-4 px-4 w-full min-h-screen h-screen place-items-center;
 
   .grid-wrapper {
     @apply grid gap-12;

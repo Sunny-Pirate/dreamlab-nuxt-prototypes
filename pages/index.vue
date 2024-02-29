@@ -31,8 +31,8 @@ const currentView = ref<'intro' | 'content'>('intro')
 <template>
   <main>
     <TheNavigation pageTitle="Index"/>
-    <!--    <TheHero scrollToId="services-list"/>-->
-    <!--    <TheServicesList/>-->
+        <TheHero scrollToId="services-list"/>
+        <TheServicesList/>
   </main>
 </template>
 
