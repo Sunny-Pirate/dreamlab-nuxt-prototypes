@@ -52,53 +52,62 @@ const handleOpenMenu = () => isOpen.value = !isOpen.value;
         <div v-if="isLaptop" class="desktop-navigation">
           <a v-for="link in navigationLinks" :key="link.label" :href="link.to" class="nav-link">{{ link.label }}</a>
         </div>
+        <TheThemeTogglerButton/>
       </div>
-      <TheThemeTogglerButton />
     </div>
   </nav>
 
-  <!-- Mobile Navigation Drawer -->
-  <!-- ... -->
+  <USlideover v-model="isOpen">
+
+  </USlideover>
 </template>
 
 <style scoped>
 .navbar {
-  @apply fixed top-0 left-0 right-0 ;
+  @apply fixed top-0 left-0 right-0;
 
   .wrapper {
-    @apply flex justify-between items-center px-4 py-2 gap-4;
+      @apply flex flex-row px-4 py-2 gap-4;
+
+
+    .menu-trigger {
+      @apply cursor-pointer md:hidden;
+      /* Only show the menu trigger on mobile */
+    }
+
+    .menu-icon {
+      @apply text-2xl;
+    }
+
+    .title-or-logo {
+      @apply flex-1 flex justify-start md:justify-start font-headings items-center;
+
+      .title {
+        @apply text-2xl;
+      }
+
+      &:has(svg) {
+        svg {
+          @apply w-8 h-8;
+        }
+      }
+    }
+
+    .navigation-or-actions {
+      @apply flex flex-row gap-4 ;
+
+      .desktop-navigation {
+        @apply hidden md:flex gap-4;
+        /* Only show the navigation links on desktop */
+      }
+
+      .nav-link {
+        @apply text-emerald-500 hover:text-emerald-600;
+      }
+
+    }
   }
 }
-
-.menu-trigger {
-  @apply p-2 cursor-pointer md:hidden;
-  /* Only show the menu trigger on mobile */
-}
-
-.menu-icon {
-  @apply text-2xl;
-}
-
-.title-or-logo {
-  @apply flex-1 flex justify-center md:justify-start;
-
-    &:has(svg) {
-      @apply w-12 h-12;
-    }
-}
-.navigation-or-actions {
-  @apply flex-1 flex justify-end;
-}
-
-.desktop-navigation {
-  @apply hidden md:flex space-x-4;
-  /* Only show the navigation links on desktop */
-}
-
-.nav-link {
-  @apply text-emerald-500 hover:text-emerald-600;
-}
-
 
 
 /* Add other styles as needed */
