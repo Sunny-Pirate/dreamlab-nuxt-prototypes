@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+import TheDreamlabVectorLogo from "~/components/dreamlab/TheDreamlabVectorLogo.vue";
+
 interface HeroProps {
   title?: string
   slogan?: string
@@ -30,7 +32,7 @@ const props = defineProps<HeroProps>();
 <template>
   <div id="hero">
     <div class="brand-wrapper">
-      <NuxtImg class="logo" :src="company.logo"/>
+      <TheDreamlabVectorLogo  />
       <h1 class="title">{{ company.title }}</h1>
       <h2 class="subtitle">{{ company.slogan }}</h2>
     </div>
@@ -48,8 +50,8 @@ const props = defineProps<HeroProps>();
 
     @apply text-center grid gap-4 place-items-center;
 
-    .logo {
-      @apply w-32 h-32;
+    .dreamlab-vector-logo {
+      @apply w-32 h-32 md:w-56 md:h-56 fill-emerald-400 stroke-lime-400 stroke-1;
     }
 
     .title {

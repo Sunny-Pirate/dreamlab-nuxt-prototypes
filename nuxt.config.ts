@@ -43,7 +43,12 @@ export default {
 
     runtimeConfig: {
         adminId: "info@dreamlab.solutions",
-        public: {}
+        public: {
+            companyLegalName: process.env.NUXT_PUBLIC_COMPANY_LEGAL_NAME,
+            companyLegalEmail: process.env.NUXT_PUBLIC_COMPANY_LEGAL_EMAIL,
+            companyKvkNumber: process.env.NUXT_PUBLIC_COMPANY_KVK_NUMBER,
+            companyBtwNumber: process.env.NUXT_PUBLIC_COMPANY_BTW_NUMBER,
+        }
     },
 
     strapi: {

@@ -2,6 +2,7 @@
 
 import TheNavigation from "~/components/layout/TheNavigation.vue";
 import {breakpointsTailwind, useBreakpoints} from '@vueuse/core';
+import TheFooter from "~/components/layout/TheFooter.vue";
 
 interface TechnologyItem {
 
@@ -69,79 +70,66 @@ const isMobile = breakpoints.smallerOrEqual("sm")
 </script>
 
 <template>
-  <TheNavigation pageTitle="Portfolio"/>
+  <main>
+    <TheNavigation pageTitle="Portfolio"/>
 
-  <UCarousel v-slot="{ item: project, index }"
-             :items="projects"
-             :arrows="!isMobile"
-             indicators
-             class="page-content"
-             :ui="{ item: 'basis-full grid place-items-center' }"
-  >
+    <UCarousel v-slot="{ item: project, index }"
+               :items="projects"
+               :arrows="!isMobile"
+               indicators
+               class="page-content"
+               :ui="{ item: 'basis-full grid place-items-center' }"
+    >
 
-    <UCard>
-      <template #header>
-        <ULink
-            :to="project.slug"
-            active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-        >
-          <h3 class="text-primary">{{ project.title }}</h3>
-        </ULink>
-        <h4 class="text-sm">{{ project.subtitle }}</h4>
-      </template>
-      <div class="content">
-        <div class="image-wrapper" v-if="project.imageUrl">
-          <NuxtImg :src="project.imageUrl" :alt="project.imageAltText"/>
+      <UCard>
+        <template #header>
+          <ULink
+              :to="project.slug"
+              active-class="text-primary"
+              inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+          >
+            <h3 class="text-primary">{{ project.title }}</h3>
+          </ULink>
+          <h4 class="text-sm">{{ project.subtitle }}</h4>
+        </template>
+        <div class="content">
+          <div class="image-wrapper" v-if="project.imageUrl">
+            <NuxtImg :src="project.imageUrl" :alt="project.imageAltText"/>
+          </div>
+          <div class="case-study text-ellipsis">
+            {{ project.caseStudyIntro }}
+          </div>
         </div>
-        <div class="case-study text-ellipsis">
-          {{ project.caseStudyIntro }}
-        </div>
-      </div>
 
-      <template #footer>
-        <div class="technology-section" v-if="project.technologies">
-          <h5>Techs:</h5>
-          <ul class="technology-list">
-            <li class="technology-item" v-for="(tech, tKey) in project.technologies" :key="tKey">
-              <UTooltip :text="tech.name">
-                <NuxtImg v-if="tech.logoUrl" :src="tech.logoUrl" :alt="tech.name"></NuxtImg>
-              </UTooltip>
-            </li>
-          </ul>
-        </div>
-      </template>
-    </UCard>
+        <template #footer>
+          <div class="technology-section" v-if="project.technologies">
+            <h5>Techs:</h5>
+            <ul class="technology-list">
+              <li class="technology-item" v-for="(tech, tKey) in project.technologies" :key="tKey">
+                <UTooltip :text="tech.name">
+                  <NuxtImg v-if="tech.logoUrl" :src="tech.logoUrl" :alt="tech.name"></NuxtImg>
+                </UTooltip>
+              </li>
+            </ul>
+          </div>
+        </template>
+      </UCard>
 
-  </UCarousel>
-  <!--
+    </UCarousel>
+    <TheFooter />
+  </main>
 
-    <ul class="portfolio-list">
-      <li class="card" v-for="(project, pKey) in projects" :key="pKey">
-        <div class="header">
-          <h3 class="title">{{ project.title }}</h3>
-          <h4 v-if="project.subtitle" class="subtitle">{{ project.subtitle }}</h4>
-        </div>
-        <div class="image-wrapper" v-if="project.imageUrl">
-          <NuxtImg :src="project.imageUrl" :alt="project.imageAltText"></NuxtImg>
-        </div>
-        <div class="case-study">
-          {{ project.caseStudyIntro }}
-        </div>
-        <ul class="technology-list" v-if="project.technologies">
-          <h5>Techs:</h5>
-          <li class="technology-item" v-for="(tech, tKey) in project.technologies" :key="tKey">
-            <NuxtImg v-if="tech.logoUrl" :src="tech.logoUrl" :alt="tech.name"></NuxtImg>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  -->
 
 </template>
 
 <style scoped>
 
+main {
+
+  footer {
+    @apply absolute bottom-0 w-full;
+  }
+}
 
 .content {
   @apply grid gap-4;

@@ -3,6 +3,7 @@
 import TheNavigation from "~/components/layout/TheNavigation.vue";
 import TheHero from "~/components/layout/TheHero.vue";
 import TheServicesList from "~/components/layout/TheServicesList.vue";
+import TheFooter from "~/components/layout/TheFooter.vue";
 
 useSeoMeta({
   ogDescription: "Un prodotto dalle caratteristiche fantastiche",
@@ -31,8 +32,9 @@ const currentView = ref<'intro' | 'content'>('intro')
 <template>
   <main>
     <TheNavigation pageTitle="Index"/>
-        <TheHero scrollToId="services-list"/>
-        <TheServicesList/>
+    <TheHero scrollToId="services-list"/>
+    <TheServicesList/>
+    <TheFooter />
   </main>
 </template>
 

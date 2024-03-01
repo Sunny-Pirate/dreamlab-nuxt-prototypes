@@ -3,7 +3,8 @@ import {ref, computed} from 'vue';
 import {useRoute} from 'vue-router';
 import {useWindowSize, useBreakpoints, breakpointsTailwind} from '@vueuse/core';
 import TheThemeTogglerButton from "~/components/dreamlab/TheThemeTogglerButton.vue";
-import TheDreamlabLogo from "~/components/dreamlab/TheDreamlabLogo.vue";
+import TheDreamlabVectorLogo from "~/components/dreamlab/TheDreamlabVectorLogo.vue";
+import TheDreamlabTextualLogo from "~/components/dreamlab/TheDreamlabTextualLogo.vue";
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 
@@ -40,7 +41,10 @@ const handleOpenMenu = () => isOpen.value = !isOpen.value;
         <span class="menu-icon" v-if="isMobile">
           <UIcon name="i-fa6-solid-bars" @click="handleOpenMenu"/>
         </span>
-        <TheDreamlabLogo v-if="!isMobile && !isIndexPage" @click="$router.push('/')"/>
+      </div>
+      <div class="branding">
+        <TheDreamlabVectorLogo v-if="!isMobile && !isIndexPage" @click="$router.push('/')"/>
+        <TheDreamlabTextualLogo v-if="!isMobile && !isIndexPage"/>
       </div>
       <div class="title">
 
@@ -91,8 +95,13 @@ const handleOpenMenu = () => isOpen.value = !isOpen.value;
       @apply cursor-pointer  text-primary grid place-items-center;
     }
 
-    .dreamlab-logo {
-      @apply w-12 h-12 p-1.5 fill-emerald-400 stroke-sky-400 cursor-pointer;
+    .branding {
+      @apply flex flex-row items-center justify-start;
+
+      .dreamlab-vector-logo {
+        @apply w-12 h-12 p-1.5 cursor-pointer fill-emerald-400 stroke-purple-400;
+      }
+
     }
 
     .title {
