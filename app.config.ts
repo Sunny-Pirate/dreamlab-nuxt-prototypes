@@ -9,7 +9,7 @@ export default defineAppConfig({
 
         /* COMPONENTS */
         card: {
-            base: 'flex-1 w-full flex flex-col min-h-[65vh]',
+            base: 'flex-1 w-full flex flex-col min-h-[65vh] max-w-md',
             background: 'bg-white dark:bg-slate-900',
             divide: 'divide-y divide-slate-200 dark:divide-slate-800',
             ring: 'ring-1 ring-slate-200 dark:ring-slate-800',
@@ -33,7 +33,7 @@ export default defineAppConfig({
         },
         carousel:{
             wrapper: 'relative inset-0 grid grid-rows-1 place-items-center',
-            container: 'relative w-full md:w-[80vw] mx-auto h-full flex overflow-x-auto snap-x snap-mandatory scroll-smooth',
+            container: 'relative w-full  mx-auto h-full flex overflow-x-auto snap-x snap-mandatory scroll-smooth',
             item: 'flex flex-none snap-center px-4',
             arrows: {
                 wrapper: 'flex items-center justify-between',
@@ -42,7 +42,7 @@ export default defineAppConfig({
                 wrapper: 'absolute flex items-center justify-center gap-3 bottom-4 inset-x-0',
                 base: 'rounded-full h-3 w-3',
                 active: 'bg-emerald-500 dark:bg-emerald-400',
-                inactive: 'bg-slate-100 dark:bg-slate-800 mix-blend-overlay',
+                inactive: 'bg-sky-200 dark:bg-slate-800 mix-blend-overlay',
             },
             default: {
                 prevButton: {

@@ -80,6 +80,58 @@ const projects: ProjectItem[] = [
       {name: "SCSS", logoUrl: "/dreamlab/mocks/logos/sass-icon.png"},
     ]
   },
+  {
+    title: "KITme App",
+    subtitle: "A Scalable Social Platform Pioneered with SunnyDay.Software",
+    imageUrl: "/dreamlab/mocks/projects/kitmeapp-design-example.png",
+    slug: "/dreamlab/portfolio/kitme-app",
+    caseStudyIntro:
+        "In collaboration with SunnyDay.software, the KITme App project was born, aiming to forge a scalable social platform. My role spanned from frontend development to design and project oversight, employing technologies like React, Next.js, Vue.js, Vuetify, Flutter, alongside Adobe XD, Balsamiq for wireframing, and Jira and Bitbucket for project management. This endeavor marked a significant milestone as my second project, thrusting me into a journey of discovery across various facets of development and design.",
+    technologies: [
+      {name: "React", logoUrl: "/dreamlab/mocks/logos/react-icon.png"},
+      {name: "Next.JS", logoUrl: "/dreamlab/mocks/logos/nextjs-icon.png"},
+      {name: "VueJs", logoUrl: "/dreamlab/mocks/logos/vue-icon.png"},
+      {name: "Vuetify", logoUrl: "/dreamlab/mocks/logos/vuetify-icon.png"},
+      {name: "Flutter", logoUrl: "/dreamlab/mocks/logos/flutter-icon.png"},
+      {name: "Adobe XD", logoUrl: "/dreamlab/mocks/logos/adobe-xd-icon.png"},
+      {name: "Balsamiq Mockups", logoUrl: "/dreamlab/mocks/logos/balsamiq-icon.png"},
+      {name: "Antora / Asciidoc", logoUrl: "/dreamlab/mocks/logos/asciidoc-icon.png"},
+      {name: "Jira", logoUrl: "/dreamlab/mocks/logos/jira-icon.png"},
+      {name: "Bitbucket", logoUrl: "/dreamlab/mocks/logos/bitbucket-icon.png"},
+    ],
+  },
+  {
+    title: "SIO 2023 Medical Conference CMS & Schedule App",
+    subtitle: "CMS Development for the National Congress of the Italian Society of Otolaryngology",
+    // imageUrl: "/dreamlab/mocks/projects/sio-2023-conference.png",
+    slug: "/dreamlab/portfolio/sio-2023-medical-conference",
+    caseStudyIntro:
+        "For the prestigious SIO 2023, in partnership with SunnyDay Software, we crafted a tailored CMS using Strapi, complemented by a robust frontend leveraging a suite of modern technologies including Next.js, Apollo Client, and Chakra UI. This project aimed to streamline the management and dissemination of conference information, providing an intuitive user experience for both organizers and attendees.",
+    technologies: [
+      {name: "Strapi", logoUrl: "/dreamlab/mocks/logos/strapi-icon.png"},
+      {name: "Next.JS", logoUrl: "/dreamlab/mocks/logos/nextjs-icon.png"},
+      {name: "Apollo Client", logoUrl: "/dreamlab/mocks/logos/graphql-icon.png"},
+      {name: "React", logoUrl: "/dreamlab/mocks/logos/react-icon.png"},
+      {name: "Redux", logoUrl: "/dreamlab/mocks/logos/redux-icon.png"},
+      {name: "Chakra UI", logoUrl: "/dreamlab/mocks/logos/chakraui-icon.png"},
+    ],
+  },
+  {
+    title: "Mattiazzo Law CMS and Frontend",
+    subtitle: "Innovative CMS and Frontend Solutions for Mattiazzo Law Firm",
+    // imageUrl: "/dreamlab/mocks/projects/mattiazzo-law-firm.png",
+    slug: "/dreamlab/portfolio/mattiazzo-law-firm-cms",
+    caseStudyIntro:
+        "Developing a comprehensive CMS and frontend for Mattiazzo Law Firm, we utilized a blend of advanced technologies including Next.js, Apollo Client, and MUI, ensuring a seamless and secure user experience. This project provided the firm with a dynamic platform for content management and client engagement, emphasizing privacy and ease of access.",
+    technologies: [
+      {name: "Next.JS", logoUrl: "/dreamlab/mocks/logos/nextjs-icon.png"},
+      {name: "Apollo Client", logoUrl: "/dreamlab/mocks/logos/graphql-icon.png"},
+      {name: "MUI", logoUrl: "/dreamlab/mocks/logos/mui-icon.png"},
+      {name: "React", logoUrl: "/dreamlab/mocks/logos/react-icon.png"},
+    ],
+  }
+
+
 ]
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
@@ -171,9 +223,10 @@ main {
     @apply flex flex-row w-full gap-2;
 
     .technology-item {
-      @apply w-6 h-6;
+      @apply size-6;
+
       img {
-        @apply max-w-6 max-h-6 object-center object-cover;
+        @apply size-max object-center object-cover;
       }
     }
   }
