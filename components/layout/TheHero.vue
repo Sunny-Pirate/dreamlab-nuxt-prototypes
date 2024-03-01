@@ -51,7 +51,10 @@ const props = defineProps<HeroProps>();
     @apply text-center grid gap-4 place-items-center;
 
     .dreamlab-vector-logo {
-      @apply w-32 h-32 md:w-56 md:h-56 fill-emerald-400 stroke-lime-400 stroke-1;
+      @apply w-32 h-32 md:w-56 md:h-56 fill-emerald-400 stroke-purple-400 stroke-1 shadow-purple-400 drop-shadow dark:stroke-amber-400;
+      svg {
+        @apply shadow shadow-purple-400;
+      }
     }
 
     .title {

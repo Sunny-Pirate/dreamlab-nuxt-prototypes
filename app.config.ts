@@ -9,50 +9,50 @@ export default defineAppConfig({
 
         /* COMPONENTS */
         card: {
-            base: 'w-full max-w-screen-sm min-h-[60svh] flex flex-col',
+            base: 'flex-1 w-full flex flex-col min-h-[65vh]',
             background: 'bg-white dark:bg-slate-900',
             divide: 'divide-y divide-slate-200 dark:divide-slate-800',
             ring: 'ring-1 ring-slate-200 dark:ring-slate-800',
             rounded: 'rounded-lg',
             shadow: 'shadow',
             body: {
-                base: 'grid gap-6 flex-1',
+                base: 'flex-1',
                 background: '',
                 padding: '',
             },
             header: {
-                base: 'font-headings text-2xl md:text-center',
+                base: '',
                 background: '',
                 padding: 'px-2',
             },
             footer: {
-                base: 'py-4',
+                base: '',
                 background: '',
-                padding: '',
+                padding: 'px-2',
             },
         },
         carousel:{
-            wrapper: 'relative grid max-w-screen-xl mx-auto',
-            container: 'relative w-full flex overflow-x-auto snap-x snap-mandatory scroll-smooth',
+            wrapper: 'relative inset-0 grid grid-rows-1 place-items-center',
+            container: 'relative w-full md:w-[80vw] mx-auto h-full flex overflow-x-auto snap-x snap-mandatory scroll-smooth',
             item: 'flex flex-none snap-center px-4',
             arrows: {
-                wrapper: 'absolute place-self-center flex w-full items-center justify-between',
+                wrapper: 'flex items-center justify-between',
             },
             indicators: {
                 wrapper: 'absolute flex items-center justify-center gap-3 bottom-4 inset-x-0',
                 base: 'rounded-full h-3 w-3',
-                active: 'bg-primary-500 dark:bg-primary-400',
+                active: 'bg-emerald-500 dark:bg-emerald-400',
                 inactive: 'bg-slate-100 dark:bg-slate-800 mix-blend-overlay',
             },
             default: {
                 prevButton: {
-                    color: 'black',
-                    class: 'rtl:[&_span:first-child]:rotate-180 absolute left-4 top-1/2 transform -translate-y-1/2 rounded-full',
+                    color: 'primary',
+                    class: "rtl:[&_span:first-child]:rotate-180 absolute left-4 top-1/2 transform -translate-y-1/2 rounded-full",
                     icon: 'i-heroicons-chevron-left-20-solid',
                 },
                 nextButton: {
-                    color: 'black',
-                    class: 'rtl:[&_span:last-child]:rotate-180 absolute right-4 top-1/2 transform -translate-y-1/2 rounded-full',
+                    color: 'primary',
+                    class: "rtl:[&_span:last-child]:rotate-180 absolute right-4 top-1/2 transform -translate-y-1/2 rounded-full",
                     icon: 'i-heroicons-chevron-right-20-solid ',
                 },
             },

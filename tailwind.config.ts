@@ -17,6 +17,11 @@ const config: Config = {
             },
         },
         extend: {
+            aspectRatio: {
+                auto: 'auto',
+                square: '1 / 1',
+                video: '16 / 9'
+            },
             backgroundImage: {
                 "primary": "bg-gradient-to-r from-emerald-600 to-emerald-400",
                 "accent": "bg-gradient-to-r from-emerald-600 to-emerald-400",

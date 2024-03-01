@@ -21,9 +21,9 @@ footer {
   @apply flex flex-row justify-between items-end text-xs pb-0.5 px-1.5;
 
   .copy {
-    @apply flex flex-row  gap-1;
+    @apply flex flex-row  gap-1 items-baseline;
     .dreamlab-textual-logo{
-      @apply text-xs;
+      @apply text-sm font-sans font-bold;
     }
   }
 }

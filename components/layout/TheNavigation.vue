@@ -99,7 +99,11 @@ const handleOpenMenu = () => isOpen.value = !isOpen.value;
       @apply flex flex-row items-center justify-start;
 
       .dreamlab-vector-logo {
-        @apply w-12 h-12 p-1.5 cursor-pointer fill-emerald-400 stroke-purple-400;
+        @apply w-12 h-12 p-1.5 cursor-pointer fill-emerald-400 drop-shadow;
+      }
+
+      .dreamlab-textual-logo {
+        @apply text-sm drop-shadow;
       }
 
     }
@@ -118,7 +122,7 @@ const handleOpenMenu = () => isOpen.value = !isOpen.value;
 
       & > a {
         @apply text-lg font-semibold border-b-2 px-1.5 hover:text-emerald-500 hover:dark:text-emerald-300
-        hover:border-b-emerald-400
+        hover:border-b-emerald-400 drop-shadow-sm
         transition-all duration-700 ease-in-out;
 
         &.active {
@@ -127,7 +131,7 @@ const handleOpenMenu = () => isOpen.value = !isOpen.value;
       }
 
       & > svg.theme-switcher {
-        @apply fill-emerald-400 stroke-sky-400;
+        @apply fill-emerald-400 stroke-sky-400 drop-shadow-sm;
       }
 
       &.mobile {

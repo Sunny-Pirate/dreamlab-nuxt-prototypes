@@ -31,8 +31,15 @@ const projects: ProjectItem[] = [
     title: "DreamLab.Solution WebApp",
     imageUrl: "/dreamlab/mocks/projects/dreamlab-crew-imaginary.png",
     slug: "/dreamlab/portfolio/dreamlab-solution",
+    caseStudyIntro:
+        "DreamLab.Solution WebApp is a comprehensive project that showcases my commitment to blending innovative design with cutting-edge technology. I focused on creating a user-friendly, responsive interface.",
     technologies: [
-      {name: "Nuxt 3", logoUrl: "/dreamlab/mocks/logos/nuxt-js-icon.png"}
+      {name: "VueJs", logoUrl: "/dreamlab/mocks/logos/vue-icon.png"},
+      {name: "Nuxt 3", logoUrl: "/dreamlab/mocks/logos/nuxt-js-icon.png"},
+      {name: "Pinia", logoUrl: "/dreamlab/mocks/logos/pinia-icon.png"},
+      {name: "Strapi", logoUrl: "/dreamlab/mocks/logos/strapi-icon.png"},
+      {name: "i18n", logoUrl: "/dreamlab/mocks/logos/i18n-icon.png"},
+      {name: "Tailwind", logoUrl: "/dreamlab/mocks/logos/tailwindcss-icon.png"},
     ]
   },
   {
@@ -41,7 +48,7 @@ const projects: ProjectItem[] = [
     imageUrl: "/dreamlab/mocks/projects/workshops-plugin-cover.png",
     slug: "/dreamlab/portfolio/kitmeapp-workshop-plugin",
     caseStudyIntro:
-        "The Workshop Creation and Management feature within the Workshop Management System (WMS) empowers managers with an intuitive and dynamic interface for orchestrating workshops. Leveraging the system’s flexible architecture, it allows for the creation of customized workshops that meet diverse organizational needs and participant preferences, ensuring simplicity and depth in workshop execution.",
+        "The WMS offers managers a user-friendly platform to efficiently organize customized workshops, catering to varied needs and preferences with ease and depth.",
     testimonials: ["SunnyDay.Software"],
     technologies: [
       {name: "Balsamiq Mockups", logoUrl: "/dreamlab/mocks/logos/balsamiq-icon.png"},
@@ -59,8 +66,19 @@ const projects: ProjectItem[] = [
   {
     title: "Profilo Social",
     slug: "/dreamlab/portfolio/profilo-social",
-    caseStudyIntro: "Frontend development with React.js.",
-    testimonials: ["Paolucci Ventures"]
+    imageUrl: "/dreamlab/mocks/projects/profilo-social-personal-area.png",
+    caseStudyIntro:
+        "Directed Profilo Social's frontend creation with React/Next.js, integrating NextAuth for user authentication, Nodemailer for email alerts, and Stripe for secure payments.",
+    testimonials: ["Paolucci Ventures"],
+    technologies: [
+      {name: "Git", logoUrl: "/dreamlab/mocks/logos/git-icon.png"},
+      {name: "Next.JS", logoUrl: "/dreamlab/mocks/logos/nextjs-icon.png"},
+      {name: "Typescript", logoUrl: "/dreamlab/mocks/logos/typescript-icon.png"},
+      {name: "Prisma", logoUrl: "/dreamlab/mocks/logos/prisma-icon.png"},
+      {name: "Nodemailer", logoUrl: "/dreamlab/mocks/logos/nodemailer-icon.png"},
+      {name: "Stripe API", logoUrl: "/dreamlab/mocks/logos/stripe-icon.png"},
+      {name: "SCSS", logoUrl: "/dreamlab/mocks/logos/sass-icon.png"},
+    ]
   },
 ]
 
@@ -80,7 +98,6 @@ const isMobile = breakpoints.smallerOrEqual("sm")
                class="page-content"
                :ui="{ item: 'basis-full grid place-items-center' }"
     >
-
       <UCard>
         <template #header>
           <ULink
@@ -88,7 +105,7 @@ const isMobile = breakpoints.smallerOrEqual("sm")
               active-class="text-primary"
               inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
           >
-            <h3 class="text-primary">{{ project.title }}</h3>
+            <h3 class="text-primary text-lg font-headings font-bold">{{ project.title }}</h3>
           </ULink>
           <h4 class="text-sm">{{ project.subtitle }}</h4>
         </template>
@@ -116,7 +133,7 @@ const isMobile = breakpoints.smallerOrEqual("sm")
       </UCard>
 
     </UCarousel>
-    <TheFooter />
+    <TheFooter/>
   </main>
 
 
@@ -137,7 +154,7 @@ main {
   .image-wrapper {
 
     img {
-      @apply w-full h-24 object-cover;
+      @apply w-full h-32 object-cover object-center;
     }
   }
 
@@ -155,6 +172,9 @@ main {
 
     .technology-item {
       @apply w-6 h-6;
+      img {
+        @apply max-w-6 max-h-6 object-center object-cover;
+      }
     }
   }
 }
