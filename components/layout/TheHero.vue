@@ -30,7 +30,7 @@ const props = defineProps<HeroProps>();
 <template>
   <div id="hero">
     <div class="brand-wrapper">
-      <NuxtImg class="logo" :src="company.logo" />
+      <NuxtImg class="logo" :src="company.logo"/>
       <h1 class="title">{{ company.title }}</h1>
       <h2 class="subtitle">{{ company.slogan }}</h2>
     </div>
@@ -42,7 +42,7 @@ const props = defineProps<HeroProps>();
 
 <style scoped>
 #hero {
-  @apply max-w-screen-sm mx-auto min-h-screen h-screen grid grid-cols-1 gap-12 px-4 place-items-center;
+  @apply relative max-w-screen-sm mx-auto min-h-screen h-screen grid grid-cols-1 gap-12 px-4 place-items-center;
 
   .brand-wrapper {
 
@@ -62,7 +62,8 @@ const props = defineProps<HeroProps>();
   }
 
   .scroller {
-    @apply absolute text-emerald-400 place-self-center self-end  text-5xl mb-12;
+    @apply absolute bottom-12
+    text-5xl text-emerald-400;
   }
 
 }
