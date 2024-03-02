@@ -1,0 +1,25 @@
+query getLimitedProjects($limit: Int = 5) {
+    projects(pagination: {limit: $limit}) {
+        data {
+            id
+            attributes {
+                title
+                subtitle
+                slug
+                cover {
+                    data {
+                        id
+                    }
+                }
+                caseStudy
+                status
+                website
+            }
+        }
+        meta {
+            pagination {
+                total
+            }
+        }
+    }
+}

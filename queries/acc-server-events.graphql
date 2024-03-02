@@ -1,0 +1,7 @@
+query getAllAccServerEvents($limit: Int = 1) {
+    accServerEvents(pagination: {limit: $limit}){
+        data {
+            id
+        }
+    }
+}

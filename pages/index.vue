@@ -37,7 +37,3 @@ const currentView = ref<'intro' | 'content'>('intro')
     <TheFooter />
   </main>
 </template>
-
-<style scoped>
-
-</style>

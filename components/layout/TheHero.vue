@@ -57,13 +57,6 @@ const props = defineProps<HeroProps>();
       }
     }
 
-    .title {
-      @apply font-headings text-2xl text-emerald-400;
-    }
-
-    .subtitle {
-      @apply font-headings text-xl;
-    }
   }
 
   .scroller {

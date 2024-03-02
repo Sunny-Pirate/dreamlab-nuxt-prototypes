@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import TheKitterProfileNavigation from "~/components/kitme/TheKitterProfileNavigation.vue";
-import {mockProfile} from "~/mocks/mock-profile";
 
 const profileModules = ref<{ label: string, isActive: boolean }[]>([
   {label: 'Privacy', isActive: true},
@@ -45,7 +44,7 @@ const handleShareViaQRCodeAction = () => {
           </button>
         </div>
         <div class="birthdate">07 dicembre 1985</div>
-        <div class="bio" v-html="mockProfile.biography"/>
+<!--        <div class="bio" v-html="mockProfile.biography"/>-->
       </div>
       <div class="dynamic-area">
         <button v-for="(module, idx) in dynamicModules" :key="idx">

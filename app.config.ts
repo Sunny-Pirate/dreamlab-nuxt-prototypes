@@ -9,7 +9,7 @@ export default defineAppConfig({
 
         /* COMPONENTS */
         card: {
-            base: 'flex-1 w-full flex flex-col min-h-[65vh] max-w-md',
+            base: 'flex-1 w-[90vw] md:w-full flex flex-col min-h-[65vh] max-w-md',
             background: 'bg-white dark:bg-slate-900',
             divide: 'divide-y divide-slate-200 dark:divide-slate-800',
             ring: 'ring-1 ring-slate-200 dark:ring-slate-800',
@@ -23,23 +23,23 @@ export default defineAppConfig({
             header: {
                 base: '',
                 background: '',
-                padding: 'px-2',
+                padding: 'px-2 md:px-4',
             },
             footer: {
                 base: '',
                 background: '',
-                padding: 'px-2',
+                padding: 'px-2 md:px-4',
             },
         },
         carousel:{
-            wrapper: 'relative inset-0 grid grid-rows-1 place-items-center',
+            wrapper: 'relative inset-0 grid grid-rows-1 place-items-center w-full h-full',
             container: 'relative w-full  mx-auto h-full flex overflow-x-auto snap-x snap-mandatory scroll-smooth',
             item: 'flex flex-none snap-center px-4',
             arrows: {
                 wrapper: 'flex items-center justify-between',
             },
             indicators: {
-                wrapper: 'absolute flex items-center justify-center gap-3 bottom-4 inset-x-0',
+                wrapper: 'absolute flex items-center justify-center gap-3 bottom-12 inset-x-0',
                 base: 'rounded-full h-3 w-3',
                 active: 'bg-emerald-500 dark:bg-emerald-400',
                 inactive: 'bg-sky-200 dark:bg-slate-800 mix-blend-overlay',
@@ -48,12 +48,12 @@ export default defineAppConfig({
                 prevButton: {
                     color: 'primary',
                     class: "rtl:[&_span:first-child]:rotate-180 absolute left-4 top-1/2 transform -translate-y-1/2 rounded-full",
-                    icon: 'i-heroicons-chevron-left-20-solid',
+                    icon: 'i-fa6-solid-angle-left',
                 },
                 nextButton: {
                     color: 'primary',
                     class: "rtl:[&_span:last-child]:rotate-180 absolute right-4 top-1/2 transform -translate-y-1/2 rounded-full",
-                    icon: 'i-heroicons-chevron-right-20-solid ',
+                    icon: 'i-fa6-solid-angle-right',
                 },
             },
         },

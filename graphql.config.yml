@@ -1,0 +1,8 @@
+schema: ./graphql.schema.json
+documents: ['./queries/**/*.graphql', './components/**/*.vue']
+extensions:
+  endpoints:
+    DreamLabStrapi:
+      url: ${NUXT_STRAPI_URL}/graphql
+      headers:
+        Authorization: Bearer ${NUXT_STRAPI_KEY}

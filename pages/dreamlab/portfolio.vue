@@ -3,6 +3,7 @@
 import TheNavigation from "~/components/layout/TheNavigation.vue";
 import {breakpointsTailwind, useBreakpoints} from '@vueuse/core';
 import TheFooter from "~/components/layout/TheFooter.vue";
+import placeholderImage from "~/assets/img/ph/project-cover.png"
 
 interface TechnologyItem {
 
@@ -12,21 +13,145 @@ interface TechnologyItem {
 
 }
 
-interface ProjectItem {
-
-  title: string; // Required
-  slug: string; // Required, if you're linking to a detailed page
-  imageUrl?: string; // Required, if every project has an image
-  imageAltText?: string; // For accessibility reasons
-  subtitle?: string;
-  caseStudyIntro?: string;
-  technologies?: TechnologyItem[];
-  completionDate?: Date; // If relevant
-  testimonials?: string[]; // Array of client testimonials
-  projectStatus?: 'ongoing' | 'completed' | 'paused'; // If relevant
+interface ProjectCardItem {
+  title: string
+  subtitle: string
+  slug: string
+  cover: string
+  caseStudy: string
+  status: string
+  website: string
 }
 
-const projects: ProjectItem[] = [
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const isMobile = breakpoints.smallerOrEqual("sm")
+
+const {status, pending, data, refresh} = await useAsyncGql("getLimitedProjects", {
+  limit: 5
+})
+
+const projects = computed(() => data.value.projects?.data.map((project) => {
+      return {
+        title: project.attributes?.title,
+        subtitle: project.attributes?.subtitle,
+        slug: project.attributes?.slug,
+        cover: project.attributes?.cover?.data === null ? "/dreamlab/placeholders/project-cover.png" : project.attributes?.cover?.data?.id,
+        caseStudy: project.attributes?.caseStudy,
+        status: project.attributes?.status,
+        website: project.attributes?.website
+      } as ProjectCardItem
+    })
+)
+
+</script>
+
+<template>
+  <main class="webpage">
+    <TheNavigation pageTitle="Portfolio"/>
+
+    <!--    <UProgress v-if="pending" animation="elastic"/>-->
+    <div class="webpage-content no-data" v-if="projects === undefined || projects.length === 0">
+      <UCard class="project-card">
+        <div>
+          <h3 class="title">Oops...</h3>
+          <p class="content">It looks like there are no public projects at the moment.</p>
+        </div>
+      </UCard>
+    </div>
+    <div v-else class="webpage-content">
+      <UCarousel v-slot="{ item, index }"
+                 :items="projects"
+                 :arrows="!isMobile && projects.length > 1"
+                 indicators
+                 class="place-self-center"
+                 :ui="{ item: 'basis-full grid place-items-center' }"
+      >
+        <UCard class="project-card">
+          <template #header>
+            <ULink :to="item.slug">
+              <h3 class="title">{{ item.title }}</h3>
+            </ULink>
+            <h4 class="`subtitle`">{{ item.subtitle }}</h4>
+          </template>
+          <template #default>
+            <div class="image-wrapper">
+              <NuxtImg :src="item.cover" :alt="item.title"/>
+            </div>
+            <div class="content" v-html="item.caseStudy" />
+          </template>
+          <template #footer>
+            <div class="meta-info">
+              <div class="status-indicator">{{ item.status }}</div>
+              <div class="website">{{ item.website }}</div>
+            </div>
+          </template>
+        </UCard>
+      </UCarousel>
+    </div>
+
+    <TheFooter/>
+  </main>
+
+
+</template>
+
+<style scoped>
+
+
+.no-data {
+  @apply grid grid-cols-1 grid-rows-1 place-self-center;
+}
+
+
+.technology-section {
+
+  @apply grid grid-cols-1 gap-2 px-2;
+
+  .technology-list {
+    @apply flex flex-row w-full gap-2;
+
+    .technology-item {
+      @apply size-6;
+
+      img {
+        @apply size-max object-center object-cover;
+      }
+    }
+  }
+}
+
+
+</style>
+
+<!--
+
+
+        <div class="content">
+          <div class="image-wrapper" v-if="item.imageUrl">
+            <NuxtImg :src="item.imageUrl" :alt="item.imageAltText"/>
+          </div>
+          <div class="case-study text-ellipsis">
+            {{ item.caseStudyIntro }}
+          </div>
+        </div>
+
+        <template #footer>
+          <div class="technology-section" v-if="item.technologies">
+            <h5>Techs:</h5>
+            <ul class="technology-list">
+              <li class="technology-item" v-for="(tech, tKey) in item.technologies" :key="tKey">
+                <UTooltip :text="tech.name">
+                  <NuxtImg v-if="tech.logoUrl" :src="tech.logoUrl" :alt="tech.name"></NuxtImg>
+                </UTooltip>
+              </li>
+            </ul>
+          </div>
+        </template>
+        -->
+
+<!--
+const _projects: ProjectItem[] = [
   {
     title: "DreamLab.Solution WebApp",
     imageUrl: "/dreamlab/mocks/projects/dreamlab-crew-imaginary.png",
@@ -133,104 +258,4 @@ const projects: ProjectItem[] = [
 
 
 ]
-
-const breakpoints = useBreakpoints(breakpointsTailwind);
-const isMobile = breakpoints.smallerOrEqual("sm")
-
-</script>
-
-<template>
-  <main>
-    <TheNavigation pageTitle="Portfolio"/>
-
-    <UCarousel v-slot="{ item: project, index }"
-               :items="projects"
-               :arrows="!isMobile"
-               indicators
-               class="page-content"
-               :ui="{ item: 'basis-full grid place-items-center' }"
-    >
-      <UCard>
-        <template #header>
-          <ULink
-              :to="project.slug"
-              active-class="text-primary"
-              inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-          >
-            <h3 class="text-primary text-lg font-headings font-bold">{{ project.title }}</h3>
-          </ULink>
-          <h4 class="text-sm">{{ project.subtitle }}</h4>
-        </template>
-        <div class="content">
-          <div class="image-wrapper" v-if="project.imageUrl">
-            <NuxtImg :src="project.imageUrl" :alt="project.imageAltText"/>
-          </div>
-          <div class="case-study text-ellipsis">
-            {{ project.caseStudyIntro }}
-          </div>
-        </div>
-
-        <template #footer>
-          <div class="technology-section" v-if="project.technologies">
-            <h5>Techs:</h5>
-            <ul class="technology-list">
-              <li class="technology-item" v-for="(tech, tKey) in project.technologies" :key="tKey">
-                <UTooltip :text="tech.name">
-                  <NuxtImg v-if="tech.logoUrl" :src="tech.logoUrl" :alt="tech.name"></NuxtImg>
-                </UTooltip>
-              </li>
-            </ul>
-          </div>
-        </template>
-      </UCard>
-
-    </UCarousel>
-    <TheFooter/>
-  </main>
-
-
-</template>
-
-<style scoped>
-
-main {
-
-  footer {
-    @apply absolute bottom-0 w-full;
-  }
-}
-
-.content {
-  @apply grid gap-4;
-
-  .image-wrapper {
-
-    img {
-      @apply w-full h-32 object-cover object-center;
-    }
-  }
-
-  .case-study {
-    @apply px-2;
-  }
-}
-
-.technology-section {
-
-  @apply grid grid-cols-1 gap-2 px-2;
-
-  .technology-list {
-    @apply flex flex-row w-full gap-2;
-
-    .technology-item {
-      @apply size-6;
-
-      img {
-        @apply size-max object-center object-cover;
-      }
-    }
-  }
-}
-
-
-</style>
+-->

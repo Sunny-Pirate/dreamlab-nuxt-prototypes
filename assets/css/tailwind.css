@@ -34,16 +34,73 @@
     body {
         @apply font-dreamlab;
     }
+
+    main {
+        &.webpage {
+            @apply min-h-screen grid grid-rows-[48px_1fr];
+
+            .webpage-content {
+                @apply grid place-items-start;
+            }
+        }
+    }
+
+    footer {
+        @apply absolute bottom-0 w-full;
+    }
+
 }
 
 @layer components {
 
-    .card {
+    .title, .subtitle {
+        @apply font-headings;
+    }
+
+    .title {
+        @apply text-emerald-600 dark:text-emerald-400 text-2xl md:text-3xl lg:text-4xl;
+    }
+
+    .subtitle {
+        @apply text-xl;
+    }
+
+    .intro {
+        @apply text-xl italic;
+    }
+
+
+    .project-card {
         @apply leading-[1.2rem] grid gap-1.5;
 
         .title {
-            @apply font-headings;
+            @apply text-2xl
         }
+
+        & div:is(.flex-1) {
+            @apply grid place-items-center grid-rows-3;
+
+            .image-wrapper {
+                @apply w-full h-20 md:h-24 lg:h-32;
+                img {
+                    @apply w-full max-h-20 md:max-h-24 lg:max-h-32 object-cover origin-top;
+                }
+            }
+
+        }
+
+        .content {
+            @apply px-2 md:px-4;
+        }
+
+        .meta-info {
+            @apply flex flex-row justify-between;
+        }
+    }
+
+    .card {
+        @apply leading-[1.2rem] grid gap-1.5;
+
 
         &::after {
             @apply content-[""] w-full bg-gradient-to-r h-0.5 lg:h-1 drop-shadow;
@@ -62,11 +119,6 @@
         }
     }
 }
-
-.page-content {
-    @apply min-h-[calc(100svh-48px)]
-}
-
 
 .auth-layout {
     @apply min-h-screen grid grid-cols-1 bg-white;

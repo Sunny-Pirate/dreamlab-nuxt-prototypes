@@ -35,7 +35,7 @@ const services = [
         <li class="card" v-for="(service, sKey) in services" :key="sKey"
             :class="service.id === 'ux' ? 'success' : service.id === 'ui' ? 'accent' : 'warning' "
         >
-          <h4 class="title">{{ service.name }}</h4>
+          <h4 class="service-title">{{ service.name }}</h4>
           <p>
             {{ service.description }}
           </p>
@@ -65,7 +65,7 @@ const services = [
       .card {
         @apply h-full md:place-content-between grid grid-cols-1 grid-rows-[1.75rem_1fr];
 
-        .title {
+        .service-title {
           @apply place-self-center w-full;
         }
       }
