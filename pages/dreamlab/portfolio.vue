@@ -101,8 +101,8 @@ const projects: ProjectItem[] = [
     ],
   },
   {
-    title: "SIO 2023 Medical Conference CMS & Schedule App",
-    subtitle: "CMS Development for the National Congress of the Italian Society of Otolaryngology",
+    title: "SIO 2023 Medical Conference",
+    subtitle: "CMS & Schedule App development for the 108° National Congress of the Italian Society of Otolaryngology",
     // imageUrl: "/dreamlab/mocks/projects/sio-2023-conference.png",
     slug: "/dreamlab/portfolio/sio-2023-medical-conference",
     caseStudyIntro:
