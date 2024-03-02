@@ -42,7 +42,7 @@ export default {
     },
 
     runtimeConfig: {
-        adminId: "info@dreamlab.solutions",
+        strapiApiSecret: "info@dreamlab.solutions",
         public: {
             companyLegalName: process.env.NUXT_PUBLIC_COMPANY_LEGAL_NAME,
             companyLegalEmail: process.env.NUXT_PUBLIC_COMPANY_LEGAL_EMAIL,
