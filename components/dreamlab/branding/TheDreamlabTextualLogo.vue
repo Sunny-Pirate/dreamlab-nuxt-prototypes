@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import TheDreamlabVectorLogo from "~/components/dreamlab/TheDreamlabVectorLogo.vue";
+import TheDreamlabVectorLogo from "~/components/dreamlab/branding/TheDreamlabVectorLogo.vue";
 
 interface TheLogoProps {
   twClasses?: string[]

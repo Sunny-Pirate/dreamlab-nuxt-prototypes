@@ -1,9 +1,13 @@
 <script setup lang="ts">
 
+import TheHeroServices from "~/components/layout/TheHeroServices.vue";
+import TheHeroSlogan from "~/components/layout/TheHeroSlogan.vue";
 import TheNavigation from "~/components/layout/TheNavigation.vue";
-import TheHero from "~/components/layout/TheHero.vue";
-import TheServicesList from "~/components/layout/TheServicesList.vue";
 import TheFooter from "~/components/layout/TheFooter.vue";
+
+definePageMeta({
+  name: "Index"
+})
 
 useSeoMeta({
   ogDescription: "Un prodotto dalle caratteristiche fantastiche",
@@ -30,10 +34,16 @@ const currentView = ref<'intro' | 'content'>('intro')
 </script>
 
 <template>
-  <main>
-    <TheNavigation pageTitle="Index"/>
-    <TheHero scrollToId="services-list"/>
-    <TheServicesList/>
+  <main class="webpage index">
+    <TheNavigation />
+    <TheHeroSlogan scrollToId="services"/>
+    <TheHeroServices/>
     <TheFooter />
   </main>
 </template>
+
+<style scoped>
+.index {
+  @apply min-h-screen grid grid-cols-1;
+}
+</style>

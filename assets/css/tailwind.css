@@ -18,13 +18,49 @@
 
 @layer base {
 
-    :root {
+    /* width */
+    ::-webkit-scrollbar {
+        width: theme('space[1.5]');
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: theme('colors.slate.200');
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: theme('colors.slate.800');
+        border-radius: 5px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: theme('colors.purple.500');
+    }
+    @media (prefers-color-scheme: dark) {
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: theme('colors.slate.600');
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.slate.100');
+            border-radius: 5px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.purple.500');
+        }
     }
 
     html, body {
         @apply relative
         bg-slate-100/10 text-slate-800
-        dark:bg-slate-800 dark:text-slate-100
+        dark:bg-slate-800 dark:text-slate-50
         min-h-screen
         ;
 
@@ -32,116 +68,103 @@
 
 
     body {
-        @apply font-dreamlab;
-    }
-
-    main {
-        &.webpage {
-            @apply min-h-screen grid grid-rows-[48px_1fr];
-
-            .webpage-content {
-                @apply grid place-items-start;
-            }
-        }
-    }
-
-    footer {
-        @apply absolute bottom-0 w-full;
+        @apply font-dreamlab ;
     }
 
 }
 
 @layer components {
+    .webpage {
+        @apply min-h-screen flex flex-col;
+    }
+
+    .navbar {
+
+        .branding {
+            @apply flex flex-row flex-1 items-center justify-center sm:justify-start;
+
+            .dreamlab-vector-logo {
+                @apply w-12 h-12 p-1.5 cursor-pointer fill-emerald-400 drop-shadow flex-1 sm:flex-none;
+            }
+
+            .dreamlab-textual-logo {
+                @apply hidden sm:inline-flex text-sm drop-shadow;
+            }
+
+        }
+
+    }
 
     .title, .subtitle {
         @apply font-headings;
     }
 
     .title {
-        @apply text-emerald-600 dark:text-emerald-400 text-2xl md:text-3xl lg:text-4xl;
-    }
-
-    .subtitle {
-        @apply text-xl;
-    }
-
-    .intro {
-        @apply text-xl italic;
+        @apply text-emerald-600 dark:text-emerald-400 capitalize;
     }
 
 
     .project-card {
-        @apply leading-[1.2rem] grid gap-1.5;
 
-        .title {
-            @apply text-2xl
+        @apply leading-6;
+
+        .card-header {
+            .title {
+                @apply text-2xl;
+            }
         }
 
-        & div:is(.flex-1) {
-            @apply grid place-items-center grid-rows-3;
+        .card-body {
+            @apply py-2 ;
 
-            .image-wrapper {
-                @apply w-full h-20 md:h-24 lg:h-32;
+            .cover {
+                @apply flex flex-col h-20 md:h-24 lg:h-32;
+
                 img {
-                    @apply w-full max-h-20 md:max-h-24 lg:max-h-32 object-cover origin-top;
+                    @apply w-full object-cover min-h-0 object-center;
                 }
             }
+        }
+
+        .card-footer {
+            @apply pt-2;
 
         }
 
-        .content {
-            @apply px-2 md:px-4;
+    }
+
+    .meta-info {
+        @apply flex justify-between items-center text-xs;
+
+        svg {
+            @apply text-base;
         }
 
-        .meta-info {
-            @apply flex flex-row justify-between;
+
+        .website-indicator {
+            @apply inline-flex gap-x-2 items-center hover:text-primary transition-all duration-500 ease-in-out;
+
+            .address {
+                @apply invisible md:visible;
+            }
         }
     }
 
-    .card {
-        @apply leading-[1.2rem] grid gap-1.5;
-
-
-        &::after {
-            @apply content-[""] w-full bg-gradient-to-r h-0.5 lg:h-1 drop-shadow;
-        }
-
-        &.warning {
-            @apply after:from-amber-600 after:to-amber-400;
-        }
-
-        &.accent {
-            @apply after:from-purple-600 after:to-purple-400;
-        }
-
-        &.success {
-            @apply after:from-emerald-600 after:to-emerald-400;
-        }
+    svg.theme-switcher {
+        @apply drop-shadow-sm hover:text-emerald-600 dark:hover:text-emerald-300;
     }
+
 }
 
-.auth-layout {
-    @apply min-h-screen grid grid-cols-1 bg-white;
+@layer utilities {
 
-    .card {
-        @apply grid grid-cols-1 gap-4 place-self-center bg-white rounded border shadow p-4;
-
-        .title {
-            @apply text-xl font-semibold text-center;
-        }
-
-
-        form {
-            @apply grid grid-cols-1;
-
-            input {
-                @apply mb-4;
-            }
-
-            button {
-                @apply my-4 p-2.5 px-6 font-semibold shadow hover:shadow-xl transition duration-500 disabled:bg-slate-300;
-            }
-
-        }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
     }
 }

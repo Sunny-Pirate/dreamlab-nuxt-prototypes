@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import TheDreamlabVectorLogo from "~/components/dreamlab/TheDreamlabVectorLogo.vue";
+import TheDreamlabVectorLogo from "~/components/dreamlab/branding/TheDreamlabVectorLogo.vue";
 
 interface HeroProps {
   title?: string
@@ -30,7 +30,7 @@ const props = defineProps<HeroProps>();
 </script>
 
 <template>
-  <div id="hero">
+  <section id="hero">
     <div class="brand-wrapper">
       <TheDreamlabVectorLogo  />
       <h1 class="title">{{ company.title }}</h1>
@@ -39,7 +39,7 @@ const props = defineProps<HeroProps>();
     <div class="scroller" @click="scrollToContent(scrollToId ?? null)" v-if="scrollToId">
       <Icon name="solar:double-alt-arrow-down-line-duotone"/>
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>
@@ -47,7 +47,6 @@ const props = defineProps<HeroProps>();
   @apply relative max-w-screen-sm mx-auto min-h-screen h-screen grid grid-cols-1 gap-12 px-4 place-items-center;
 
   .brand-wrapper {
-
     @apply text-center grid gap-4 place-items-center;
 
     .dreamlab-vector-logo {
@@ -57,11 +56,13 @@ const props = defineProps<HeroProps>();
       }
     }
 
+    .title{
+      @apply text-2xl md:text-3xl lg:text-4xl;
+    }
   }
 
   .scroller {
-    @apply absolute bottom-12
-    text-5xl text-emerald-400;
+    @apply absolute bottom-12 text-5xl text-emerald-400;
   }
 
 }

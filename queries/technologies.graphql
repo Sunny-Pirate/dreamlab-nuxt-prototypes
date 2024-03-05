@@ -1,0 +1,22 @@
+query getTechnologybyId($id: ID!) {
+    technology(id: $id){
+        data {
+            attributes {
+                title
+                description
+                type
+                documentationWebsite
+                thumbnail {
+                    data {
+                        id
+                        attributes {
+                            name
+                            url
+                            alternativeText
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

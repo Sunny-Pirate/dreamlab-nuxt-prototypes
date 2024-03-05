@@ -20,7 +20,7 @@
     "@pinia/nuxt": "0.5.1",
     "@vueuse/nuxt": "10.9.0",
     "nuxt": "3.10.3",
-    "nuxt-graphql-client": "^0.2.33",
+    "nuxt-graphql-client": "0.2.33",
     "sass": "1.71.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",

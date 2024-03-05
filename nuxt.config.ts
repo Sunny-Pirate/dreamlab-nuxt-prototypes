@@ -27,7 +27,7 @@ export default {
     "graphql-client": {
         watch: true,
         autoImport: true,
-        functionPrefix: 'Strapi',
+        functionPrefix: 'Gql',
         documentPaths: ['./queries/'],
         preferGETQueries: false,
 
@@ -66,7 +66,7 @@ export default {
     },
 
     imports: {
-        dirs: ['stores', 'server'],
+        dirs: ['stores'],
     },
 
     pages: true,
@@ -81,6 +81,9 @@ export default {
             key: process.env.NUXT_STRAPI_KEY || 'sha256'
         },
         public: {
+            backend: {
+                url: process.env.NUXT_PUBLIC_BACKEND_URL || 'http://localhost:1337',
+            },
             // GQL_HOST: process.env.NUXT_PUBLIC_STRAPI_URL + "/graphql",
             companyLegalName: process.env.NUXT_PUBLIC_COMPANY_LEGAL_NAME,
             companyLegalEmail: process.env.NUXT_PUBLIC_COMPANY_LEGAL_EMAIL,
@@ -92,6 +95,6 @@ export default {
 
     ui: {
         global: true,
-        icons: ['fa6-regular', 'fa6-solid', 'fa6-brands', 'simple-icons']
+        icons: ['fa6-regular', 'fa6-solid', 'fa6-brands', 'simple-icons', 'mdi']
     },
 }

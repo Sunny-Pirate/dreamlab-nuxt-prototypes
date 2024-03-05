@@ -1,0 +1,22 @@
+query getImageById($id: ID!) {
+    uploadFile(id: $id){
+        data {
+            attributes {
+                name
+                alternativeText
+                caption
+                previewUrl
+                url
+                provider
+                previewUrl
+                ext
+                provider_metadata
+                size
+                width
+                height
+                formats
+                mime
+            }
+        }
+    }
+}

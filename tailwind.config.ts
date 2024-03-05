@@ -51,6 +51,16 @@ const config: Config = {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
             },
+            maxWidth: {
+                "screen": "100vw"
+            },
+            gridTemplateColumns: {
+                "article": "3fr 1fr",
+                "navigation": "1fr auto 1fr"
+            },
+            gridTemplateRows: {
+                "dashboard": "min-content auto min-content"
+            },
         },
     },
     plugins: [
