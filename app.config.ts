@@ -9,6 +9,26 @@ export default defineAppConfig({
         strategy: "override",
 
         /* COMPONENTS */
+        breadcrumb: {
+            wrapper: 'relative',
+            ol: 'flex items-center gap-x-1.5',
+            li: 'flex items-center gap-x-1.5 text-gray-500 dark:text-gray-400 text-sm leading-6 min-w-0',
+            base: 'flex items-center gap-x-1.5 group font-semibold min-w-0',
+            label: 'block truncate',
+            icon: {
+                base: 'flex-shrink-0 w-5 h-5',
+                active: '',
+                inactive: '',
+            },
+            divider: {
+                base: 'flex-shrink-0 w-5 h-5',
+            },
+            active: 'text-primary-500 dark:text-primary-400',
+            inactive: ' hover:text-gray-700 dark:hover:text-gray-200',
+            default: {
+                divider: 'i-heroicons-chevron-right',
+            },
+        },
         button: {
             base: 'focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0',
             font: 'font-medium',
@@ -140,7 +160,7 @@ export default defineAppConfig({
         },
         container:{
             base: 'mx-auto',
-            padding: 'px-4 sm:px-6 lg:px-8',
+            padding: 'p-2 pb-4',
             constrained: 'max-w-7xl',
         },
         horizontalNavigation:{
@@ -176,6 +196,39 @@ export default defineAppConfig({
             overlay: {
                 background: "bg-slate-200/75 dark:bg-slate-900/75"
             }
+        },
+        tabs:{
+            wrapper: 'relative space-y-2',
+            container: 'relative w-full',
+            base: 'focus:outline-none',
+            list: {
+                base: 'relative',
+                background: 'bg-slate-100 dark:bg-slate-800',
+                rounded: 'rounded-lg',
+                shadow: '',
+                padding: 'p-1',
+                height: 'h-10',
+                width: 'w-full',
+                marker: {
+                    wrapper: 'absolute top-[4px] left-[4px] duration-200 ease-out focus:outline-none',
+                    base: 'w-full h-full',
+                    background: 'bg-white dark:bg-slate-900',
+                    rounded: 'rounded-md',
+                    shadow: 'shadow-sm',
+                },
+                tab: {
+                    base: 'relative inline-flex items-center justify-center flex-shrink-0 w-full ui-focus-visible:outline-0 ui-focus-visible:ring-2 ui-focus-visible:ring-primary-500 dark:ui-focus-visible:ring-primary-400 ui-not-focus-visible:outline-none focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors duration-200 ease-out',
+                    background: '',
+                    active: 'text-slate-900 dark:text-white',
+                    inactive: 'text-slate-500 dark:text-slate-400',
+                    height: 'h-8',
+                    padding: 'px-2',
+                    size: 'text-sm',
+                    font: 'font-headings font-medium text-xs',
+                    rounded: 'rounded-md',
+                    shadow: '',
+                },
+            },
         },
         verticalNavigation: {
             wrapper: 'border-s border-slate-200 dark:border-slate-800 space-y-2 px-4 pt-8',

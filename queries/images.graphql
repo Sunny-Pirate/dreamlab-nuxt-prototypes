@@ -3,19 +3,13 @@ query getImageById($id: ID!) {
         data {
             attributes {
                 name
-                alternativeText
-                caption
-                previewUrl
+                size
+                hash
                 url
                 provider
-                previewUrl
-                ext
-                provider_metadata
-                size
-                width
-                height
-                formats
                 mime
+                alternativeText
+                caption
             }
         }
     }

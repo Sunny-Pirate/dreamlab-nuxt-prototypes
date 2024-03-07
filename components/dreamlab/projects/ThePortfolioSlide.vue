@@ -2,6 +2,8 @@
 
 
 import TheStatusIndicator from "~/components/dreamlab/projects/TheStatusIndicator.vue";
+import type {Technology, TechnologyRelationResponseCollection} from "#gql"
+import TheTechnologiesList from "~/components/dreamlab/technologies/TheTechnologiesList.vue";
 
 const props = defineProps<{
   title: string
@@ -12,7 +14,7 @@ const props = defineProps<{
   website?: string,
   coverId?: string,
   status?: string,
-  technologies?: string[]
+  technologies?: TechnologyRelationResponseCollection
 }>();
 
 const {uploadFile} = await GqlGetImageById({id: props.coverId ?? "-1"});
@@ -41,10 +43,7 @@ const caseStudyText = computed(() => {
 <template>
   <UCard>
     <template #header>
-      <ULink :to="`/dreamlab/portfolio/` + slug" class="title" v-if="slug">
-        {{ title }}
-      </ULink>
-      <h3 class="title" v-else>{{title}}</h3>
+      <h3 class="title">{{title}}</h3>
       <h4 class="subtitle">{{ subtitle }}</h4>
     </template>
     <div class="cover-image">
@@ -52,14 +51,7 @@ const caseStudyText = computed(() => {
     </div>
     <slot name="default">
       <div class="case-study" v-if="caseStudyHtml" v-html="caseStudyText"/>
-      <div class="technologies" v-if="techs">
-        <ul class="section-header">
-          Techs
-          <li class="tech-item" v-for="(tech, tIdx) in techs" :key="tIdx">
-            {{ tech }}
-          </li>
-        </ul>
-      </div>
+      <TheTechnologiesList :items="technologies.data" v-if="technologies" :preventClick="true"/>
     </slot>
     <template #footer>
       <div class="flex flex-row justify-between">

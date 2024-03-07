@@ -2,20 +2,22 @@
 import {ref} from 'vue';
 import {breakpointsTailwind, useBreakpoints} from '@vueuse/core';
 import TheThemeTogglerButton from "~/components/dreamlab/branding/TheThemeTogglerButton.vue";
+import type {HorizontalNavigationLink} from "#ui/types";
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 
 const isOpen = ref(false);
 
-const navigationLinks: NavigationItem[] = [
+const navigationLinks: HorizontalNavigationLink[] = [
   {label: "Home", to: "/"},
   {label: "Portfolio", to: "/dreamlab/portfolio"},
+  {label: "Contact Us", to: "/dreamlab/contact-us"},
   // Additional links...
 ];
 
 interface NavigationProps {
   pageTitle?: string
-  navItems?: NavigationItem[]
+  navItems?: HorizontalNavigationLink[]
 }
 
 const props = defineProps<NavigationProps>();
@@ -37,7 +39,7 @@ const handleOpenMenu = () => isOpen.value = !isOpen.value;
         </slot>
       </div>
       <div class="actions">
-        <UHorizontalNavigation  :links="navigationLinks" class="hidden sm:flex"/>
+        <UHorizontalNavigation :links="navigationLinks" class="hidden sm:flex"/>
         <TheThemeTogglerButton/>
       </div>
 

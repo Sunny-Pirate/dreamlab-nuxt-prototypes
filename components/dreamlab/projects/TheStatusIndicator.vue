@@ -9,10 +9,13 @@ defineProps<StatusIndicatorProps>();
 </script>
 
 <template>
-  <div v-if="status" class="status" :class="status">
-    <slot name="default">
-      {{ status }}
-    </slot>
+  <div class="wrapper">
+    <h6 class="title">Status</h6>
+    <div v-if="status" class="status" :class="status">
+      <slot name="default">
+        {{ status }}
+      </slot>
+    </div>
   </div>
 </template>
 

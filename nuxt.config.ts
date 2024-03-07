@@ -95,6 +95,6 @@ export default {
 
     ui: {
         global: true,
-        icons: ['fa6-regular', 'fa6-solid', 'fa6-brands', 'simple-icons', 'mdi']
+        icons: ['fa6-regular', 'fa6-solid', 'fa6-brands', 'simple-icons', 'mdi', "heroicons"]
     },
 }

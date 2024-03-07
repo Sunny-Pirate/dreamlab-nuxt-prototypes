@@ -23,6 +23,10 @@
         width: theme('space[1.5]');
     }
 
+    /*::-webkit-scrollbar-button{
+        background-color: theme('colors.purple.500');
+    }*/
+
     /* Track */
     ::-webkit-scrollbar-track {
         background: theme('colors.slate.200');
@@ -61,14 +65,16 @@
         @apply relative
         bg-slate-100/10 text-slate-800
         dark:bg-slate-800 dark:text-slate-50
-        min-h-screen
+        min-h-screen overflow-y-visible
         ;
 
+        /* Prevent scrollbar pushing content to the left: https://stackoverflow.com/questions/35513264/pure-css-way-to-prevent-scrollbar-pushing-content-to-the-left*/
+        scrollbar-gutter: stable;
     }
 
 
     body {
-        @apply font-dreamlab ;
+        @apply font-dreamlab;
     }
 
 }
@@ -76,6 +82,10 @@
 @layer components {
     .webpage {
         @apply min-h-screen flex flex-col;
+    }
+
+    .dashboard {
+        @apply h-screen grid grid-cols-1 grid-rows-dashboard;
     }
 
     .navbar {

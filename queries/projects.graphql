@@ -1,9 +1,14 @@
 fragment ProjectDetails on Project {
-
     title
     subtitle
+    codename
     slug
     cover {
+        data {
+            id
+        }
+    }
+    gallery{
         data {
             id
         }
