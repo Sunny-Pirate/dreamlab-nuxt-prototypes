@@ -41,39 +41,29 @@ const caseStudyText = computed(() => {
 </script>
 
 <template>
-  <UCard>
-    <template #header>
-      <h3 class="title">{{title}}</h3>
-      <h4 class="subtitle">{{ subtitle }}</h4>
-    </template>
-    <div class="cover-image">
-      <NuxtImg :src="coverUrl" :alt="uploadFile?.data?.attributes?.alternativeText"/>
-    </div>
-    <slot name="default">
+  <Card>
+    <template #title>{{ title }}</template>
+    <template #subtitle>{{ subtitle }}</template>
+    <template #content>
+      <div class="cover-image">
+        <NuxtImg :src="coverUrl" :alt="uploadFile?.data?.attributes?.alternativeText"/>
+      </div>
       <div class="case-study" v-if="caseStudyHtml" v-html="caseStudyText"/>
       <TheTechnologiesList :items="technologies.data" v-if="technologies" :preventClick="true"/>
-    </slot>
+    </template>
     <template #footer>
       <div class="flex flex-row justify-between">
-        <TheStatusIndicator :status="status" />
-        <div v-if="website" class="website">
-
-          <UTooltip :text="website"
-                    :popper="{ placement: 'top',
-                  arrow: 'true',
-                  locked: 'true'
-        }"
-          >
-            <UIcon name="i-mdi-globe" :class="`icon`"/>
-          </UTooltip>
-
+        <TheStatusIndicator :status="status"/>
+        <div v-if="website" class="website" v-tooltip="'Enter your username'">
+            <i class="pi pi-globe" />
         </div>
       </div>
     </template>
-  </UCard>
+  </Card>
 </template>
 
 <style scoped>
+/*
 .title {
   @apply text-lg sm:text-xl lg:text-2xl;
 }
@@ -101,4 +91,5 @@ const caseStudyText = computed(() => {
     @apply hidden md:inline-flex
   }
 }
+  */
 </style>

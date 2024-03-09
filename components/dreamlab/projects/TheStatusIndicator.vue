@@ -20,6 +20,7 @@ defineProps<StatusIndicatorProps>();
 </template>
 
 <style scoped>
+/*
 .status {
   @apply inline-flex rounded py-0.5 px-1 outline outline-1 capitalize text-xs font-semibold;
 
@@ -35,4 +36,5 @@ defineProps<StatusIndicatorProps>();
     @apply text-sky-600 dark:text-sky-400 outline-sky-600 dark:outline-sky-400;
   }
 }
+*/
 </style>

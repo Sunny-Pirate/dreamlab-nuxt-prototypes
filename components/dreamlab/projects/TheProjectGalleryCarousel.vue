@@ -44,7 +44,9 @@ onMounted(() => {
 </template>
 
 <style scoped>
+/*
 .wrapper {
   @apply col-span-full;
 }
+*/
 </style>

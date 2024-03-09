@@ -12,11 +12,10 @@ const isDark = computed({
 
 <template>
   <ClientOnly>
-    <UIcon
-        :name="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+    <i
+        :class="isDark ? 'pi pi-moon' : 'pi pi-sun'"
         class="theme-switcher"
         @click="isDark = !isDark"
-        dynamic
     />
     <template #fallback>
       <div class="w-8 h-8" />

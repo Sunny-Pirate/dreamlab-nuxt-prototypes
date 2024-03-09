@@ -37,34 +37,11 @@ const props = defineProps<HeroProps>();
       <h2 class="subtitle">{{ company.slogan }}</h2>
     </div>
     <div class="scroller" @click="scrollToContent(scrollToId ?? null)" v-if="scrollToId">
-      <Icon name="solar:double-alt-arrow-down-line-duotone"/>
+      <i  class="pi pi-angle-double-down"/>
     </div>
   </section>
 </template>
 
 <style scoped>
-#hero {
-  @apply relative max-w-screen-sm mx-auto min-h-screen h-screen grid grid-cols-1 gap-12 px-4 place-items-center;
-
-  .brand-wrapper {
-    @apply text-center grid gap-4 place-items-center;
-
-    .dreamlab-vector-logo {
-      @apply w-32 h-32 md:w-56 md:h-56 fill-emerald-400 stroke-purple-500 stroke-1 shadow-purple-400 drop-shadow dark:stroke-purple-700;
-      svg {
-        @apply shadow shadow-purple-400;
-      }
-    }
-
-    .title{
-      @apply text-2xl md:text-3xl lg:text-4xl;
-    }
-  }
-
-  .scroller {
-    @apply absolute bottom-12 text-5xl text-emerald-400;
-  }
-
-}
 
 </style>

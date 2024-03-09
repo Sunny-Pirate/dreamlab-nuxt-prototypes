@@ -1,0 +1,7 @@
+mutation createLeadFromContactUsForm($data: LeadInput!){
+    createLead(data: $data) {
+        data {
+            id
+        }
+    }
+}

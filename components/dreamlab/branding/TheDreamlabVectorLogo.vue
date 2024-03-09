@@ -20,5 +20,7 @@ const props = defineProps<TheLogoProps>();
 </template>
 
 <style scoped>
-
+svg {
+  @apply size-12;
+}
 </style>

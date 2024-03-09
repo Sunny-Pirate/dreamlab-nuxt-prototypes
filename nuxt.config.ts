@@ -1,28 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+import * as path from "path";
+import defaultTheme from "tailwindcss/defaultTheme";
+
 export default {
 
     modules: [
         "@nuxt/image",
-        "@nuxt/ui",
         "@pinia/nuxt",
         "@vueuse/nuxt",
-        "nuxt-graphql-client"
+        "nuxt-graphql-client",
+        "nuxt-primevue",
+        "@nuxtjs/tailwindcss"
     ],
     dev: true,
     devtools: {enabled: true},
-    /*
-        apollo: {
-            clients: {
-                default: {
-                    httpEndpoint: process.env.NUXT_STRAPI_URL,
 
-                    httpLinkOptions: {
-                        credentials: 'include'
-                    }
-                }
-            },
-        },*/
 
     "graphql-client": {
         watch: true,
@@ -75,6 +68,11 @@ export default {
         autoImports: ['defineStore', 'acceptHMRUpdate'],
     },
 
+    primevue: {
+        unstyled: true,
+        importPT: {as: 'Dreamlab', from: '~/presets/dreamvue/'}      //import and apply preset
+    },
+
     runtimeConfig: {
         strapi: {
             url: process.env.NUXT_STRAPI_URL || 'http://localhost:1337',
@@ -93,8 +91,14 @@ export default {
         }
     },
 
-    ui: {
-        global: true,
-        icons: ['fa6-regular', 'fa6-solid', 'fa6-brands', 'simple-icons', 'mdi', "heroicons"]
-    },
+    tailwindcss: {
+        cssPath: ["~/assets/css/tailwind.css", {injectPosition: "first"}],
+        configPath: 'tailwind.config.ts',
+        exposeConfig: {
+            level: 2,
+        },
+        config: {},
+        viewer: true,
+    }
+
 }

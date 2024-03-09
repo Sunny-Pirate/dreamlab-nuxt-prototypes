@@ -1,0 +1,21 @@
+query getAllCDCustomers {
+    cdCustomers {
+        data {
+            attributes {
+              name
+                pec
+                vatNumber
+                ssnNumber
+                SDIcode
+                countryCompanyRegsitrationNumber
+                user {
+                    data {
+                        attributes {
+                            email
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

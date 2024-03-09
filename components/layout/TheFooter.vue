@@ -36,23 +36,5 @@ const isMobile = breakpoints.smallerOrEqual("sm")
 </template>
 
 <style scoped>
-footer {
-  @apply items-end text-xs pb-0.5 px-1.5;
 
-  .wrapper {
-    @apply flex flex-row justify-between;
-  }
-
-  .legal {
-    @apply flex flex-row gap-0.5;
-  }
-
-  .copy {
-    @apply flex flex-row  gap-1 items-baseline;
-
-    .dreamlab-textual-logo {
-      @apply text-xs font-bold;
-    }
-  }
-}
 </style>

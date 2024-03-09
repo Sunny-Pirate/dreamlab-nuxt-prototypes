@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+    font-family: "Architects Daughter";
+    src: url("../fonts/architects-daughter/ArchitectsDaughter-Regular.ttf") format("truetype");
+}
+
 @font-face {
     font-family: "Neuropol";
-    src: url("../fonts/neuropol.otf") format("truetype");
+    src: url("../fonts/neuropol.otf") format("opentype");
 }
 
 
@@ -15,17 +21,46 @@
     url("../fonts/sephora/Sephora-Italic.ttf") format("truetype");
 }
 
+:root {
+    --primary-50: 236 253 245;
+    --primary-100: 209 250 229;
+    --primary-200: 167 243 208;
+    --primary-300: 110 231 183;
+    --primary-400: 52 211 153;
+    --primary-500: 16 185 129;
+    --primary-600: 5 150 105;
+    --primary-700: 4 120 87;
+    --primary-800: 6 95 70;
+    --primary-900: 4 78 56;
+    --primary-950: 2 44 34;
+    --surface-0: 255 255 255;
+    --surface-50: 248 250 252;
+    --surface-100: 241 245 249;
+    --surface-200: 226 232 240;
+    --surface-300: 203 213 225;
+    --surface-400: 148 163 184;
+    --surface-500: 100 116 139;
+    --surface-600: 71 85 105;
+    --surface-700: 45 55 72;
+    --surface-800: 30 41 59;
+    --surface-900: 15 23 42;
+    --surface-950: 3 6 23;
+}
+
+
+
 
 @layer base {
+
 
     /* width */
     ::-webkit-scrollbar {
         width: theme('space[1.5]');
     }
 
-    /*::-webkit-scrollbar-button{
+    /*::-webkit-scrollbar-button/
         background-color: theme('colors.purple.500');
-    }*/
+    }*!
 
     /* Track */
     ::-webkit-scrollbar-track {
@@ -65,7 +100,7 @@
         @apply relative
         bg-slate-100/10 text-slate-800
         dark:bg-slate-800 dark:text-slate-50
-        min-h-screen overflow-y-visible
+        min-h-screen
         ;
 
         /* Prevent scrollbar pushing content to the left: https://stackoverflow.com/questions/35513264/pure-css-way-to-prevent-scrollbar-pushing-content-to-the-left*/
@@ -80,6 +115,15 @@
 }
 
 @layer components {
+    .cd-dashboard {
+        @apply flex flex-col min-h-screen;
+    }
+}
+
+/*
+
+@layer components {
+    !*
     .webpage {
         @apply min-h-screen flex flex-col;
     }
@@ -164,17 +208,8 @@
         @apply drop-shadow-sm hover:text-emerald-600 dark:hover:text-emerald-300;
     }
 
+
+     *!
 }
 
-@layer utilities {
-
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    /* Hide scrollbar for IE, Edge and Firefox */
-    .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-    }
-}
+*/

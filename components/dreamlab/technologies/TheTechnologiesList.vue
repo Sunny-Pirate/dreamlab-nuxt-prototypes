@@ -2,6 +2,7 @@
 import type {TechnologyEntity} from "#gql"
 
 const showAllTechs = ref<boolean>(false)
+
 interface TechListProps {
   items: TechnologyEntity[]
   showAll?: boolean
@@ -22,28 +23,26 @@ const handleShowTech = () => {
   showAllTechs.value = !showAllTechs.value;
 }
 
+const logError = (event: Event) => {
+  console.log(event)
+}
+
 </script>
 
 <template>
   <div class="techs">
     <h6 class="title">Technologies</h6>
-    <UAvatarGroup size="xs" :max="showAllTechs ? null : props.maxVisibleAvatars"  @click.prevent="handleShowTech">
-      <UAvatar v-for="(tech, tIdx) in items"
-               class="list"
-               :key="tIdx"
-               :src="useStrapiBackend(tech.attributes?.thumbnail?.data?.attributes?.url as string)"
-               :alt="tech.attributes?.thumbnail?.data?.attributes?.alternativeText"
+    <AvatarGroup size="xs" :max="showAllTechs ? null : props.maxVisibleAvatars" @click.prevent="handleShowTech">
+      <Avatar v-for="(tech, tIdx) in items" :key="tIdx"
+              shape="circle"
+              size="normal"
+              :image="useStrapiBackend(tech.attributes?.thumbnail?.data?.attributes?.url as string)"
+              @error="logError"
       />
-    </UAvatarGroup>
+    </AvatarGroup>
   </div>
 </template>
 
 <style scoped>
-.techs {
-  @apply grid grid-cols-1 justify-self-start;
 
-  .list {
-    @apply flex flex-row cursor-pointer;
-  }
-}
 </style>

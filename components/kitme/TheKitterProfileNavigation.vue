@@ -12,7 +12,5 @@ const user = useStrapiAuth();
 </template>
 
 <style scoped>
-nav {
-  @apply grid grid-cols-2 h-12 items-center;
-}
+
 </style>

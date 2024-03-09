@@ -1,11 +1,9 @@
 <script setup lang="ts">
-useHead({
-  title: "DreamLab.Solutions",
-  titleTemplate: (title) => `DreamLab.Solutions | ${title}`
-})
+import "~/assets/css/tailwind.css"
+import 'primeicons/primeicons.css'
 
 </script>
 
 <template>
-  <LazyNuxtPage />
+  <LazyNuxtPage/>
 </template>
