@@ -1,0 +1,22 @@
+query getAllUserProfiles{
+    userProfiles{
+        data {
+            id
+        }
+    }
+}
+
+query getUserProfileById($id: ID!){
+    userProfile(id: $id){
+        data {
+            attributes {
+                image {
+                    data {
+                        id
+                    }
+                }
+                updatedAt
+            }
+        }
+    }
+}

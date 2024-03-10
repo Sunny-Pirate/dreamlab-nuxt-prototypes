@@ -1,0 +1,40 @@
+query getAllWorkshops{
+    workshops{
+        data {
+            attributes {
+                title
+                slug
+            }
+        }
+    }
+}
+
+query getWorkshopById($id: ID){
+    workshop(id: $id){
+        data {
+            attributes {
+                title
+                agenda
+                availableSlots
+                state
+                price
+                slides{
+                    data {
+                        id
+                    }
+                }
+                participants{
+                    id
+                }
+                brief
+                duration
+                date
+                coverImage {
+                    data {
+                        id
+                    }
+                }
+            }
+        }
+    }
+}

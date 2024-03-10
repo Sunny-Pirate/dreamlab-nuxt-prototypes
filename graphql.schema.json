@@ -2233,6 +2233,105 @@
           "possibleTypes": null
         },
         {
+          "kind": "OBJECT",
+          "name": "ComponentBusinessCompanyInfo",
+          "description": null,
+          "fields": [
+            {
+              "name": "id",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pec",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sdiCode",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ssnCode",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "vatCode",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "countryLegalCode",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "ENUM",
           "name": "ENUM_COMPONENTCONTACTSEMAIL_SCOPE",
           "description": null,
@@ -2471,7 +2570,7 @@
               "deprecationReason": null
             },
             {
-              "name": "Country",
+              "name": "country",
               "description": null,
               "args": [],
               "type": {
@@ -7247,6 +7346,16 @@
               "defaultValue": null
             },
             {
+              "name": "paperPatterns",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "PaperPatternFiltersInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "createdAt",
               "description": null,
               "type": {
@@ -7414,6 +7523,20 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "paperPatterns",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -7512,6 +7635,63 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "UserProfileEntityResponse",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "paperPatterns",
+              "description": null,
+              "args": [
+                {
+                  "name": "filters",
+                  "description": null,
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "PaperPatternFiltersInput",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "pagination",
+                  "description": null,
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "PaginationArg",
+                    "ofType": null
+                  },
+                  "defaultValue": "{}"
+                },
+                {
+                  "name": "sort",
+                  "description": null,
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": "[]"
+                },
+                {
+                  "name": "publicationState",
+                  "description": null,
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "PublicationState",
+                    "ofType": null
+                  },
+                  "defaultValue": "LIVE"
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PaperPatternRelationResponseCollection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -8120,496 +8300,6 @@
                     "ofType": {
                       "kind": "OBJECT",
                       "name": "AccServerEventEntity",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "meta",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ResponseCollectionMeta",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "CdCustomerFiltersInput",
-          "description": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "id",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "IDFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "user",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "UsersPermissionsUserFiltersInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "pec",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "StringFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "SDIcode",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "StringFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "ssnNumber",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "StringFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "name",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "StringFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "vatNumber",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "StringFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "countryCompanyRegsitrationNumber",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "StringFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "createdAt",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "DateTimeFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "updatedAt",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "DateTimeFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "publishedAt",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "DateTimeFilterInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "and",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "CdCustomerFiltersInput",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "or",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "CdCustomerFiltersInput",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "not",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "CdCustomerFiltersInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "CdCustomerInput",
-          "description": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "user",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "pec",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "SDIcode",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "ssnNumber",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "name",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "vatNumber",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "countryCompanyRegsitrationNumber",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "publishedAt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "CdCustomer",
-          "description": null,
-          "fields": [
-            {
-              "name": "user",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "UsersPermissionsUserEntityResponse",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "pec",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "SDIcode",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ssnNumber",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "name",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "vatNumber",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "countryCompanyRegsitrationNumber",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "createdAt",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "updatedAt",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "publishedAt",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "CdCustomerEntity",
-          "description": null,
-          "fields": [
-            {
-              "name": "id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "attributes",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CdCustomer",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "CdCustomerEntityResponse",
-          "description": null,
-          "fields": [
-            {
-              "name": "data",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CdCustomerEntity",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "CdCustomerEntityResponseCollection",
-          "description": null,
-          "fields": [
-            {
-              "name": "data",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "CdCustomerEntity",
                       "ofType": null
                     }
                   }
@@ -9915,6 +9605,371 @@
                   "kind": "OBJECT",
                   "name": "ResponseCollectionMeta",
                   "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "PaperPatternFiltersInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "id",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "IDFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "StringFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "user",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "UsersPermissionsUserFiltersInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "createdAt",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DateTimeFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updatedAt",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DateTimeFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "publishedAt",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DateTimeFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "and",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "PaperPatternFiltersInput",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "or",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "PaperPatternFiltersInput",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "not",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "PaperPatternFiltersInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "PaperPatternInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "name",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "user",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "publishedAt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PaperPattern",
+          "description": null,
+          "fields": [
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "user",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UsersPermissionsUserEntityResponse",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createdAt",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatedAt",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "publishedAt",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PaperPatternEntity",
+          "description": null,
+          "fields": [
+            {
+              "name": "id",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "attributes",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PaperPattern",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PaperPatternEntityResponse",
+          "description": null,
+          "fields": [
+            {
+              "name": "data",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PaperPatternEntity",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PaperPatternEntityResponseCollection",
+          "description": null,
+          "fields": [
+            {
+              "name": "data",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PaperPatternEntity",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "meta",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ResponseCollectionMeta",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PaperPatternRelationResponseCollection",
+          "description": null,
+          "fields": [
+            {
+              "name": "data",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PaperPatternEntity",
+                      "ofType": null
+                    }
+                  }
                 }
               },
               "isDeprecated": false,
@@ -12959,7 +13014,7 @@
               "defaultValue": null
             },
             {
-              "name": "working_indutries",
+              "name": "workingIndutries",
               "description": null,
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -13128,7 +13183,7 @@
               "defaultValue": null
             },
             {
-              "name": "working_indutries",
+              "name": "workingIndutries",
               "description": null,
               "type": {
                 "kind": "LIST",
@@ -13236,7 +13291,7 @@
               "deprecationReason": null
             },
             {
-              "name": "working_indutries",
+              "name": "workingIndutries",
               "description": null,
               "args": [
                 {
@@ -13641,7 +13696,7 @@
               "defaultValue": null
             },
             {
-              "name": "work_experiences",
+              "name": "workExperiences",
               "description": null,
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -13770,7 +13825,7 @@
               "defaultValue": null
             },
             {
-              "name": "work_experiences",
+              "name": "workExperiences",
               "description": null,
               "type": {
                 "kind": "LIST",
@@ -13828,7 +13883,7 @@
               "deprecationReason": null
             },
             {
-              "name": "work_experiences",
+              "name": "workExperiences",
               "description": null,
               "args": [
                 {
@@ -14996,6 +15051,11 @@
           "possibleTypes": [
             {
               "kind": "OBJECT",
+              "name": "ComponentBusinessCompanyInfo",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
               "name": "ComponentContactsEMail",
               "ofType": null
             },
@@ -15086,17 +15146,17 @@
             },
             {
               "kind": "OBJECT",
-              "name": "CdCustomer",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
               "name": "Lead",
               "ofType": null
             },
             {
               "kind": "OBJECT",
               "name": "Menu",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "PaperPattern",
               "ofType": null
             },
             {
@@ -16235,86 +16295,6 @@
               "deprecationReason": null
             },
             {
-              "name": "cdCustomer",
-              "description": null,
-              "args": [
-                {
-                  "name": "id",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CdCustomerEntityResponse",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "cdCustomers",
-              "description": null,
-              "args": [
-                {
-                  "name": "filters",
-                  "description": null,
-                  "type": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "CdCustomerFiltersInput",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "pagination",
-                  "description": null,
-                  "type": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "PaginationArg",
-                    "ofType": null
-                  },
-                  "defaultValue": "{}"
-                },
-                {
-                  "name": "sort",
-                  "description": null,
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": "[]"
-                },
-                {
-                  "name": "publicationState",
-                  "description": null,
-                  "type": {
-                    "kind": "ENUM",
-                    "name": "PublicationState",
-                    "ofType": null
-                  },
-                  "defaultValue": "LIVE"
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CdCustomerEntityResponseCollection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "lead",
               "description": null,
               "args": [
@@ -16469,6 +16449,86 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "MenuEntityResponseCollection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "paperPattern",
+              "description": null,
+              "args": [
+                {
+                  "name": "id",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PaperPatternEntityResponse",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "paperPatterns",
+              "description": null,
+              "args": [
+                {
+                  "name": "filters",
+                  "description": null,
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "PaperPatternFiltersInput",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "pagination",
+                  "description": null,
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "PaginationArg",
+                    "ofType": null
+                  },
+                  "defaultValue": "{}"
+                },
+                {
+                  "name": "sort",
+                  "description": null,
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": "[]"
+                },
+                {
+                  "name": "publicationState",
+                  "description": null,
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "PublicationState",
+                    "ofType": null
+                  },
+                  "defaultValue": "LIVE"
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PaperPatternEntityResponseCollection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -17676,101 +17736,6 @@
               "deprecationReason": null
             },
             {
-              "name": "createCdCustomer",
-              "description": null,
-              "args": [
-                {
-                  "name": "data",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "CdCustomerInput",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CdCustomerEntityResponse",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "updateCdCustomer",
-              "description": null,
-              "args": [
-                {
-                  "name": "id",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "ID",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "data",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "CdCustomerInput",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CdCustomerEntityResponse",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "deleteCdCustomer",
-              "description": null,
-              "args": [
-                {
-                  "name": "id",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "ID",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CdCustomerEntityResponse",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "createLead",
               "description": null,
               "args": [
@@ -17955,6 +17920,101 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "MenuEntityResponse",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createPaperPattern",
+              "description": null,
+              "args": [
+                {
+                  "name": "data",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "PaperPatternInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PaperPatternEntityResponse",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatePaperPattern",
+              "description": null,
+              "args": [
+                {
+                  "name": "id",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "data",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "PaperPatternInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PaperPatternEntityResponse",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "deletePaperPattern",
+              "description": null,
+              "args": [
+                {
+                  "name": "id",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PaperPatternEntityResponse",
                 "ofType": null
               },
               "isDeprecated": false,

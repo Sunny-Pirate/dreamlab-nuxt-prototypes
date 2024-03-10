@@ -1,0 +1,19 @@
+query getWebsite {
+    website{
+        data {
+            attributes {
+                sitename
+                webMeta {
+                    metaDescription
+                    metaKeywords
+                    canonicalURL
+                }
+                navigation {
+                    data {
+                        id
+                    }
+                }
+            }
+        }
+    }
+}

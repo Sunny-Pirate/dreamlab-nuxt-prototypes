@@ -1,0 +1,32 @@
+query getAllUsers {
+    usersPermissionsUsers {
+        data {
+            id
+        }
+    }
+}
+
+query getUserById($id: ID!){
+    usersPermissionsUser(id: $id){
+        data {
+            attributes {
+                username
+                email
+                userProfile {
+                    data {
+                        id
+                    }
+                }
+                role {
+                    data {
+                        id
+                        attributes {
+                            type
+                        }
+                    }
+                }
+                updatedAt
+            }
+        }
+    }
+}

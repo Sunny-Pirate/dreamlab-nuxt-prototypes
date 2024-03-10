@@ -1,0 +1,11 @@
+query getAllMenus {
+    menus{
+        data {
+            id
+            attributes {
+                slug
+                scope
+            }
+        }
+    }
+}

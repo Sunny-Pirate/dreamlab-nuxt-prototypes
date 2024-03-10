@@ -1,0 +1,10 @@
+query getAllPaperPatters {
+    paperPatterns{
+        data {
+            id
+            attributes {
+                name
+            }
+        }
+    }
+}

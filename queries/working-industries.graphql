@@ -1,0 +1,26 @@
+query getAllWorkingIndustries{
+    workingIndutries{
+        data {
+            attributes {
+                industryName
+                description
+            }
+        }
+    }
+}
+
+query getWorkingIndustryById($id: ID!){
+    workingIndutry(id: $id){
+        data {
+            attributes {
+                industryName
+                description
+                workExperiences{
+                    data {
+                        id
+                    }
+                }
+            }
+        }
+    }
+}

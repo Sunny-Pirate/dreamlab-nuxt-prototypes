@@ -1,0 +1,20 @@
+query getAllWrokExperiences{
+    workExperiences{
+        data {
+            attributes {
+                role
+                companyName
+                workingIndutries{
+                    data {
+                        attributes {
+                            industryName
+                        }
+                    }
+                }
+                startDate
+                endDate
+                description
+            }
+        }
+    }
+}

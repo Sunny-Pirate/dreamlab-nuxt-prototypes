@@ -1,0 +1,20 @@
+query getAllWebpages {
+    webpages{
+        data {
+            id
+        }
+    }
+}
+
+query getWebpageById($id: ID!){
+    webpage(id: $id){
+        data {
+            attributes {
+                title
+                slug
+                content
+                updatedAt
+            }
+        }
+    }
+}

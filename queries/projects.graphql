@@ -23,39 +23,11 @@ fragment ProjectDetails on Project {
     workExperience {
         data {
             id
-            attributes {
-                companyName
-                role
-                working_indutries{
-                    data {
-                        id
-                        attributes {
-                            industryName
-                        }
-                    }
-                }
-            }
         }
     }
     technologies {
         data {
             id
-            attributes {
-                title
-                description
-                documentationWebsite
-                type
-                thumbnail {
-                    data {
-                        id
-                        attributes {
-                            name
-                            url
-                            alternativeText
-                        }
-                    }
-                }
-            }
         }
     }
 }
