@@ -1,25 +1,25 @@
 <script setup lang="ts">
 
-import TheHeroServices from "~/components/layout/TheHeroServices.vue";
-import TheHeroSlogan from "~/components/layout/TheHeroSlogan.vue";
-import TheNavigation from "~/components/layout/TheNavigation.vue";
-import TheFooter from "~/components/layout/TheFooter.vue";
+import TheHeroServices from "~/components/TheHeroServices.vue";
+import TheHeroSlogan from "~/components/TheHeroSlogan.vue";
+import TheFooter from "~/components/TheFooter.vue";
+import TheNavbar from "~/components/TheNavbar.vue";
 
 definePageMeta({
   name: "Index"
 })
 
 useSeoMeta({
-  ogDescription: "Un prodotto dalle caratteristiche fantastiche",
-  ogImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2U8BFIOn33DZpuj8tzoVyFF-KEYEwOEbcAZkJRImLXg&s",
+  ogDescription: "A Freelance developer based modern web platform.",
+  // ogImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2U8BFIOn33DZpuj8tzoVyFF-KEYEwOEbcAZkJRImLXg&s",
   ogUrl: "https://www.dreamlab.solutions",
-  twitterTitle: "_DREAM.LAB_",
-  twitterDescription: "Questo è il prodotto che rivoluziona l'evoluzione dell'involuzione."
+  twitterTitle: "DreamLab.Solutions",
+  twitterDescription: "UX/UI Design & Development - A Freelance developer based modern web platform."
 })
 
 useHead({
   title: "DreamLab.Solutions",
-  titleTemplate: "DreamLab.Solutions",
+  titleTemplate: undefined,
   link: [
     {
       rel: 'icon',
@@ -29,21 +29,19 @@ useHead({
   ]
 })
 
-const currentView = ref<'intro' | 'content'>('intro')
-
 </script>
 
 <template>
-  <main class="webpage index">
-    <TheNavigation />
-    <TheHeroSlogan scrollToId="services"/>
+  <main class="index">
+    <TheNavbar :fixed="true" />
+    <TheHeroSlogan scrollToId="hero-services"/>
     <TheHeroServices/>
     <TheFooter />
   </main>
 </template>
 
 <style scoped>
-.index {
-  @apply min-h-screen grid grid-cols-1;
+main.index {
+  @apply flex flex-col w-full;
 }
 </style>

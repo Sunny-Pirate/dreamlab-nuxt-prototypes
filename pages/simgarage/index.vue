@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import TheNavigation from "~/components/layout/TheNavigation.vue";
+import TheNavigation from "~/components/TheNavigation.vue";
 
 useSeoMeta({
   ogDescription: "The SimGarage. The ultimate simdrivers experience.",

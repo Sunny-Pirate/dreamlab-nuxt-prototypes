@@ -9,15 +9,16 @@ export default {
         "@nuxt/image",
         "@pinia/nuxt",
         "@vueuse/nuxt",
-        "nuxt-graphql-client",
+        // "nuxt-graphql-client",
         "nuxt-primevue",
-        "@nuxtjs/tailwindcss"
+        "@nuxtjs/tailwindcss",
+        "@nuxtjs/supabase"
     ],
     dev: true,
     devtools: {enabled: true},
 
 
-    "graphql-client": {
+    /*"graphql-client": {
         watch: true,
         autoImport: true,
         functionPrefix: 'Gql',
@@ -56,7 +57,7 @@ export default {
 
             }
         }
-    },
+    },*/
 
     imports: {
         dirs: ['stores'],
@@ -74,20 +75,20 @@ export default {
     },
 
     runtimeConfig: {
-        strapi: {
-            url: process.env.NUXT_STRAPI_URL || 'http://localhost:1337',
-            key: process.env.NUXT_STRAPI_KEY || 'sha256'
-        },
-        public: {
-            backend: {
-                url: process.env.NUXT_PUBLIC_BACKEND_URL || 'http://localhost:1337',
-            },
-            // GQL_HOST: process.env.NUXT_PUBLIC_STRAPI_URL + "/graphql",
-            companyLegalName: process.env.NUXT_PUBLIC_COMPANY_LEGAL_NAME,
-            companyLegalEmail: process.env.NUXT_PUBLIC_COMPANY_LEGAL_EMAIL,
-            companyKvkNumber: process.env.NUXT_PUBLIC_COMPANY_KVK_NUMBER,
-            companyBtwNumber: process.env.NUXT_PUBLIC_COMPANY_BTW_NUMBER,
 
+        public: {
+
+        }
+    },
+
+    supabase: {
+        redirect: true,
+        redirectOptions: {
+            login: '/auth/login',
+            callback: '/auth/confirm',
+            include: ['/fashion(/*)?'],
+            exclude: ['/auth(/*)?'],
+            cookieRedirect: true,
         }
     },
 

@@ -15,24 +15,26 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxt/image": "1.4.0",
+    "@nuxtjs/supabase": "^1.1.7",
+    "@nuxtjs/tailwindcss": "6.11.4",
     "@pinia/nuxt": "0.5.1",
+    "@tailwindcss/forms": "0.5.7",
+    "@tailwindcss/typography": "0.5.10",
     "@vueuse/nuxt": "10.9.0",
     "nuxt": "3.10.3",
     "nuxt-graphql-client": "0.2.33",
     "nuxt-primevue": "0.3.1",
     "path": "0.12.7",
     "sass": "1.71.1",
-    "@nuxtjs/tailwindcss": "6.11.4",
-    "@tailwindcss/forms": "0.5.7",
-    "@tailwindcss/typography": "0.5.10",
+    "supabase": "^1.148.6",
     "ts-node": "10.9.2",
     "typescript": "5.4.2",
     "zod": "3.22.4"
   },
   "dependencies": {
-    "vue": "3.4.21",
-    "vue-router": "4.3.0",
+    "primeicons": "6.0.1",
     "primevue": "3.49.1",
-    "primeicons": "6.0.1"
+    "vue": "3.4.21",
+    "vue-router": "4.3.0"
   }
 }

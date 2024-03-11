@@ -17,7 +17,13 @@ export default {
         class: 'py-5'
     },
     title: {
-        class: 'text-lg font-medium mb-2 px-5 md:px-6'
+        class: [
+            //Original
+            'text-lg font-medium mb-2 px-5 md:px-6',
+
+            //Font
+            'font-headings'
+        ]
     },
     subtitle: {
         class: [
@@ -25,11 +31,14 @@ export default {
             'mb-1 px-5 md:px-6',
 
             //Color
-            'text-surface-600 dark:text-surface-0/60'
+            'text-surface-600 dark:text-surface-0/60',
+
+            //Font
+            'font-headings'
         ]
     },
     content: {
-        class: 'py-6 px-5 md:px-6'
+        class: 'py-6 px-5 md:px-6 leading-7'
     },
     footer: {
         class: ['px-5 md:px-6 pt-5 pb-0', 'border-t border-surface-200 dark:border-surface-700']
