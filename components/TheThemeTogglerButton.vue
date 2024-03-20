@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
+import type {BasicColorMode} from "@vueuse/core";
+
+const colorMode = useColorMode<BasicColorMode>()
 const isDark = computed({
   get () {
     return colorMode.value === 'dark'

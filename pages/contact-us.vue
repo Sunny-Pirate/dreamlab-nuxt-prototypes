@@ -3,6 +3,7 @@
 import TheFooter from "~/components/TheFooter.vue";
 import type {AsyncDataRequestStatus} from "#app/composables/asyncData";
 import TheNavbar from "~/components/TheNavbar.vue";
+import useNavigationLinks from "~/composables/useNavigationLinks";
 
 const formRef = ref();
 
@@ -65,13 +66,14 @@ async function onError(event: Event) {
   */
 }
 
+const links = useNavigationLinks();
 
 </script>
 
 <template>
 
-  <main class="webpage dashboard">
-    <TheNavbar pageTitle="Contact Us" brandImageUrl="/dreamlab/alternateLogo.svg" brandNavigationLink="/" />
+  <main class="landing-page">
+    <TheNavbar title="Contact Us" titlePos="start" :links showLogo />
 
     <div class="content">
       <p class="intro">Fill-in the form to contact us.</p>

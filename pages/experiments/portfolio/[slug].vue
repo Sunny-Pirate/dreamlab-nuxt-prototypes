@@ -10,8 +10,8 @@ const config = useRuntimeConfig();
 </script>
 
 <template>
-  <main class="webpage article">
-    <TheNavbar pageTitle="Project ..." brandImageUrl="/dreamlab/alternateLogo.svg"/>
+  <main class="landing-page article">
+    <TheNavbar title="Project ..." brandImageUrl="/dreamlab/alternateLogo.svg"/>
 
     <TheFooter/>
   </main>

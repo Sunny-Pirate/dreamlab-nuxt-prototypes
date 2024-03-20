@@ -29,14 +29,17 @@ useHead({
   ]
 })
 
+const user = useSupabaseUser();
+
+
 </script>
 
 <template>
   <main class="index">
-    <TheNavbar :fixed="true" />
+    <TheNavbar  />
     <TheHeroSlogan scrollToId="hero-services"/>
     <TheHeroServices/>
-    <TheFooter />
+    <TheFooter/>
   </main>
 </template>
 

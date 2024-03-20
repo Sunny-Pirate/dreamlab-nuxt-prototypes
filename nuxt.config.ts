@@ -86,9 +86,16 @@ export default {
         redirectOptions: {
             login: '/auth/login',
             callback: '/auth/confirm',
-            include: ['/fashion(/*)?'],
-            exclude: ['/auth(/*)?'],
+            exclude: ['/', '/contact-us', '/portfolio'],
             cookieRedirect: true,
+        },
+        cookieOptions: {
+            maxAge: 60 * 60 * 8,
+            sameSite: 'lax',
+            secure: true,
+            auth: {
+                debug: true
+            }
         }
     },
 

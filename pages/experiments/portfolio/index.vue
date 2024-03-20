@@ -9,8 +9,8 @@ const config = useRuntimeConfig()
 
 <template>
 
-  <main class="webpage dashboard">
-    <TheNavbar pageTitle="Portfolio" brandImageUrl="/dreamlab/alternateLogo.svg"/>
+  <main class="landing-page dashboard">
+    <TheNavbar title="Portfolio" brandImageUrl="/dreamlab/alternateLogo.svg"/>
     <TheFooter/>
   </main>
 

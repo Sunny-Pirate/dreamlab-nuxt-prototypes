@@ -48,8 +48,6 @@
 }
 
 
-
-
 @layer base {
 
 
@@ -75,8 +73,9 @@
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: theme('colors.purple.500');
+        background: theme('colors.emerald.800');
     }
+
     @media (prefers-color-scheme: dark) {
 
         /* Track */
@@ -92,7 +91,7 @@
 
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
-            background: theme('colors.purple.500');
+            background: theme('colors.purple.800');
         }
     }
 
@@ -113,7 +112,63 @@
     }
 
 
+    main.landing-page {
+        @apply w-full flex flex-col min-h-screen;
+
+        .content {
+            @apply flex-1;
+        }
+    }
+
     section.hero {
         @apply relative min-h-screen grid grid-cols-1 grid-rows-1 place-items-center;
     }
+
+    .dreamlab-textual-logo {
+        @apply font-display;
+
+        &.primary {
+            @apply text-transparent bg-gradient-to-tr bg-clip-text from-emerald-500 from-65% to-emerald-300;
+        }
+
+        span {
+            @apply text-purple-400;
+        }
+    }
+}
+
+
+@layer components {
+
+
+    /* GRADIENTS */
+    .gradient-after-primary {
+        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-emerald-600 after:to-purple-400;
+    }
+
+    .gradient-after-success {
+        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-emerald-600 after:to-emerald-400;
+    }
+
+    .gradient-after-secondary {
+        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-purple-600 after:to-yellow-400;
+    }
+
+    .gradient-after-accent {
+        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-yellow-600 after:to-emerald-400;
+    }
+
+    /* TYPOGRAPHY*/
+    .heading {
+        @apply font-headings text-center lg:text-left;
+    }
+
+    .title {
+        @apply text-lg text-primary-500;
+    }
+
+    .subtitle {
+        @apply text-base;
+    }
+
 }

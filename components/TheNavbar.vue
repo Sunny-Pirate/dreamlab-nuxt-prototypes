@@ -1,57 +1,46 @@
 <script setup lang="ts">
 
-export interface NavbarProps {
-  fixed?: boolean
-  pageTitle?: string
-  brandImageUrl?: string
-  brandNavigationLink?: string
+import TheDreamlabVectorLogo from "~/components/dreamlab/branding/TheDreamlabVectorLogo.vue";
+import type {NuxtLinkProps} from "#app";
+import type {ButtonProps} from "primevue/button";
+
+
+export interface TheNavbarProps {
+  title?: string
+  titlePos?: "start" | "center"
+  links?: (NuxtLinkProps & ButtonProps)[]
+  showLogo?: boolean
 }
 
-const props = defineProps<NavbarProps>();
+const props = defineProps<TheNavbarProps>();
+
 
 </script>
 
 <template>
-  <nav class="navbar" :class="{'fixed w-full': fixed}">
-    <div class="content">
-      <div class="brand-logo" v-if="brandImageUrl">
-        <NuxtLink v-if="brandNavigationLink">
-          <NuxtImg :src="brandImageUrl" />
+  <nav class="navbar">
+    <Toolbar :pt="{ root: 'p-toolbar p-component flex items-center justify-between flex-wrap gap-6 px-6 py-2 min-h-[4rem]'}">
+      <template #start v-if="showLogo">
+        <div class="flex items-center gap-2">
+          <slot name="brand">
+            <TheDreamlabVectorLogo @click="() => navigateTo('/')" class="size-10 fill-emerald-500 stroke-purple-500 stroke-1"/>
+          </slot>
+        </div>
+        <span v-if="title && titlePos === 'start'">{{ title }}</span>
+      </template>
+      <template #center v-if="title && titlePos === ('center' || undefined)">
+        {{ title }}
+      </template>
+      <template #end>
+        <NuxtLink class="nav-item" v-for="(item, nKey) in links" :key="nKey" :to="item.to">
+          <Button :label="item.label" :icon="item.icon" link/>
         </NuxtLink>
-        <NuxtImg :src="brandImageUrl" v-else/>
-      </div>
-      <div class="page-title">
-        <h1 v-if="pageTitle">{{ pageTitle }}</h1>
-      </div>
-      <div class="actions">
-      </div>
-
-    </div>
+        <TheUserAvatar  />
+      </template>
+    </Toolbar>
   </nav>
 </template>
 <style scoped>
 
-.navbar {
-
-  .content {
-    @apply px-2 flex flex-row items-center;
-
-    .brand-logo {
-      @apply p-1 cursor-pointer;
-
-      img {
-        @apply size-8 md:size-12;
-      }
-    }
-
-    .page-title {
-      @apply flex-1 font-elegant text-xl md:text-2xl text-center md:text-left md:pl-2 font-black ;
-    }
-
-    .actions {
-      @apply size-12;
-    }
-  }
-}
 
 </style>

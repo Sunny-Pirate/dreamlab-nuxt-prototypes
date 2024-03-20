@@ -3,20 +3,20 @@
 const services = [
   {
     id: "ux",
-    uiClass: "gradient-primary",
+    uiClass: "gradient-after-primary",
     name: "UX Design",
     description: "We map out the user journey to create seamless, memorable experiences that resonate with your audience.",
   },
   {
     id: "ui",
-    uiClass: "gradient-success",
+    uiClass: "gradient-after-secondary",
     name: "UI Development",
     description:
         "Merging aesthetics with functionality, we build interfaces that are both beautiful and robust, ensuring they perform across all devices and platforms."
   },
   {
     id: "consulting",
-    uiClass: "gradient-accent",
+    uiClass: "gradient-after-accent",
     name: "IT Consulting",
     description: "With a holistic approach, we provide strategic guidance to navigate the complexities of technology in business."
   }
@@ -27,31 +27,41 @@ const services = [
 <template>
 
   <section id="hero-services" class="hero">
-    <card :pt="{
-      content: 'flex flex-col md:flex-row gap-4',
-    }">
-      <template #title>Welcome to DreamLab.Solutions</template>
-      <template #subtitle>your innovative partner in the digital realm.</template>
-      <template #content>
-        <card v-for="(service, sKey) in services" :key="sKey"
+    <div class="services-wrapper">
+      <div class="heading">
+        <h2 class="title">Welcome to DreamLab.Solutions</h2>
+        <h3 class="subtitle">your innovative partner in the digital realm.</h3>
+      </div>
+      <div class="service-list">
+        <Card v-for="(service, sKey) in services" :key="sKey"
               :pt="{
-                  root: `service-card-${service.uiClass}`,
+                  root: `service-card ${service.uiClass} flex flex-col`,
+                  content: `px-2 py-0.5 lg:px-4 lg:py-2 flex-1`,
+                  body:`flex-1`
                 }"
         >
-          <template #title>{{ service.name }}</template>
+          <template #subtitle>{{ service.name }}</template>
           <template #content>{{ service.description }}</template>
-        </card>
-      </template>
-    </card>
+        </Card>
+      </div>
+    </div>
   </section>
+
 </template>
 
 <style scoped>
 .hero {
-  @apply px-4 mx-auto;
+  @apply px-4 py-12 mx-auto;
 }
 
-div[class^="service-card-"]{
-  @apply text-emerald-400;
+.services-wrapper {
+  @apply grid grid-cols-1 gap-6 max-w-2xl mx-auto;
+}
+
+.service-list {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-2 place-items-stretch;
+}
+.service-card {
+  @apply relative;
 }
 </style>

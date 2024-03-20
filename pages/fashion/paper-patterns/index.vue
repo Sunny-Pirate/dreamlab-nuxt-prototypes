@@ -7,7 +7,7 @@ const actions = ref()
 
 <template>
   <main class="dashboard">
-    <TheNavbar pageTitle="Cartamodelli" brandImageUrl="/clothing-design/logo.png" actions=""/>
+    <TheNavbar title="Cartamodelli" brandImageUrl="/clothing-design/logo.png" actions=""/>
   </main>
 </template>
 

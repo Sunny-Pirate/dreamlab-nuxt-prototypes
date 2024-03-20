@@ -8,7 +8,7 @@ const user = useSupabaseUser();
 
 <template>
   <main class="cd-dashboard">
-    <TheNavbar pageTitle="Clienti" brandImageUrl="/clothing-design/logo.png"/>
+    <TheNavbar title="Clienti" brandImageUrl="/clothing-design/logo.png"/>
     <section class="customers">
       <ul class="customer-list">
 <!--        <li v-for="(customer, cIdx) in cdCustomers?.data" :key="cIdx" class="customer-item">-->

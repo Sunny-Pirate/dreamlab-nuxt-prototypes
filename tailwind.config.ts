@@ -26,9 +26,6 @@ const config: Config = {
                 video: '16 / 9'
             },
             backgroundImage: {
-                "primary": "bg-gradient-to-r from-emerald-600 to-emerald-400",
-                "accent": "bg-gradient-to-r from-emerald-600 to-emerald-400",
-                "warning": "bg-gradient-to-r from-emerald-600 to-emerald-400",
             },
             borderRadius: {
                 lg: "var(--radius)",
@@ -94,7 +91,7 @@ const config: Config = {
         },
     },
     plugins: [
-        require('@tailwindcss/forms'),
+        // require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
     ],
 }

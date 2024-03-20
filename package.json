@@ -2,7 +2,7 @@
   "name": "dreamlab-nuxt-prototypes",
   "version": "0.0.1",
   "author": "Luca Faccio<info@dreamlab.solution>",
-  "description": "DreamLab.Solutions' main website repository, serving as the development hub for project prototypes and application components, including the SimGarage, ClothingDesign, KitmeApp and other projects. This experimental Nuxt3 prototype is the foundation for future DreamLab.Solutions web applications and services.",
+  "description": "DreamLab.Solutions' main website repository, serving as the development hub for project prototypes and application components, including the SimGarage, Fashion Projects Mgmt System, and other projects. This experimental Nuxt3 prototype is the foundation for future DreamLab.Solutions web applications and services.",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,9 +10,16 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "prisma-generate": "prisma generate",
+    "prisma-seed": "prisma db seed",
+    "supabase-generate": "supabase gen types typescript --project-id chmtxqwtodsgjpesdbem > ./types/database.types.ts"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.js"
   },
   "devDependencies": {
+    "tsx": "4.7.1",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "1.4.0",
     "@nuxtjs/supabase": "^1.1.7",
@@ -20,20 +27,25 @@
     "@pinia/nuxt": "0.5.1",
     "@tailwindcss/forms": "0.5.7",
     "@tailwindcss/typography": "0.5.10",
+    "@types/node": "20.11.28",
     "@vueuse/nuxt": "10.9.0",
-    "nuxt": "3.10.3",
+    "nuxt": "3.11.0",
     "nuxt-graphql-client": "0.2.33",
     "nuxt-primevue": "0.3.1",
     "path": "0.12.7",
-    "sass": "1.71.1",
+    "prisma": "5.11.0",
+    "@prisma/client": "5.11.0",
+    "prisma-generator-fake-data": "0.14.1",
+    "sass": "1.72.0",
     "supabase": "^1.148.6",
     "ts-node": "10.9.2",
     "typescript": "5.4.2",
     "zod": "3.22.4"
   },
   "dependencies": {
+    "@prisma/client": "5.11.0",
     "primeicons": "6.0.1",
-    "primevue": "3.49.1",
+    "primevue": "3.50.0",
     "vue": "3.4.21",
     "vue-router": "4.3.0"
   }

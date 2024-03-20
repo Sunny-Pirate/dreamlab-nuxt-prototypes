@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Garment class diagram
+
+class Garment {
+    uuid
+    owner
+    codename
+    brand
+    sizes
+    baseSize
+
+}
+
+@enduml

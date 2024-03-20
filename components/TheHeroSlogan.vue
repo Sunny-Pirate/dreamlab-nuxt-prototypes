@@ -31,6 +31,7 @@ const props = defineProps<HeroProps>();
 
 <template>
   <section id="hero-slogan" class="hero">
+
     <div class="content">
       <TheDreamlabVectorLogo/>
       <div class="text-slogan">
@@ -47,20 +48,14 @@ const props = defineProps<HeroProps>();
 
 .content {
   @apply grid place-items-center gap-6;
+
   .dreamlab-vector-logo {
     @apply size-64 fill-emerald-400 stroke-purple-400 stroke-1;
   }
 
   .text-slogan {
-    @apply flex flex-col gap-1 font-headings;
+    @apply flex flex-col gap-1 font-headings text-center;
 
-    h1 {
-      @apply text-lg text-primary-500;
-    }
-
-    h2 {
-      @apply text-base;
-    }
   }
 }
 

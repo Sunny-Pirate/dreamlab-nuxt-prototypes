@@ -5,7 +5,7 @@ import TheNavbar from "~/components/TheNavbar.vue";
 
 <template>
 <main class="dashboard">
-  <TheNavbar pageTitle="The Experiments" brandImageUrl="/dreamlab/alternateLogo.svg"/>
+  <TheNavbar title="The Experiments" brandImageUrl="/dreamlab/alternateLogo.svg"/>
 </main>
 </template>
 

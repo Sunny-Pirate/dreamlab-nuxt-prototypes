@@ -1,0 +1,142 @@
+= DreamLab.Solutions Nuxt Prototypes
+Luca Faccio <info@dreamlab.solutions>
+v1.0, 2024-03-16
+:toc:
+:imagesdir: assets/images
+:homepage: https://dreamlab.solutions
+
+
+DreamLab.Solutions' main website repository, serving as the development hub for project prototypes and application components, including
+the SimGarage, Fashion Projects Mgmt System, and other projects.
+
+This Nuxt3 project is the foundation for future DreamLab.Solutions web applications and services.
+
+
+== Platforms, Technologies and frameworks
+
+* GitHub: Repository and tasks
+* Supabase: Online backend database and Storage
+* PostgreSQL: Supabase uses PostgreSQL as default database, I use it.
+* Node, Vue & Nuxt: The project is developed with Node.js LTS 20.10.0 and Vue.js & Nuxt.js 3.
+* Prisma: Prisma is used as ORM and types generator
+* Pinia: Application state management
+* PrimeVue: UI Global components
+* GraphQL: Communication with CMS backend like DreamLab CMS Strapi
+* Zod: Client side data validation.
+* TailwindCSS & Sass: Styling configured with Tailwind and Scss.
+
+
+== DreamLab Website
+
+[plantuml,main-navigation,svg]
+----
+@startuml
+
+title DreamLab Nuxt Prototypes Main navigation
+
+folder "/" as IndexPage
+folder "/contact-us" as ContactPage
+folder "/portfolio" as PortfolioPage
+folder "/services" as ServicesPage
+package "/fashion" as FashionApp
+package "/sim-garage" as SimGarageApp
+
+
+IndexPage -- ContactPage
+IndexPage -- ServicesPage
+IndexPage -- PortfolioPage
+IndexPage -- FashionApp
+IndexPage -- SimGarageApp
+
+@enduml
+----
+
+
+== Fashion App
+
+
+=== Introduction
+
+This document outlines the design for a digital pattern management system catering to apparel companies that develop digital garment
+patterns. +
+The design adheres to the principles of the "Gang of Four" (GoF) design patterns to ensure flexibility, scalability, and maintainability.
+
+=== Entities and Relationships
+
+* *Article*: Represents a garment (e.g., dress, pants). +
+Attributes include:
+** Identifier code (primary key)
+** Category (foreign key)
+** Season (foreign key) (optional)
+** Brand (foreign key) (optional)
+** Base anatomical sheet (foreign key)
+** Base size (foreign key)
+** List of placements (one-to-many relationship)
+* *Season*: Groups articles and is identified by a codename (e.g., "Fall/Winter 2024").+
+Attributes include:
+** Codename (primary key)
+** User (foreign key)
+** Brand (foreign key) (optional)
+** List of articles (one-to-many relationship)
+* *Size*: Represents garment sizes.+
+Attributes include:
+** Size name (primary key)
+** List of articles using this size (many-to-many relationship)
+* *Anatomical Sheet*: Defines reference body measurements for an article.+
+Attributes include:
+** Identifier (primary key)
+** Gender
+** List of base measurements (name, description, value)
+** List of articles using this sheet (one-to-many relationship)
+* *Bolt* (Fabric): Represents fabric used for garment production.+
+Attributes include:
+** Identifier (primary key)
+** Name
+** Height
+** Thumbnail image URL
+** Shrinkage (X and Y values)
+** Composition (list of fibers and percentages)
+** List of placements using this bolt (many-to-many relationship)
+* *Placement*: Represents the arrangement of fabric pieces for cutting.+
+Attributes include:
+** Identifier (primary key)
+** Bolt (foreign key)
+** Number of pieces needed
+** Material consumption
+** List of included sizes (many-to-many relationship)
+** Cutting file (.iso) path (stored in S3)
+** Printing file (.hpgl) path (stored in S3)
+** List of articles in this placement (many-to-many relationship)
+
+[plantuml]
+----
+@startuml
+
+@enduml
+----
+
+[plantuml,class-diagram-overview,svg]
+----
+@startuml
+
+title Class diagram
+
+interface Owner
+
+class Article {
+    + codename
+}
+
+class Project {
+
+}
+
+Owner -- Article: owns
+Article -- Brand
+Article -- Project: part
+@enduml
+----
+
+
+== Sim-Garage App
+

@@ -21,8 +21,12 @@ export default {
             //Original
             'text-lg font-medium mb-2 px-5 md:px-6',
 
-            //Font
-            'font-headings'
+            //Font overrides
+            'font-headings',
+
+            //Color
+            'text-primary-500'
+
         ]
     },
     subtitle: {
