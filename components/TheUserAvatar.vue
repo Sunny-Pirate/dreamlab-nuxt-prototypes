@@ -21,7 +21,6 @@ const handleLoginRedirection = async () => {
   navigateTo("/auth/login")
 }
 
-console.log(user)
 
 </script>
 

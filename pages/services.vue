@@ -1,10 +1,10 @@
 <script setup lang="ts">
-
+const links = useNavigationLinks();
 </script>
 
 <template>
   <main class="webpage">
-    <h2>Services</h2>
+    <TheNavbar />
     <p>Page under construction</p>
   </main>
 </template>

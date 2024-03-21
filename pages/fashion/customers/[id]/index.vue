@@ -5,7 +5,7 @@ import TheNavbar from "~/components/TheNavbar.vue";
 
 <template>
 <main class="dashboard">
-  <TheNavbar title="Customer detail" brandImageUrl="/clothing-design/logo.png"/>
+  <TheNavbar title="Customer detail"/>
 </main>
 </template>
 

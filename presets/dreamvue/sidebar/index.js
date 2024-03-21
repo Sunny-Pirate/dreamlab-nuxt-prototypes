@@ -42,11 +42,12 @@ export default {
 
             // Colors
             'bg-surface-0 dark:bg-surface-800',
-            'text-surface-700 dark:text-surface-0/80'
+            'text-surface-700 dark:text-surface-0/80',
+
         ]
     },
     title: {
-        class: ['font-semibold leading-6 text-base m-0']
+        class: ['font-semibold leading-6 text-lg m-0']
     },
     icons: {
         class: ['flex items-center']

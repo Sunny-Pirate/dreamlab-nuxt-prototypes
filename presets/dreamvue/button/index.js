@@ -64,14 +64,14 @@ export default {
 
             // Success Button
             {
-                'text-white dark:text-green-900': props.severity === 'success' && !props.text && !props.outlined && !props.plain,
-                'bg-green-500 dark:bg-green-400': props.severity === 'success' && !props.text && !props.outlined && !props.plain,
-                'ring-1 ring-green-500 dark:ring-green-400': props.severity === 'success' && !props.text && !props.outlined && !props.plain
+                'text-white dark:text-purple-900': props.severity === 'success' && !props.text && !props.outlined && !props.plain,
+                'bg-purple-500 dark:bg-purple-400': props.severity === 'success' && !props.text && !props.outlined && !props.plain,
+                'ring-1 ring-purple-500 dark:ring-purple-400': props.severity === 'success' && !props.text && !props.outlined && !props.plain
             },
             // Success Text Button
-            { 'text-green-500 dark:text-green-400': props.text && props.severity === 'success' && !props.plain },
+            { 'text-purple-500 dark:text-purple-400': props.text && props.severity === 'success' && !props.plain },
             // Success Outlined Button
-            { 'text-green-500 ring-1 ring-green-500 hover:bg-green-300/20': props.outlined && props.severity === 'success' && !props.plain },
+            { 'text-purple-500 ring-1 ring-purple-500 hover:bg-purple-300/20': props.outlined && props.severity === 'success' && !props.plain },
 
             // Info Button
             {

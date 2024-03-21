@@ -66,14 +66,13 @@ async function onError(event: Event) {
   */
 }
 
-const links = useNavigationLinks();
 
 </script>
 
 <template>
 
   <main class="landing-page">
-    <TheNavbar title="Contact Us" titlePos="start" :links showLogo />
+    <TheNavbar titlePos="start" :links showTrigger />
 
     <div class="content">
       <p class="intro">Fill-in the form to contact us.</p>

@@ -71,6 +71,7 @@ export default {
 
     primevue: {
         unstyled: true,
+        cssLayerOrder: 'tailwind-base, primevue, tailwind-utilities',
         importPT: {as: 'Dreamlab', from: '~/presets/dreamvue/'}      //import and apply preset
     },
 
@@ -86,7 +87,7 @@ export default {
         redirectOptions: {
             login: '/auth/login',
             callback: '/auth/confirm',
-            exclude: ['/', '/contact-us', '/portfolio'],
+            exclude: ['/', '/contact-us', '/portfolio', '/services'],
             cookieRedirect: true,
         },
         cookieOptions: {

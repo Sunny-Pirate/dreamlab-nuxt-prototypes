@@ -1,6 +1,18 @@
+
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer tailwind-utilities {
+    @tailwind components;
+    @tailwind utilities;
+}
+
+/*
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*/
 
 
 @font-face {
@@ -111,8 +123,22 @@
         @apply font-dreamlab;
     }
 
+    nav {
+        @apply z-10;
+    }
 
-    main.landing-page {
+    .main {
+        @apply z-0;
+    }
+
+
+
+}
+
+
+@layer components {
+    /* LAYOUTS */
+    .landing-page {
         @apply w-full flex flex-col min-h-screen;
 
         .content {
@@ -120,26 +146,9 @@
         }
     }
 
-    section.hero {
+    .hero {
         @apply relative min-h-screen grid grid-cols-1 grid-rows-1 place-items-center;
     }
-
-    .dreamlab-textual-logo {
-        @apply font-display;
-
-        &.primary {
-            @apply text-transparent bg-gradient-to-tr bg-clip-text from-emerald-500 from-65% to-emerald-300;
-        }
-
-        span {
-            @apply text-purple-400;
-        }
-    }
-}
-
-
-@layer components {
-
 
     /* GRADIENTS */
     .gradient-after-primary {
@@ -171,4 +180,18 @@
         @apply text-base;
     }
 
+
+    /* COMPONENTS */
+
+    .dreamlab-textual-logo {
+        @apply font-display;
+
+        &.primary {
+            @apply text-transparent bg-gradient-to-tr bg-clip-text from-emerald-500 from-65% to-emerald-300;
+        }
+
+        span {
+            @apply text-purple-400;
+        }
+    }
 }

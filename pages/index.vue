@@ -32,11 +32,16 @@ useHead({
 const user = useSupabaseUser();
 
 
+const {y} = useWindowScroll();
+
 </script>
 
 <template>
   <main class="index">
-    <TheNavbar  />
+
+    <TheNavbar class="fixed w-full z-99"
+               :class="{' bg-white shadow-md': y>100}"
+    />
     <TheHeroSlogan scrollToId="hero-services"/>
     <TheHeroServices/>
     <TheFooter/>

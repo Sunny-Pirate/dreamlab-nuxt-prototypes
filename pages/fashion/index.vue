@@ -38,11 +38,11 @@ onMounted(() => {
 <template>
   <main class="cd-dashboard">
     <TheNavbar
-        :showLogo="true"
+        :showTrigger="true"
         title="Cloting Design App"
         :userAvatar="user?.user_metadata?.avatar_url"
     >
-      <template #brand>
+      <template #trigger>
         <NuxtImg src="/clothing-design/logo.png" class="size-10 object-cover"/>
       </template>
     </TheNavbar>

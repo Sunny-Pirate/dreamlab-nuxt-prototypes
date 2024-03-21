@@ -1,5 +1,4 @@
 <script setup>
-import TheDreamlabVectorLogo from "~/components/dreamlab/branding/TheDreamlabVectorLogo.vue";
 
 const user = useSupabaseUser()
 </script>
