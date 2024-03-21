@@ -26,6 +26,7 @@ const config: Config = {
                 video: '16 / 9'
             },
             backgroundImage: {
+
             },
             borderRadius: {
                 lg: "var(--radius)",

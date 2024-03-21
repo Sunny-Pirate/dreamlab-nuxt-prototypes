@@ -11,7 +11,7 @@ const state = reactive({
   fullName: "Luca Faccio",
   email: "luca.faccio.pd@gmail.com",
   isBusinessRequest: false,
-  businessName: "A business name for a company",
+  businessName: "A business name for a companyHeroProps",
   website: "https://dreamlab.solutions",
   // scope: Enum_Lead_Scope.Consulting,
   concept: undefined,
