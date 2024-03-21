@@ -31,7 +31,9 @@ const isActive = computed(() => {
         {{ title }}
       </template>
       <template #end>
-        <Menubar ref="menubarEl" :model="links" :pt="{root: ``}">
+        <Menubar ref="menubarEl" :model="links" :pt="{root: ``}"
+          class="hidden md:block"
+        >
           <template #item="{ item, props, hasSubmenu }" >
             <Button text
                     :severity="$route.path === item.url ? 'success': 'primary'"
