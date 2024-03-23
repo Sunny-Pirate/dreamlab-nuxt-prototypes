@@ -6,7 +6,12 @@ const config: Config = {
     darkMode: ["class"],
     content: [
         "./index.html",
-        "./src/**/*.{vue,js,ts,jsx,tsx}",
+        "./components/**/*.{js,vue,ts}",
+        "./layouts/**/*.vue",
+        "./pages/**/*.vue",
+        "./plugins/**/*.{js,ts}",
+        "./app.vue",
+        "./error.vue",
         "presets/**/*.{js,vue,ts}"
     ],
     theme: {
@@ -25,9 +30,7 @@ const config: Config = {
                 square: '1 / 1',
                 video: '16 / 9'
             },
-            backgroundImage: {
-
-            },
+            backgroundImage: {},
             borderRadius: {
                 lg: "var(--radius)",
                 md: "calc(var(--radius) - 2px)",
@@ -92,7 +95,10 @@ const config: Config = {
         },
     },
     plugins: [
-        // require('@tailwindcss/forms'),
+        require('@tailwindcss/forms')
+        /*({
+            strategy: 'base',
+        })*/,
         require('@tailwindcss/typography'),
     ],
 }

@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 import * as path from "path";
-import defaultTheme from "tailwindcss/defaultTheme";
+// import tailwindForms from "@tailwindcss/forms";
 
 export default {
 
@@ -12,11 +12,11 @@ export default {
         // "nuxt-graphql-client",
         "nuxt-primevue",
         "@nuxtjs/tailwindcss",
-        "@nuxtjs/supabase"
+        "@nuxtjs/supabase",
+        'nuxt-icon'
     ],
     dev: true,
     devtools: {enabled: true},
-
 
     /*"graphql-client": {
         watch: true,
@@ -70,16 +70,19 @@ export default {
     },
 
     primevue: {
+        options: {
+            ripple: true,
+        },
         unstyled: true,
-        cssLayerOrder: 'tailwind-base, primevue, tailwind-utilities',
+        // cssLayerOrder: 'tailwind-base, primevue, tailwind-utilities',
+
         importPT: {as: 'Dreamlab', from: '~/presets/dreamvue/'}      //import and apply preset
     },
 
+
     runtimeConfig: {
 
-        public: {
-
-        }
+        public: {}
     },
 
     supabase: {
@@ -106,8 +109,11 @@ export default {
         exposeConfig: {
             level: 2,
         },
-        config: {},
+        config: {
+            // plugins: [tailwindForms],
+        },
         viewer: true,
+
     }
 
 }

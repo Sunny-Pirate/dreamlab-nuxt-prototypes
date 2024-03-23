@@ -46,15 +46,15 @@ model flow_state {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model identities {
   provider_id     String
-  user_id         String    @db.Uuid
+  user_id         String     @db.Uuid
   identity_data   Json
   provider        String
-  last_sign_in_at DateTime? @db.Timestamptz(6)
-  created_at      DateTime? @db.Timestamptz(6)
-  updated_at      DateTime? @db.Timestamptz(6)
-  email           String?   @default(dbgenerated("lower((identity_data ->> 'email'::text))"))
-  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  users           users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  last_sign_in_at DateTime?  @db.Timestamptz(6)
+  created_at      DateTime?  @db.Timestamptz(6)
+  updated_at      DateTime?  @db.Timestamptz(6)
+  email           String?    @default(dbgenerated("lower((identity_data ->> 'email'::text))"))
+  id              String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  users           auth_users @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([provider_id, provider], map: "identities_provider_id_provider_unique")
   @@index([email])
@@ -110,7 +110,7 @@ model mfa_factors {
   updated_at     DateTime         @db.Timestamptz(6)
   secret         String?
   mfa_challenges mfa_challenges[]
-  users          users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users          auth_users       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@index([user_id, created_at], map: "factor_id_created_at_idx")
   @@index([user_id])
@@ -197,7 +197,7 @@ model sessions {
   tag            String?
   mfa_amr_claims mfa_amr_claims[]
   refresh_tokens refresh_tokens[]
-  users          users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users          auth_users       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@index([not_after(sort: Desc)])
   @@index([user_id])
@@ -238,59 +238,132 @@ model sso_providers {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
-model users {
-  instance_id                 String?         @db.Uuid
-  id                          String          @id @db.Uuid
-  aud                         String?         @db.VarChar(255)
-  role                        String?         @db.VarChar(255)
-  email                       String?         @db.VarChar(255)
-  encrypted_password          String?         @db.VarChar(255)
-  email_confirmed_at          DateTime?       @db.Timestamptz(6)
-  invited_at                  DateTime?       @db.Timestamptz(6)
-  confirmation_token          String?         @db.VarChar(255)
-  confirmation_sent_at        DateTime?       @db.Timestamptz(6)
-  recovery_token              String?         @db.VarChar(255)
-  recovery_sent_at            DateTime?       @db.Timestamptz(6)
-  email_change_token_new      String?         @db.VarChar(255)
-  email_change                String?         @db.VarChar(255)
-  email_change_sent_at        DateTime?       @db.Timestamptz(6)
-  last_sign_in_at             DateTime?       @db.Timestamptz(6)
-  raw_app_meta_data           Json?
-  raw_user_meta_data          Json?
-  is_super_admin              Boolean?
-  created_at                  DateTime?       @db.Timestamptz(6)
-  updated_at                  DateTime?       @db.Timestamptz(6)
-  phone                       String?         @unique
-  phone_confirmed_at          DateTime?       @db.Timestamptz(6)
-  phone_change                String?         @default("")
-  phone_change_token          String?         @default("") @db.VarChar(255)
-  phone_change_sent_at        DateTime?       @db.Timestamptz(6)
-  confirmed_at                DateTime?       @default(dbgenerated("LEAST(email_confirmed_at, phone_confirmed_at)")) @db.Timestamptz(6)
-  email_change_token_current  String?         @default("") @db.VarChar(255)
-  email_change_confirm_status Int?            @default(0) @db.SmallInt
-  banned_until                DateTime?       @db.Timestamptz(6)
-  reauthentication_token      String?         @default("") @db.VarChar(255)
-  reauthentication_sent_at    DateTime?       @db.Timestamptz(6)
-  is_sso_user                 Boolean         @default(false)
-  deleted_at                  DateTime?       @db.Timestamptz(6)
-  is_anonymous                Boolean         @default(false)
-  identities                  identities[]
-  mfa_factors                 mfa_factors[]
-  sessions                    sessions[]
-  customers                   customers?
-  subscriptions               subscriptions[]
-  users                       public_users?
+model auth_users {
+  instance_id                                          String?            @db.Uuid
+  id                                                   String             @id @db.Uuid
+  aud                                                  String?            @db.VarChar(255)
+  role                                                 String?            @db.VarChar(255)
+  email                                                String?            @db.VarChar(255)
+  encrypted_password                                   String?            @db.VarChar(255)
+  email_confirmed_at                                   DateTime?          @db.Timestamptz(6)
+  invited_at                                           DateTime?          @db.Timestamptz(6)
+  confirmation_token                                   String?            @db.VarChar(255)
+  confirmation_sent_at                                 DateTime?          @db.Timestamptz(6)
+  recovery_token                                       String?            @db.VarChar(255)
+  recovery_sent_at                                     DateTime?          @db.Timestamptz(6)
+  email_change_token_new                               String?            @db.VarChar(255)
+  email_change                                         String?            @db.VarChar(255)
+  email_change_sent_at                                 DateTime?          @db.Timestamptz(6)
+  last_sign_in_at                                      DateTime?          @db.Timestamptz(6)
+  raw_app_meta_data                                    Json?
+  raw_user_meta_data                                   Json?
+  is_super_admin                                       Boolean?
+  created_at                                           DateTime?          @db.Timestamptz(6)
+  updated_at                                           DateTime?          @db.Timestamptz(6)
+  phone                                                String?            @unique
+  phone_confirmed_at                                   DateTime?          @db.Timestamptz(6)
+  phone_change                                         String?            @default("")
+  phone_change_token                                   String?            @default("") @db.VarChar(255)
+  phone_change_sent_at                                 DateTime?          @db.Timestamptz(6)
+  confirmed_at                                         DateTime?          @default(dbgenerated("LEAST(email_confirmed_at, phone_confirmed_at)")) @db.Timestamptz(6)
+  email_change_token_current                           String?            @default("") @db.VarChar(255)
+  email_change_confirm_status                          Int?               @default(0) @db.SmallInt
+  banned_until                                         DateTime?          @db.Timestamptz(6)
+  reauthentication_token                               String?            @default("") @db.VarChar(255)
+  reauthentication_sent_at                             DateTime?          @db.Timestamptz(6)
+  is_sso_user                                          Boolean            @default(false)
+  deleted_at                                           DateTime?          @db.Timestamptz(6)
+  is_anonymous                                         Boolean            @default(false)
+  identities                                           identities[]
+  mfa_factors                                          mfa_factors[]
+  sessions                                             sessions[]
+  customers                                            customers?
+  fashion_projects_fashion_projects_designer_idTousers fashion_projects[] @relation("fashion_projects_designer_idTousers")
+  fashion_projects_fashion_projects_owner_idTousers    fashion_projects[] @relation("fashion_projects_owner_idTousers")
+  subscriptions                                        subscriptions[]
+  users                                                public_users?
 
   @@index([instance_id])
   @@index([is_anonymous])
+  @@map("users")
   @@schema("auth")
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model customers {
-  id                 String  @id @db.Uuid
+  id                 String     @id @db.Uuid
   stripe_customer_id String?
-  users              users   @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users              auth_users @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@schema("public")
+}
+
+model fashion_anatomic_measures {
+  id                        String                   @id @db.Uuid
+  name                      String
+  description               String?
+  value                     Decimal                  @db.Decimal
+  fashion_anatomic_sheetsId String?                  @db.Uuid
+  fashion_anatomic_sheets   fashion_anatomic_sheets? @relation(fields: [fashion_anatomic_sheetsId], references: [id])
+
+  @@schema("public")
+}
+
+model fashion_anatomic_sheets {
+  id                        String                      @id @db.Uuid
+  gender                    String?
+  fashion_anatomic_measures fashion_anatomic_measures[]
+  fashion_projects          fashion_projects[]
+
+  @@schema("public")
+}
+
+model fashion_article {
+  id              String  @id @db.Uuid
+  code            String
+  revision_number Int
+  file_cad_url    String?
+
+  @@schema("public")
+}
+
+model fashion_brands {
+  id               String             @id @db.Uuid
+  name             String
+  logo_url         String?
+  fashion_projects fashion_projects[]
+
+  @@schema("public")
+}
+
+model fashion_projects {
+  id                                        String                   @id @db.Uuid
+  owner_id                                  String                   @db.Uuid
+  designer_id                               String                   @db.Uuid
+  codename                                  String
+  fashion_anatomic_sheets_id                String?                  @db.Uuid
+  isAutumn                                  Boolean
+  isSpring                                  Boolean
+  isSummer                                  Boolean
+  isWinter                                  Boolean
+  brand_id                                  String                   @db.Uuid
+  fashion_brands                            fashion_brands           @relation(fields: [brand_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users_fashion_projects_designer_idTousers auth_users               @relation("fashion_projects_designer_idTousers", fields: [designer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  fashion_anatomic_sheets                   fashion_anatomic_sheets? @relation(fields: [fashion_anatomic_sheets_id], references: [id])
+  users_fashion_projects_owner_idTousers    auth_users               @relation("fashion_projects_owner_idTousers", fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@schema("public")
+}
+
+model leads {
+  id          String    @id @db.Uuid
+  user_id     String    @db.Uuid
+  website     String?
+  scope_id    String?   @db.Uuid
+  message     String?
+  concept_url String?
+  budget      Int?
+  deadline    DateTime? @default(dbgenerated("timezone('utc'::text, now())")) @db.Timestamptz(6)
 
   @@schema("public")
 }
@@ -309,6 +382,7 @@ model prices {
   interval_count    Int?
   trial_period_days Int?
   metadata          Json?
+  servicesId        String?
   products          products?              @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   subscriptions     subscriptions[]
 
@@ -324,6 +398,16 @@ model products {
   image       String?
   metadata    Json?
   prices      prices[]
+
+  @@schema("public")
+}
+
+model services {
+  id          String   @id @db.Uuid
+  active      Boolean?
+  name        String?
+  description String?
+  ui_class    String?
 
   @@schema("public")
 }
@@ -346,80 +430,21 @@ model subscriptions {
   trial_start          DateTime?            @default(dbgenerated("timezone('utc'::text, now())")) @db.Timestamptz(6)
   trial_end            DateTime?            @default(dbgenerated("timezone('utc'::text, now())")) @db.Timestamptz(6)
   prices               prices?              @relation(fields: [price_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users                users                @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users                auth_users           @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@schema("public")
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model public_users {
-  id                String             @id @db.Uuid
-  full_name         String?
-  avatar_url        String?
-  billing_address   Json?
-  payment_method    Json?
-  users             users              @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  fashion_projects  fashion_projects[] @relation("owned_projects")
-  designed_projects fashion_projects[] @relation("designed_projects")
+  id              String     @id @db.Uuid
+  full_name       String?
+  avatar_url      String?
+  billing_address Json?
+  payment_method  Json?
+  users           auth_users @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("users")
-  @@schema("public")
-}
-
-model fashion_brands {
-  id       String             @id @db.Uuid
-  name     String
-  logo_url String?
-  projects fashion_projects[]
-
-  @@schema("public")
-}
-
-model fashion_anatomic_measures {
-  id                        String                   @id @db.Uuid
-  name                      String                   @db.Text
-  description               String?                  @db.Text
-  value                     Decimal                  @db.Decimal()
-  fashion_anatomic_sheets   fashion_anatomic_sheets? @relation(fields: [fashion_anatomic_sheetsId], references: [id])
-  fashion_anatomic_sheetsId String?                  @db.Uuid
-
-  @@schema("public")
-}
-
-model fashion_anatomic_sheets {
-  id               String                      @id @db.Uuid
-  fashion_projects fashion_projects[]
-  gender           String?
-  measures         fashion_anatomic_measures[]
-
-  @@schema("public")
-}
-
-model fashion_projects {
-  id                         String                   @id @db.Uuid
-  owner_id                   String                   @db.Uuid
-  owner                      public_users             @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction, name: "owned_projects")
-  designer_id                String                   @db.Uuid
-  designer                   public_users             @relation(fields: [designer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, name: "designed_projects")
-  codename                   String
-  isSpring                   Boolean
-  isSummer                   Boolean
-  isAutumn                   Boolean
-  isWinter                   Boolean
-  brand_id                   String                   @db.Uuid
-  brand                      fashion_brands?          @relation(fields: [brand_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  fashion_anatomic_sheets_id String?                  @db.Uuid
-  anatomic_sheet             fashion_anatomic_sheets? @relation(fields: [fashion_anatomic_sheets_id], references: [id])
-
-  @@schema("public")
-}
-
-model fashion_article {
-  id              String  @id @db.Uuid
-  code            String
-  revision_number Int
-  file_cad_url    String?
-
   @@schema("public")
 }
 

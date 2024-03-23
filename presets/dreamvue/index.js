@@ -86,7 +86,7 @@ import ripple from './ripple/index.js';
 import tag from './tag/index.js';
 import terminal from './terminal/index.js';
 
-export default {
+const Dreamvue = {
     global,
     directives: {
         tooltip,
@@ -177,3 +177,5 @@ export default {
     tag,
     terminal
 }
+
+export default Dreamvue;

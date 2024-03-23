@@ -1,34 +1,59 @@
 <script setup lang="ts">
 
-import TheFooter from "~/components/TheFooter.vue";
 import type {AsyncDataRequestStatus} from "#app/composables/asyncData";
+import type {Database, Tables, Enums} from "~/types/database.types.ts";
+import type {QueryResult, QueryData, QueryError} from '@supabase/supabase-js'
+
+import TheFooter from "~/components/TheFooter.vue";
 import TheNavbar from "~/components/TheNavbar.vue";
-import useNavigationLinks from "~/composables/useNavigationLinks";
-
-const formRef = ref();
-
-const state = reactive({
-  fullName: "Luca Faccio",
-  email: "luca.faccio.pd@gmail.com",
-  isBusinessRequest: false,
-  businessName: "A business name for a companyHeroProps",
-  website: "https://dreamlab.solutions",
-  // scope: Enum_Lead_Scope.Consulting,
-  concept: undefined,
-  budget: 1000,
-  timeline: undefined,
-  referrals: [] as { id: string }[],
-  message: "An example message longer than 10 chars.",
-  isPrivacyAccepted: false,
-})
+import InputText from 'primevue/inputtext';
+import Services from "~/pages/services.vue";
+import type {} from '@prisma/client'
 
 const statusRef = ref<AsyncDataRequestStatus>("idle");
 const pendingRef = ref<boolean>(false);
+const formRef = ref();
+const serviceChoices = ref<ServicesTable | null>([])
+import Editor from 'primevue/editor';
+import UploadDragAndDrop from "~/components/forms/UploadDragAndDrop.vue";
+
+
+const user = useSupabaseUser();
+const supabase = useSupabaseClient<Database>();
+
+const servicesFilterBuilder = supabase.from('services').select().eq('active', true).limit(3);
+
+type ServicesTable = QueryData<typeof servicesFilterBuilder>;
+
+const state = ref({
+  fullName: user.value?.user_metadata.full_name,
+  email: user.value?.user_metadata.email,
+  message: "An example message longer than 10 chars.",
+  isBusinessRequest: false,
+  website: '',// "https://dreamlab.solutions",
+  scope: '',
+  concept: undefined,
+  budget: 1000,
+  timeline: undefined,
+  isPrivacyAccepted: false,
+})
+
+onMounted(async () => {
+  const {data, error} = await servicesFilterBuilder.returns<ServicesTable>();
+  if (error?.code) {
+    console.log('[/contact-us] Something went wrong fetching servcies.')
+    throw new Error(error.message);
+    return;
+  }
+  serviceChoices.value = data
+
+})
 
 async function onSubmit(event: Event) {
 
   console.log('[contact-us] onSubmit(), ', event)
 
+  console.log(state.value)
   /*
   try {
   const {refresh, pending, status, data, error} = await useAsyncGql('createLeadFromContactUsForm', {
@@ -66,20 +91,102 @@ async function onError(event: Event) {
   */
 }
 
-
 </script>
 
 <template>
 
   <main class="landing-page">
-    <TheNavbar titlePos="start" :links showTrigger />
+    <TheNavbar/>
+
+    <Card :pt="{
+      root: `px-2 shadow-md max-w-screen-md mx-auto`,
+      content: `flex flex-col justify-start pt-8 gap-6 px-5`
+    }">
+      <template #title>Contact us</template>
+      <template #subtitle>
+        <h4>Get in Touch: We’re excited to hear from you!</h4>
+        <small class="font-dreamlab text-slate-400">
+          Fill in the form below with your details. Fields marked with an asterisk<span class="text-super text-red-500/50">(*)</span> are
+          required, but feel free to provide as much information as you’re comfortable with. Whether it’s a business inquiry or just a
+          hello, let us know your thoughts, and we’ll get back to you promptly. Your privacy is important to us, and your information will
+          be kept confidential.
+        </small>
+      </template>
+      <template #content>
+        <form @submit.prevent="onSubmit" id="contact-form">
+          <div class="input-field col-span-full xs:col-span-3">
+            <FloatLabel>
+              <InputText id="fullName" v-model="state.fullName"/>
+              <label for="fullName">Your full name</label>
+            </FloatLabel>
+          </div>
+
+          <div class="input-field col-span-full xs:col-span-3">
+            <FloatLabel>
+              <InputText id="email" v-model="state.email"/>
+              <label for="email">Your email</label>
+            </FloatLabel>
+          </div>
+
+          <div class="input-field col-span-full">
+            <FloatLabel>
+              <Editor v-model="state.message" :placeholder="state.message" :pt="{
+                root: `flex flex-col justify-start`
+              }"/>
+              <label for="email">Your message</label>
+            </FloatLabel>
+          </div>
+
+          <div class="input-field col-span-full xs:col-span-2">
+            <h4 class="field-float-label">Is a business request?</h4>
+            <div class="checkbox-inline">
+              <Checkbox v-model="state.isBusinessRequest" :binary="true" id="isBusinessRequest" :value="state.isBusinessRequest"/>
+              <label for="isBusinessRequest">Select the checkbox if you want a business invoice.</label>
+            </div>
+          </div>
+          <div class="input-field col-span-full xs:col-span-2">
+            <FloatLabel>
+              <InputText id="website" v-model="state.website"/>
+              <label for="website">Your domain</label>
+            </FloatLabel>
+          </div>
+          <div class="multiselect-3col-field col-span-full xs:col-span-2">
+            <h4 class="field-float-label">Your preferred service?</h4>
+            <ButtonGroup :pt="{
+              root: `flex flex-row`
+            }">
+              <Button v-for="(service, sKey) in serviceChoices" :key="sKey" :label="service.name" :value="service.id"
+                      class="inline-flex"
+                      :outlined="service.id !== state.scope"
+                      @click="() => state.scope = service.id"/>
+            </ButtonGroup>
+          </div>
+
+          <!--          <UploadDragAndDrop class="w-full col-span-full"/>-->
+
+          <div class="input-field col-span-full xs:col-span-2">
+            <h4 class="field-float-label">Do you have a budget limit? € {{state.budget}}</h4>
+            <Slider id="budget" v-model="state.budget" :step="1500" :min="1500" :max="10500"/>
+          </div>
+
+          <div class="input-field col-span-full xs:col-span-2">
+            <h4 class="field-float-label">There's a dreadline? </h4>
+
+          </div>
+          <Button type="submit" label="Send request"/>
+        </form>
+      </template>
+    </Card>
 
     <div class="content">
       <p class="intro">Fill-in the form to contact us.</p>
       <form @submit="onSubmit"
             @error="onError"
             ref="formRef"
+            class="form-single-column"
       >
+        <InputGroup>
+        </InputGroup>
         <div class="fullname-input">
           <h6>Your name</h6>
           <input placeholder="Type here your full name" v-model="state.fullName"
@@ -87,7 +194,7 @@ async function onError(event: Event) {
         </div>
         <div class="email-input">
           <h6>Your e-mail</h6>
-          <input placeholder="Type here your e-mail address" v-model="state.email"/>
+          <InputText placeholder="Type here your e-mail address" v-model="state.email"/>
         </div>
         <div class="business-request-selection">
           <h6>Is a business request</h6>
@@ -176,5 +283,36 @@ async function onError(event: Event) {
 </template>
 
 <style scoped>
+#contact-form {
+  @apply grid grid-cols-6 gap-8 place-items-stretch;
+}
 
+.input-field {
+  @apply relative flex flex-col;
+
+  & span {
+    @apply flex flex-col;
+  }
+}
+
+
+.field-float-label {
+  @apply absolute leading-5 -top-3 -translate-y-1/2 left-3 text-sm text-surface-900/50;
+}
+
+.multiselect-3col-field {
+  @apply relative;
+
+  span {
+    @apply grid grid-cols-3;
+  }
+}
+
+.checkbox-inline {
+  @apply w-full flex flex-row items-center gap-2;
+
+  label {
+    @apply text-xs  ;
+  }
+}
 </style>

@@ -19,7 +19,7 @@ export default {
             'text-surface-900 dark:text-surface-0',
             'placeholder:text-surface-400 dark:placeholder:text-surface-500',
             'bg-surface-0 dark:bg-surface-900',
-            'shadow-sm',
+            'shadow-sm ',
             { 'ring-1 ring-inset ring-offset-0': parent.instance.$name !== 'InputGroup' },
 
             { 'ring-surface-300 dark:ring-surface-700': !props.invalid },

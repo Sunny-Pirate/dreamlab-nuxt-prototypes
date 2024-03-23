@@ -1,18 +1,7 @@
-
-@layer tailwind-base {
-    @tailwind base;
-}
-
-@layer tailwind-utilities {
-    @tailwind components;
-    @tailwind utilities;
-}
-
-/*
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*/
+
 
 
 @font-face {
@@ -32,6 +21,7 @@
     url("../fonts/sephora/Sephora-Bold.ttf") format("truetype"),
     url("../fonts/sephora/Sephora-Italic.ttf") format("truetype");
 }
+
 
 :root {
     --primary-50: 236 253 245;
@@ -57,10 +47,11 @@
     --surface-800: 30 41 59;
     --surface-900: 15 23 42;
     --surface-950: 3 6 23;
+    --radius: 6px;
 }
 
 
-@layer base {
+@layer tailwind-base {
 
 
     /* width */
@@ -127,44 +118,51 @@
         @apply z-10;
     }
 
-    .main {
-        @apply z-0;
+    main {
+        @apply relative z-0 w-full flex flex-col;
     }
+
+
 
 
 
 }
 
 
-@layer components {
+@layer tailwind-components {
     /* LAYOUTS */
     .landing-page {
-        @apply w-full flex flex-col min-h-screen;
-
-        .content {
-            @apply flex-1;
-        }
+        @apply w-full flex flex-col min-h-screen gap-16;
     }
 
     .hero {
         @apply relative min-h-screen grid grid-cols-1 grid-rows-1 place-items-center;
     }
 
+    .flex-layout {
+        @apply flex flex-col justify-start items-stretch gap-6;
+    }
+
+    .layout-horizontal-grid-2-cols {
+        @apply grid grid-cols-1 auto-rows-fr gap-4 md:grid-cols-3 md:gap-6;
+    }
+
+
     /* GRADIENTS */
     .gradient-after-primary {
-        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-emerald-600 after:to-purple-400;
+        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-emerald-500 after:to-purple-400;
     }
 
     .gradient-after-success {
-        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-emerald-600 after:to-emerald-400;
+        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-emerald-500 after:to-emerald-400;
     }
 
     .gradient-after-secondary {
-        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-purple-600 after:to-yellow-400;
+        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-purple-500 after:to-sky-400;
     }
 
     .gradient-after-accent {
-        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-yellow-600 after:to-emerald-400;
+        @apply after:content-[''] after:block  after:w-full after:h-0.5 lg:after:h-1 after:bg-gradient-to-r after:from-sky-500 after:to-emerald-400;
     }
 
     /* TYPOGRAPHY*/
@@ -173,21 +171,35 @@
     }
 
     .title {
-        @apply text-lg text-primary-500;
+        @apply text-2xl md:text-4xl text-primary-500;
     }
 
     .subtitle {
-        @apply text-base;
+        @apply text-xl md:text-2xl;
     }
+/*
+    .text-large {
+        @apply text-3xl md:text-6xl
+    }*/
 
 
     /* COMPONENTS */
+
+
+    .cta-scroll-down {
+        @apply flex flex-row justify-center;
+    }
+
 
     .dreamlab-textual-logo {
         @apply font-display;
 
         &.primary {
-            @apply text-transparent bg-gradient-to-tr bg-clip-text from-emerald-500 from-65% to-emerald-300;
+            @apply text-transparent bg-clip-text bg-gradient-to-tr from-emerald-500 from-65% to-emerald-300;
+        }
+
+        &.indexpage {
+            @apply text-transparent bg-clip-text bg-gradient-to-r from-30% from-emerald-500 via-60%  via-purple-500 to-65% to-sky-500;
         }
 
         span {

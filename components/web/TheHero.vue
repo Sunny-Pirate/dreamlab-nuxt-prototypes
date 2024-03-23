@@ -7,6 +7,7 @@ export interface HeroProps {
   id?: string
   backgroundImage?: string
   backgroundClasses?: CSSProperties | StyleValue[]
+  layoutClasses?: string | string[]
 }
 
 const props = defineProps<HeroProps>();
@@ -17,16 +18,17 @@ const props = defineProps<HeroProps>();
   <section :id="id" class="hero"
            :class="backgroundClasses"
            :style="{backgroundImage}">
-    <div class="layout">
+    <div :class="layoutClasses ? layoutClasses : 'layout'">
       <div class="heading">
-        <slot name="title">
+        <slot name="title" v-if="$slots.title">
           <h1 class="title">Title</h1>
         </slot>
-        <slot name="subtitle">
+        <slot name="subtitle" v-if="$slots.subtitle">
           <h1 class="subtitle">Subtitle</h1>
         </slot>
       </div>
-      <slot name="cta">
+      <slot />
+      <slot name="cta" v-if="$slots.cta">
         <div class="flex flex-col">
           <Button label="CTA"/>
         </div>
@@ -36,5 +38,4 @@ const props = defineProps<HeroProps>();
 </template>
 
 <style scoped>
-
 </style>

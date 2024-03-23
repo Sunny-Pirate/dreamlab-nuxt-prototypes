@@ -29,8 +29,195 @@ export type Database = {
             isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
-          }
+          },
         ]
+      }
+      fashion_anatomic_measures: {
+        Row: {
+          description: string | null
+          fashion_anatomic_sheetsId: string | null
+          id: string
+          name: string
+          value: number
+        }
+        Insert: {
+          description?: string | null
+          fashion_anatomic_sheetsId?: string | null
+          id: string
+          name: string
+          value: number
+        }
+        Update: {
+          description?: string | null
+          fashion_anatomic_sheetsId?: string | null
+          id?: string
+          name?: string
+          value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fashion_anatomic_measures_fashion_anatomic_sheetsId_fkey"
+            columns: ["fashion_anatomic_sheetsId"]
+            isOneToOne: false
+            referencedRelation: "fashion_anatomic_sheets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fashion_anatomic_sheets: {
+        Row: {
+          gender: string | null
+          id: string
+        }
+        Insert: {
+          gender?: string | null
+          id: string
+        }
+        Update: {
+          gender?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
+      fashion_article: {
+        Row: {
+          code: string
+          file_cad_url: string | null
+          id: string
+          revision_number: number
+        }
+        Insert: {
+          code: string
+          file_cad_url?: string | null
+          id: string
+          revision_number: number
+        }
+        Update: {
+          code?: string
+          file_cad_url?: string | null
+          id?: string
+          revision_number?: number
+        }
+        Relationships: []
+      }
+      fashion_brands: {
+        Row: {
+          id: string
+          logo_url: string | null
+          name: string
+        }
+        Insert: {
+          id: string
+          logo_url?: string | null
+          name: string
+        }
+        Update: {
+          id?: string
+          logo_url?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
+      fashion_projects: {
+        Row: {
+          brand_id: string
+          codename: string
+          designer_id: string
+          fashion_anatomic_sheets_id: string | null
+          id: string
+          isAutumn: boolean
+          isSpring: boolean
+          isSummer: boolean
+          isWinter: boolean
+          owner_id: string
+        }
+        Insert: {
+          brand_id: string
+          codename: string
+          designer_id: string
+          fashion_anatomic_sheets_id?: string | null
+          id: string
+          isAutumn: boolean
+          isSpring: boolean
+          isSummer: boolean
+          isWinter: boolean
+          owner_id: string
+        }
+        Update: {
+          brand_id?: string
+          codename?: string
+          designer_id?: string
+          fashion_anatomic_sheets_id?: string | null
+          id?: string
+          isAutumn?: boolean
+          isSpring?: boolean
+          isSummer?: boolean
+          isWinter?: boolean
+          owner_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fashion_projects_brand_id_fkey"
+            columns: ["brand_id"]
+            isOneToOne: false
+            referencedRelation: "fashion_brands"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fashion_projects_designer_id_fkey"
+            columns: ["designer_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fashion_projects_fashion_anatomic_sheets_id_fkey"
+            columns: ["fashion_anatomic_sheets_id"]
+            isOneToOne: false
+            referencedRelation: "fashion_anatomic_sheets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fashion_projects_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          budget: number | null
+          concept_url: string | null
+          deadline: string | null
+          id: string
+          message: string | null
+          scope_id: string | null
+          user_id: string
+          website: string | null
+        }
+        Insert: {
+          budget?: number | null
+          concept_url?: string | null
+          deadline?: string | null
+          id: string
+          message?: string | null
+          scope_id?: string | null
+          user_id: string
+          website?: string | null
+        }
+        Update: {
+          budget?: number | null
+          concept_url?: string | null
+          deadline?: string | null
+          id?: string
+          message?: string | null
+          scope_id?: string | null
+          user_id?: string
+          website?: string | null
+        }
+        Relationships: []
       }
       prices: {
         Row: {
@@ -42,6 +229,7 @@ export type Database = {
           interval_count: number | null
           metadata: Json | null
           product_id: string | null
+          servicesId: string | null
           trial_period_days: number | null
           type: Database["public"]["Enums"]["pricing_type"] | null
           unit_amount: number | null
@@ -55,6 +243,7 @@ export type Database = {
           interval_count?: number | null
           metadata?: Json | null
           product_id?: string | null
+          servicesId?: string | null
           trial_period_days?: number | null
           type?: Database["public"]["Enums"]["pricing_type"] | null
           unit_amount?: number | null
@@ -68,6 +257,7 @@ export type Database = {
           interval_count?: number | null
           metadata?: Json | null
           product_id?: string | null
+          servicesId?: string | null
           trial_period_days?: number | null
           type?: Database["public"]["Enums"]["pricing_type"] | null
           unit_amount?: number | null
@@ -79,7 +269,7 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "products"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       products: {
@@ -106,6 +296,30 @@ export type Database = {
           image?: string | null
           metadata?: Json | null
           name?: string | null
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          active: boolean | null
+          description: string | null
+          id: string
+          name: string | null
+          ui_class: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          description?: string | null
+          id: string
+          name?: string | null
+          ui_class?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          description?: string | null
+          id?: string
+          name?: string | null
+          ui_class?: string | null
         }
         Relationships: []
       }
@@ -175,7 +389,7 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       users: {
@@ -207,7 +421,7 @@ export type Database = {
             isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
     }
@@ -235,14 +449,16 @@ export type Database = {
   }
 }
 
+type PublicSchema = Database[Extract<keyof Database, "public">]
+
 export type Tables<
   PublicTableNameOrOptions extends
-    | keyof (Database["public"]["Tables"] & Database["public"]["Views"])
+    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
     ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
         Database[PublicTableNameOrOptions["schema"]]["Views"])
-    : never = never
+    : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
       Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
@@ -250,67 +466,67 @@ export type Tables<
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (Database["public"]["Tables"] &
-      Database["public"]["Views"])
-  ? (Database["public"]["Tables"] &
-      Database["public"]["Views"])[PublicTableNameOrOptions] extends {
-      Row: infer R
-    }
-    ? R
+  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
+        PublicSchema["Views"])
+    ? (PublicSchema["Tables"] &
+        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
     : never
-  : never
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
-    | keyof Database["public"]["Tables"]
+    | keyof PublicSchema["Tables"]
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
     ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+    : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
-  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
-      Insert: infer I
-    }
-    ? I
+  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
     : never
-  : never
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
-    | keyof Database["public"]["Tables"]
+    | keyof PublicSchema["Tables"]
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
     ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+    : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
-  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
-      Update: infer U
-    }
-    ? U
+  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
     : never
-  : never
 
 export type Enums<
   PublicEnumNameOrOptions extends
-    | keyof Database["public"]["Enums"]
+    | keyof PublicSchema["Enums"]
     | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
     ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
-    : never = never
+    : never = never,
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
-  ? Database["public"]["Enums"][PublicEnumNameOrOptions]
-  : never
+  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
+    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+    : never

@@ -1,3 +1,5 @@
+
+
 export default {
     root: {
         class: [
@@ -67,8 +69,7 @@ export default {
             {
                 'text-surface-500 hover:text-emerald-600 dark:text-white/70': !context.focused && !context.active,
                 'text-surface-500 dark:text-white/70 bg-surface-200 dark:bg-black/70': context.focused && !context.active,
-                'text-surface-900 dark:text-surface-0/80 bg-surface-50 dark:bg-black/70': context.focused && context.active,
-                'text-surface-900 dark:text-surface-0/80 bg-surface-50 dark:bg-black/70': !context.focused && context.active
+                'text-surface-900 dark:text-surface-0/80 bg-surface-50 dark:bg-black/70': context.focused && context.active || !context.focused && context.active,
             },
 
             // Hover States
@@ -155,8 +156,7 @@ export default {
             'items-center justify-center',
 
             // Size
-            'w-8',
-            'h-8',
+            'size-8',
 
             // Shape
             'rounded-full',

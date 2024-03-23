@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 
-
 import TheHero from "~/components/web/TheHero.vue";
 import {useScrollToTagId} from "#imports";
+import useMockBackendServiceList from "~/composables/useMockBackendServiceList";
 
 definePageMeta({
   name: "Index"
@@ -34,42 +34,58 @@ const user = useSupabaseUser();
 
 const {y} = useWindowScroll();
 
-const scrollToServices = () => useScrollToTagId("hero-services");
-
+const scrollToServices = () => useScrollToTagId("services");
+const services = useMockBackendServiceList();
 </script>
 
 <template>
   <main class="index">
 
-    <TheNavbar class="fixed w-full z-99"
+    <TheNavbar class="fixed w-full"
                :class="{' bg-white shadow-md': y>100}"
     />
-    <TheHero>
+    <TheHero class="slogan"  layout-classes="flex flex-col gap-16">
       <template #title>
-        <h1 class="title text-3xl md:text-4xl">DreamLab</h1>
+        <h1 class="dreamlab-textual-logo indexpage animated text-3xl md:text-5xl">DreamLab</h1>
       </template>
       <template #subtitle>
         <h2 class="subtitle">Where Passion Meets Professionalism</h2>
       </template>
       <template #cta>
         <div class="cta-scroll-down" @click="scrollToServices">
-          <icon class="pi pi-angle-double-down text-4xl"/>
+          <Icon name="double-arrow-down" class="text-purple-500 cursor-pointer text-4xl"/>
         </div>
       </template>
     </TheHero>
-    <TheHeroServices/>
+    <TheHero id="services"  layoutClasses="flex-layout px-4">
+      <template #subtitle>
+        <h3 class="subtitle text-emerald-500">
+          Your innovative partner in the digital realm:
+        </h3>
+      </template>
+      <div class="layout-horizontal-grid-2-cols">
+        <Card v-for="(service, sKey) in services" :key="sKey"
+              :pt="{
+                  root: `service-card ${service.uiClass} flex flex-col`,
+                  content: `px-2 py-1 lg:px-4 lg:py-2 flex-1`,
+                  body:`flex-1`
+                }"
+        >
+          <template #subtitle>{{ service.name }}</template>
+          <template #content>{{ service.description }}</template>
+        </Card>
+      </div>
+      <template #cta>
+        <NuxtLink to="/contact-us" class="cta-contact-us flex justify-center">
+          <Button label="Contact us" outlined />
+        </NuxtLink>
+      </template>
+    </TheHero>
     <TheFooter/>
   </main>
 </template>
 
 <style scoped>
-main.index {
-  @apply flex flex-col w-full;
-}
-
-.cta-scroll-down {
-  @apply flex flex-row justify-center;
-}
 </style>
 
 
